@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:StoryCanvas.View.Editors"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             x:Class="StoryCanvas.View.Editors.PersonEditorPage">
+  <local:PersonEditor x:Name="Editor"/>
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Name="{i18n:Translate Parameter}" x:Name="ParameterIcon" Order="Primary" Priority="0"/>
+  </ContentPage.ToolbarItems>
+</ContentPage>

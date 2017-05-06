@@ -1,0 +1,176 @@
+﻿<Page x:Class="StoryCanvas.WPF.View.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:local="clr-namespace:StoryCanvas.WPF.View.Pages"
+      xmlns:sub="clr-namespace:StoryCanvas.WPF.View.SubPages"
+      xmlns:lists="clr-namespace:StoryCanvas.WPF.View.EntityLists"
+      xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+	  xmlns:cvmainpage="clr-namespace:StoryCanvas.WPF.Converters.MainPage"
+	  xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+	  xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="600"
+      Title="{x:Static p:Resources.ApplicationName}">
+
+	<Page.Resources>
+        <cvcommon:AutoSaveStatusStringConverter x:Key="AutoSaveStatusStringConv"/>
+        <cvmainpage:MainModeListIndexConverter x:Key="MainModeListIndexConv"/>
+        <cvmainpage:MainSubEntityModeListIndexConverter x:Key="MainSubEntityModeListIndexConv"/>
+        <cvmainpage:MainEditModeListIndexConverter x:Key="MainEditModeListIndexConv"/>
+        <cvmainpage:MainViewModeListIndexConverter x:Key="MainViewModeListIndexConv"/>
+        <cvmainpage:MainTabListIndexConverter x:Key="MainTabListIndexConv"/>
+        <cvwcommon:EqualsVisibilityConverter x:Key="EqualsVisibilityConv"/>
+        <cvwcommon:NotEqualsVisibilityConverter x:Key="NotEqualsVisibilityConv"/>
+        <cvwcommon:EqualsConverter x:Key="EqualsConv"/>
+    </Page.Resources>
+	
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<!-- <ColumnDefinition Width="0.2*" MinWidth="180"/> -->
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		
+		<!-- モード選択メニュー -->
+		<!-- <lists:MainListMenu Grid.Column="0"/> -->
+
+        <Grid Grid.Column="0" Background="#808080">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Height" Value="80"/>
+                </Style>
+                <Style TargetType="{x:Type ToggleButton}">
+                    <Setter Property="Background" Value="#808080"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ToggleButton">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#a0a0a0"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#606060"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="#606060"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+            <ToggleButton Command="{Binding MainTabSelectCommand}" CommandParameter="Entity" IsChecked="{Binding MainTab,Converter={StaticResource EqualsConv},ConverterParameter=Entity,Mode=OneWay}">
+                <StackPanel>
+                    <Image Source="../../Resources/Icons/bar_entity.png"/>
+                    <Label Content="{x:Static p:Resources.Entity}"/>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Grid.Row="1" Command="{Binding MainTabSelectCommand}" CommandParameter="SubEntity" IsChecked="{Binding MainTab,Converter={StaticResource EqualsConv},ConverterParameter=SubEntity,Mode=OneWay}">
+                <StackPanel>
+                    <Image Source="../../Resources/Icons/bar_sub_entity.png"/>
+                    <Label Content="{x:Static p:Resources.SubEntity}"/>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Grid.Row="2" Command="{Binding MainTabSelectCommand}" CommandParameter="Edit" IsChecked="{Binding MainTab,Converter={StaticResource EqualsConv},ConverterParameter=Edit,Mode=OneWay}">
+                <StackPanel>
+                    <Image Source="../../Resources/Icons/bar_edit.png"/>
+                    <Label Content="{x:Static p:Resources.Edit}"/>
+                </StackPanel>
+            </ToggleButton>
+            <ToggleButton Grid.Row="3" Command="{Binding MainTabSelectCommand}" CommandParameter="View" IsChecked="{Binding MainTab,Converter={StaticResource EqualsConv},ConverterParameter=View,Mode=OneWay}">
+                <StackPanel>
+                    <Image Source="../../Resources/Icons/bar_view.png"/>
+                    <Label Content="{x:Static p:Resources.View}"/>
+                </StackPanel>
+            </ToggleButton>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <metro:MetroAnimatedSingleRowTabControl SelectedIndex="{Binding MainTab,Converter={StaticResource MainTabListIndexConv},Mode=TwoWay}">
+                <TabItem Visibility="Collapsed">
+                    <metro:MetroAnimatedTabControl Grid.Column="1" SelectedIndex="{Binding MainMode,Converter={StaticResource MainModeListIndexConv},Mode=TwoWay}">
+                        <TabItem Header="{x:Static p:Resources.Person}">
+                            <sub:PersonSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.Group}">
+                            <sub:GroupSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.Place}">
+                            <sub:PlaceSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.Scene}">
+                            <sub:SceneSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.Chapter}">
+                            <sub:ChapterSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.Word}">
+                            <sub:WordSubPage/>
+                        </TabItem>
+                    </metro:MetroAnimatedTabControl>
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <metro:MetroAnimatedTabControl Grid.Column="1" SelectedIndex="{Binding MainMode,Converter={StaticResource MainSubEntityModeListIndexConv},Mode=TwoWay}">
+                        <TabItem Header="{x:Static p:Resources.Sex}">
+                            <sub:SexSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.Parameter}">
+                            <sub:ParameterSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.Memo}">
+                            <sub:MemoSubPage/>
+                        </TabItem>
+                    </metro:MetroAnimatedTabControl>
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <metro:MetroAnimatedTabControl Grid.Column="1" SelectedIndex="{Binding MainMode,Converter={StaticResource MainEditModeListIndexConv},Mode=TwoWay}">
+                        <TabItem Header="{x:Static p:Resources.StorySetting}">
+                            <sub:StorySettingSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.ChapterText}">
+                            <sub:ChapterTextSubPage/>
+                        </TabItem>
+                        <TabItem Header="{x:Static p:Resources.SceneDesigner}">
+                            <sub:SceneDesignerSubPage/>
+                        </TabItem>
+                    </metro:MetroAnimatedTabControl>
+                </TabItem>
+                <TabItem Visibility="Collapsed">
+                    <metro:MetroAnimatedTabControl Grid.Column="1" SelectedIndex="{Binding MainMode,Converter={StaticResource MainViewModeListIndexConv},Mode=TwoWay}">
+                        <TabItem Header="{x:Static p:Resources.Timeline}">
+                            <sub:TimelineSubPage/>
+                        </TabItem>
+                    </metro:MetroAnimatedTabControl>
+                </TabItem>
+            </metro:MetroAnimatedSingleRowTabControl>
+
+            <Border Grid.Row="1" Background="Yellow" Height="auto" Visibility="{Binding AutoSaveStatus,Converter={StaticResource NotEqualsVisibilityConv},ConverterParameter=Enabled}">
+                <Label Content="{Binding AutoSaveStatus,Converter={StaticResource AutoSaveStatusStringConv}}"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

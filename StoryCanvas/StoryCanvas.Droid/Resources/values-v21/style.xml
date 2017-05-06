@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <style name="Theme.Splash" parent="android:Theme">
+    <item name="android:windowBackground">@drawable/logo</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+  <style name="Theme.StoryCanvas" parent="android:Theme.Material.Light">
+    <item name="android:colorPrimary">@color/product_color</item>
+    <item name="android:colorPrimaryDark">@color/product_color_dark</item>
+    <item name="android:titleTextColor">@color/product_text_color_primary</item>
+    <item name="android:textColorPrimary">@color/product_text_color_secondary</item>
+    <item name="android:textColorSecondary">@color/product_text_color_thirdary</item>
+  </style>
+</resources>

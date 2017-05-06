@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+						 xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+						 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+						 xmlns:cvxcommon="clr-namespace:StoryCanvas.Converters.Common"
+						 xmlns:entities="clr-namespace:StoryCanvas.Shared.Models.Entities"
+             x:Class="StoryCanvas.View.Editors.ParameterEditor">
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvcommon:StoryDateTimeConverter x:Key="StoryDateTimeConv"/>
+      <cvcommon:StoryDateFormatConverter x:Key="StoryDateFormatConv"/>
+      <cvcommon:TextLengthLimitterConverter x:Key="TextLengthLimitterConv"/>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+      <cvxcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+    </ResourceDictionary>
+  </ContentView.Resources>
+
+  <ScrollView>
+    <StackLayout>
+      <StackLayout IsVisible="{Binding IsDummy,Converter={StaticResource NegativeConv}}">
+        <StackLayout Orientation="Horizontal">
+          <ccontrols:ImageResourcePanel BackgroundColor="{Binding Color,Converter={StaticResource ColorResourceColorConv},Mode=OneWay}" ImageResource="{Binding DisplayIcon}" WidthRequest="44" HeightRequest="44"/>
+          <Label Text="{Binding Name}" FontSize="32"/>
+        </StackLayout>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+
+          <Grid.Resources>
+            <ResourceDictionary>
+              <Style TargetType="{x:Type Label}">
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+              </Style>
+            </ResourceDictionary>
+          </Grid.Resources>
+
+          <Label Text="{i18n:Translate Name}" Grid.Column="0" Grid.Row="0"/>
+          <Entry Text="{Binding Name,Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
+
+          <Label Text="{i18n:Translate Color}" Grid.Column="0" Grid.Row="1"/>
+          <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+            <Button Text="{i18n:Translate PickColor}" Command="{Binding ColorPickerCommand}"/>
+            <BoxView Color="{Binding Color,Converter={StaticResource ColorResourceColorConv},Mode=OneWay}" WidthRequest="40"/>
+          </StackLayout>
+
+          <Label Text="{i18n:Translate ParameterForAllPeople}" Grid.Column="0" Grid.Row="2"/>
+          <Switch IsToggled="{Binding IsForAllPeople,Mode=TwoWay}" HorizontalOptions="Start" Grid.Column="1" Grid.Row="2"/>
+          <Button Text="{i18n:Translate ApplyParameterForExistingPeople}" Command="{Binding SetParameterToExistingPeopleCommand}" Grid.Column="1" Grid.Row="3"/>
+          
+          <Label Text="{i18n:Translate Note}" Grid.Column="0" Grid.Row="4"/>
+          <ccontrols:HoldingEditorLabel Text="{Binding Note,Mode=TwoWay}" MinimumHeightRequest="300" Grid.Column="1" Grid.Row="4"/>
+        </Grid>
+      </StackLayout>
+      <Image IsVisible="{Binding IsDummy}" Source="swipe.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+    </StackLayout>
+  </ScrollView>
+</ContentView>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             x:Class="StoryCanvas.View.Pages.AboutPage"
+             Title="{i18n:Translate AboutApplication}">
+	<ScrollView>
+		<StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Label FontSize="26" Text="{i18n:Translate ApplicationName}"/>
+        <Label FontSize="26">
+          <Label.Text>
+            <OnPlatform x:TypeArguments="x:String"
+                    iOS="for iOS"
+                    Android="for Android"
+                    WinPhone="for WinRT" />
+          </Label.Text>
+        </Label>
+				<Label FontSize="18" Text="{i18n:Translate ApplicationVersion}" VerticalTextAlignment="End"/>
+			</StackLayout>
+			<Label Text="{i18n:Translate ApplicationCopyright}"/>
+      <Button Text="{i18n:Translate GoApplicationHP}" Command="{Binding GoApplicationHPCommand}"/>
+      <BoxView HeightRequest="12" Color="Transparent"/>
+
+			<Label FontSize="18" Text="{i18n:Translate ApplicationLibrary}"/>
+
+      <Label FontSize="16" Text="PCLStorage (Ms-PL)" Margin="0,10,0,0"/>
+			<Label Text="by great Daniel Plaisted"/>
+			<Label FontSize="12" Text="PCL Storage provides a consistent, portable set of local file IO APIs for .NET, Windows Phone, Windows Store, Xamarin.iOS, Xamarin.Android, and Silverlight. This makes it easier to create cross-platform .NET libraries and apps."/>
+
+      <Label FontSize="16" Text="rda.SocketsForPCL (MIT)" Margin="0,10,0,0"/>
+			<Label Text="by great Ryan Davis"/>
+			<Label FontSize="12" Text="Cross-platform socket API for Xamarin iOS/Android/Forms, Xamarin.Mac/MonoMac, Windows Phone 8/8.1, Windows Store and Windows Desktop. Includes support for TCP and UDP listeners and clients, as well as UDP multicast."/>
+
+      <Label FontSize="16" Text="Mahapps.Metro (Ms-PL)  [Windows only]" Margin="0,10,0,0"/>
+      <Label Text="by great Jan Karger, Dennis Daume, Brendan Forster, Paul Jenkins, Jake Ginnivan, Alex Mitchell"/>
+      <Label FontSize="12" Text="The goal of MahApps.Metro is to allow devs to quickly and easily cobble together a 'Metro' or 'Modern UI' for their WPF4+ apps, with minimal effort."/>
+
+      <Label FontSize="16" Text="Extended WPF Toolkit (Ms-PL)  [Windows only]" Margin="0,10,0,0"/>
+      <Label Text="by great Xceed"/>
+      <Label FontSize="12" Text="Extended WPF Toolkit is the number one collection of WPF controls, components and utilities for creating next generation Windows applications. Provides 46 controls, all offered under the Microsoft Public License for maximum freedom. Community Edition v2.9 provides 32 bug fixes and improvements. Documentation, source, and discussions are hosted on CodePlex at http://wpftoolkit.codeplex.com. Plus Edition at http://wpftoolkit.com"/>
+
+      <Label FontSize="16" Text="PCLThinCanvas (MIT)  [Smart Phones only]" Margin="0,10,0,0"/>
+      <Label Text="by petty KMY"/>
+      <Label FontSize="12" Text="Portable class library for draw simple graphics."/>
+
+      <Label FontSize="16" Text="Xamarin.Forms Demo Apps (MIT)  [Smart Phones only]" Margin="0,10,0,0"/>
+      <Label Text="by great Xamarin"/>
+      <Label FontSize="12" Text="Samples that use Xamarin.Forms (http://xamarin.com/forms)"/>
+
+      <Label FontSize="16" Text="Media Plugin for Xamarin and Windows (MIT)  [Smart Phones only]" Margin="0,10,0,0"/>
+      <Label Text="by great James Montemagno"/>
+      <Label FontSize="12" Text="Take or pick photos and videos from a cross platform API."/>
+
+      <Label FontSize="16" Text="DropNet (Apache)" Margin="0,10,0,0"/>
+      <Label Text="by great dkarzon"/>
+      <Label FontSize="12" Text="NET Client for the Dropbox API (.NET 4 and Windows Phone)"/>
+
+      <Label FontSize="16" Text="OneDriveRestAPI (Apache)" Margin="0,10,0,0"/>
+      <Label Text="by great saguiitay"/>
+      <Label FontSize="12" Text="OneDriveRestAPIt is a C# client for the Microsoft OneDrive service through its RESTful API. Microsoft has released the Live SDK, a set of C# libraries for interacting with OneDrive, which is hard to extend and debug, as it relies on async HttpWebRequest/HttpWebResponse."/>
+    </StackLayout>
+	</ScrollView>
+</ContentPage>

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.CustomControls.TreeListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.CustomControls"
+			 xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+	         xmlns:cvmainpage="clr-namespace:StoryCanvas.WPF.Converters.MainPage"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+	<UserControl.Resources>
+        <cvmainpage:TreeListViewMarginLevelConverter x:Key="TreeListViewMarginLevelConv"/>
+        <cvwcommon:ColorResourceBrushConverter x:Key="ColorResourceBrushConv"/>
+        <cvwcommon:BooleanVisibilityConverter x:Key="BooleanVisibilityConv"/>
+    </UserControl.Resources>
+
+	<Grid>
+		<ListBox x:Name="ListView">
+			<ListBox.Resources>
+				<Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Template" x:Name="ItemTemplate">
+                        <Setter.Value>
+							<ControlTemplate TargetType="ListBoxItem">
+                                <Border Name="Border" Padding="1" SnapsToDevicePixels="true" Background="Transparent" Height="36" Margin="{Binding Level,Converter={StaticResource TreeListViewMarginLevelConv}}" Visibility="{Binding Entity.IsSearchHit,Converter={StaticResource BooleanVisibilityConv}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="{Binding Entity.Color,Converter={StaticResource ColorResourceBrushConv}}" Height="36">
+                                            <local:ImageResourcePanel ImageResource="{Binding Entity.DisplayIcon}" Width="36" Height="36"/>
+                                        </Border>
+                                        <Label Content="{Binding Entity.Name}" FontSize="18"/>
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter TargetName="Border" Property="Background" Value="#70808080"/>
+                                    </Trigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsMouseOver" Value="true"/>
+                                            <Condition Property="IsSelected" Value="false"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter TargetName="Border" Property="Background" Value="#30808080"/>
+                                    </MultiTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</ListBox.Resources>
+		</ListBox>
+	</Grid>
+</UserControl>

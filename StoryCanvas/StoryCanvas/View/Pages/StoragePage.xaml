@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StoryCanvas.View.Pages.StoragePage"
+						 xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+						 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+						 xmlns:cvxmainpage="clr-namespace:StoryCanvas.Converters.MainPage"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             IsBusy="{Binding IsLogining}"
+             Title="{i18n:Translate Storage}">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+      <cvxmainpage:ExistSlotColorConverter x:Key="ExistSlotColorConv"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="15"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
+      <ccontrols:ObjectPicker ItemsSource="{Binding Workspaces}" SelectedItem="{Binding SelectedWorkspace,Mode=TwoWay}"/>
+      <ccontrols:ObjectPicker Grid.Column="1" ItemsSource="{Binding StorageModels}" SelectedItem="{Binding Model,Mode=TwoWay}"/>
+    </Grid>
+    
+    <ListView ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot,Mode=TwoWay}" IsVisible="{Binding HasLogined}" Grid.Row="1">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding SlotName}" Detail="{Binding SlotComment}" IsEnabled="{Binding IsEnabled}" TextColor="{Binding IsExists,Converter={StaticResource ExistSlotColorConv}}"/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <StackLayout Grid.Row="1" IsVisible="{Binding HasLogined,Converter={StaticResource NegativeConv}}">
+      <Button Text="{i18n:Translate Login}" Command="{Binding LoginCommand}" IsEnabled="{Binding IsLogining,Converter={StaticResource NegativeConv}}"/>
+    </StackLayout>
+    
+    <Grid Grid.Row="2">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Text="{i18n:Translate Load}" FontSize="20" Command="{Binding LoadCommand}"/>
+      <Button Text="{i18n:Translate Save}" FontSize="20" Command="{Binding SaveCommand}" Grid.Column="1"/>
+      <Button Text="{i18n:Translate Delete}" FontSize="20" Command="{Binding DeleteCommand}" Grid.Column="2"/>
+    </Grid>
+    <Button Text="{i18n:Translate CreateNewStory}" FontSize="16" Command="{Binding CreateNewCommand}" Grid.Row="4"/>
+  </Grid>
+</ContentPage>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					      	xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+                  xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+                  xmlns:cvxcommon="clr-namespace:StoryCanvas.Converters.Common"
+							    xmlns:i18n="clr-namespace:StoryCanvas"
+                  x:Class="StoryCanvas.View.Pages.SceneDesignerPage"
+							    Title="{i18n:Translate SceneDesigner}">
+  <MasterDetailPage.Resources>
+    <ResourceDictionary>
+      <cvcommon:StoryDateTimeFormatConverter x:Key="StoryDateTimeFormatConv"/>
+      <cvcommon:NullBooleanConverter x:Key="NullBooleanConv"/>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+      <cvcommon:EqualsConverter x:Key="EqualsConv"/>
+      <cvxcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+    </ResourceDictionary>
+  </MasterDetailPage.Resources>
+
+  <MasterDetailPage.Master>
+    <ContentPage Title="{i18n:Translate SceneDesigner}">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition x:Name="SceneRow"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Label Text="{i18n:Translate Chapter}" VerticalTextAlignment="Center"/>
+          <ccontrols:ObjectPicker ItemsSource="{Binding Chapters,Mode=OneWay}" SelectedItem="{Binding SelectedChapter,Mode=TwoWay}" Grid.Column="1"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+          <ListView ItemsSource="{Binding SceneItems}" SelectedItem="{Binding SelectedSceneItem,Mode=TwoWay}" Grid.Row="0">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ccontrols:EntityIconCell ColorResource="{Binding Scene.Color}" ImageResource="{Binding Scene.DisplayIcon}" Text="{Binding Scene.Name}"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+          <StackLayout Grid.Row="1" x:Name="SceneDetailDisplay" IsVisible="false">
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{i18n:Translate StartDateTime}"/>
+              <Label Text="{Binding SelectedSceneItem.Scene.StartDateTime,Converter={StaticResource StoryDateTimeFormatConv}}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{i18n:Translate EndDateTime}"/>
+              <Label Text="{Binding SelectedSceneItem.Scene.EndDateTime,Converter={StaticResource StoryDateTimeFormatConv}}"/>
+            </StackLayout>
+          </StackLayout>
+        </Grid>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <ContentPage>
+      <ContentPage.ToolbarItems>
+        <ToolbarItem Name="{i18n:Translate Scene}" Command="{Binding EditSelectedSceneCommand}" Order="Primary" Priority="0" Icon="scene_toolbar.png"/>
+      </ContentPage.ToolbarItems>
+      <Grid>
+        <Grid IsVisible="{Binding IsSceneSelected}">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+          <Label Text="{Binding SelectedSceneItem.Scene.Name}" FontSize="32" Grid.Row="1"/>
+          <ScrollView Grid.Row="2">
+            <ccontrols:DynamicHeightListView ItemsSource="{Binding SelectedSceneItem.Scene.Scenario.Serifs}" RowHeight="180">
+              <ListView.ItemTemplate>
+                <DataTemplate>
+                  <ViewCell>
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                      </Grid.ColumnDefinitions>
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                      </Grid.RowDefinitions>
+                      <ccontrols:ImageResourcePanel Grid.RowSpan="3" VerticalOptions="Start" BackgroundColor="{Binding AnyEntity.Color,Converter={StaticResource ColorResourceColorConv}}" ImageResource="{Binding AnyEntity.DisplayIcon}" WidthRequest="44" HeightRequest="44"/>
+                      <Label Grid.Column="1" Grid.Row="0" Text="{Binding AnyEntity.Name}" TextColor="Gray"/>
+                      <Editor Text="{Binding Text}" Margin="0,8,0,0" Grid.Column="1" Grid.Row="1"/>
+                      <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition/>
+                          <ColumnDefinition Width="auto"/>
+                          <ColumnDefinition Width="auto"/>
+                          <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Command="{Binding UpSerifCommand}" Text="↑"/>
+                        <Button Grid.Column="2" Command="{Binding DownSerifCommand}" Text="↓"/>
+                        <Button Grid.Column="3" Command="{Binding RemoveSerifCommand}" Text="-"/>
+                      </Grid>
+                    </Grid>
+                  </ViewCell>
+                </DataTemplate>
+              </ListView.ItemTemplate>
+            </ccontrols:DynamicHeightListView>
+          </ScrollView>
+          <ScrollView Grid.Row="3">
+            <ccontrols:ItemsView2 ItemsSource="{Binding SelectedSceneItem.RelatedEntitiesExceptForChapters}">
+              <ccontrols:ItemsView2.ItemsPanel>
+                <StackLayout Orientation="Horizontal"/>
+              </ccontrols:ItemsView2.ItemsPanel>
+              <ccontrols:ItemsView2.ItemTemplate>
+                <DataTemplate>
+                  <ccontrols:ImageResourceButton
+                    Command="{Binding Entity.Scenario.AddSerifCommand}"
+                    CommandParameter="{Binding RelatedEntity}"
+                    BackgroundColor="{Binding RelatedEntity.Color,Converter={StaticResource ColorResourceColorConv}}"
+                    ImageResource="{Binding RelatedEntity.DisplayIcon}"
+                    WidthRequest="44" HeightRequest="44"/>
+                </DataTemplate>
+              </ccontrols:ItemsView2.ItemTemplate>
+            </ccontrols:ItemsView2>
+          </ScrollView>
+        </Grid>
+        <StackLayout IsVisible="{Binding IsSceneSelected,Converter={StaticResource NegativeConv}}">
+          <Image Source="swipe.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+          <Label Text="{i18n:Translate ChapterTextDefaultMessage}"/>
+        </StackLayout>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.SubPages.AboutSubPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.SubPages"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+             mc:Ignorable="d"   FontSize="14" FontFamily="Meiryo UI"
+             d:DesignHeight="1500" d:DesignWidth="300">
+	<Grid>
+        <ScrollViewer>
+            <StackPanel Margin="10">
+                <StackPanel Orientation="Vertical">
+                    <Label FontSize="26" Content="{x:Static p:Resources.ApplicationName}"/>
+                    <Label FontSize="20" Content="for Windows Desktop" Margin="20,0,0,0"/>
+                    <Label FontSize="18" Margin="40,0,0,0" HorizontalContentAlignment="Right" Content="{x:Static p:Resources.ApplicationVersion}" VerticalContentAlignment="Bottom" Padding="20,0,0,5"/>
+                </StackPanel>
+                <Label Content="{x:Static p:Resources.ApplicationCopyright}" Padding="0,10,0,0"/>
+                <Button Content="{x:Static p:Resources.GoApplicationHP}" FontSize="14" Command="{Binding GoApplicationHPCommand}"/>
+
+                <Label FontSize="18" Content="{x:Static p:Resources.ApplicationLibrary}" Padding="0,30,0,0"/>
+                <Label FontSize="15" Content="PCLStorage (Ms-PL)" Margin="0,20,0,0"/>
+                <Label Content="by great Daniel Plaisted"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="PCL Storage provides a consistent, portable set of local file IO APIs for .NET, Windows Phone, Windows Store, Xamarin.iOS, Xamarin.Android, and Silverlight. This makes it easier to create cross-platform .NET libraries and apps."/>
+                <Label FontSize="15" Content="rda.SocketsForPCL (MIT)" Margin="0,30,0,0"/>
+                <Label Content="by great Ryan Davis"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="Cross-platform socket API for Xamarin iOS/Android/Forms, Xamarin.Mac/MonoMac, Windows Phone 8/8.1, Windows Store and Windows Desktop. Includes support for TCP and UDP listeners and clients, as well as UDP multicast."/>
+                <Label FontSize="15" Content="Mahapps.Metro (Ms-PL)" Margin="0,30,0,0"/>
+                <Label FontSize="15" Content="[Windows only]" HorizontalContentAlignment="Right" Margin="0,0,0,0"/>
+                <Label Content="by great Jan Karger, Dennis Daume,"/>
+                <Label Content="Brendan Forster, Paul Jenkins," Margin="30,0,0,0"/>
+                <Label Content="Jake Ginnivan, Alex Mitchell" Margin="30,0,0,0"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="The goal of MahApps.Metro is to allow devs to quickly and easily cobble together a 'Metro' or 'Modern UI' for their WPF4+ apps, with minimal effort."/>
+                <Label FontSize="15" Content="Extended WPF Toolkit (Ms-PL)" Margin="0,30,0,0"/>
+                <Label FontSize="15" Content="[Windows only]" HorizontalContentAlignment="Right" Margin="0,0,0,0"/>
+                <Label Content="by great Xceed"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="Extended WPF Toolkit is the number one collection of WPF controls, components and utilities for creating next generation Windows applications. Provides 46 controls, all offered under the Microsoft Public License for maximum freedom. Community Edition v2.9 provides 32 bug fixes and improvements. Documentation, source, and discussions are hosted on CodePlex at http://wpftoolkit.codeplex.com. Plus Edition at http://wpftoolkit.com"/>
+                <Label FontSize="15" Content="PCLThinCanvas (MIT)" Margin="0,30,0,0"/>
+                <Label FontSize="15" Content="[Smart Phones only]" HorizontalContentAlignment="Right" Margin="0,0,0,0"/>
+                <Label Content="by petty KMY"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="Portable class library for draw simple graphics."/>
+                <Label FontSize="15" Content="Xamarin.Forms Demo Apps (MIT)" Margin="0,30,0,0"/>
+                <Label FontSize="15" Content="[Smart Phones only]" HorizontalContentAlignment="Right" Margin="0,0,0,0"/>
+                <Label Content="by great Xamarin"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="Samples that use Xamarin.Forms (http://xamarin.com/forms)"/>
+                <Label FontSize="15" Content="Media Plugin for Xamarin and Windows (MIT)" Margin="0,30,0,0"/>
+                <Label FontSize="15" Content="[Smart Phones only]" HorizontalContentAlignment="Right" Margin="0,0,0,0"/>
+                <Label Content="by great James Montemagno"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="Take or pick photos and videos from a cross platform API."/>
+                <Label FontSize="15" Content="DropNet (Apache)" Margin="0,30,0,0"/>
+                <Label FontSize="15" Content="by great dkarzon" HorizontalContentAlignment="Right" Margin="0,0,0,0"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="NET Client for the Dropbox API (.NET 4 and Windows Phone)"/>
+                <Label FontSize="15" Content="OneDriveRestAPI (Apache)" Margin="0,30,0,0"/>
+                <Label FontSize="15" Content="by great saguiitay" HorizontalContentAlignment="Right" Margin="0,0,0,0"/>
+                <TextBlock FontSize="12" TextWrapping="Wrap" Text="OneDriveRestAPIt is a C# client for the Microsoft OneDrive service through its RESTful API. Microsoft has released the Live SDK, a set of C# libraries for interacting with OneDrive, which is hard to extend and debug, as it relies on async HttpWebRequest/HttpWebResponse."/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

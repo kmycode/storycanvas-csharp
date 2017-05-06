@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.CustomControls.ImagePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.CustomControls"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+        <local:ImageResourcePanel x:Name="SelectedImageDisplay" Width="100" Height="100"/>
+        <StackPanel Grid.Column="1">
+            <Button Name="ImagePickButton" FontSize="14" FontFamily="Meiryo UI" Content="{x:Static p:Resources.Image}"/>
+            <Button Name="ImagePasteButton" FontSize="14" FontFamily="Meiryo UI" Content="{x:Static p:Resources.Paste}"/>
+            <Button Name="ImageDeleteButton" FontSize="14" FontFamily="Meiryo UI" Content="{x:Static p:Resources.Delete}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

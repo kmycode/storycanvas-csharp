@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.EntityLists.ChapterList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.EntityLists"
+			 xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+			 xmlns:mycontrol="clr-namespace:StoryCanvas.WPF.View.CustomControls"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <cvwcommon:ColorResourceBrushConverter x:Key="ColorResourceBrushConv"/>
+        <cvwcommon:BooleanVisibilityConverter x:Key="BooleanVisibilityConv"/>
+    </UserControl.Resources>
+
+	<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBox Text="{Binding ChapterSet.SearchKeyword,UpdateSourceTrigger=PropertyChanged}" metro:TextBoxHelper.Watermark="{x:Static p:Resources.Search}" metro:TextBoxHelper.ClearTextButton="True" FontSize="16"/>
+        
+		<ListBox x:Name="EntityList" Grid.Row="1" ItemsSource="{Binding ChapterSet.Entities}" SelectedItem="{Binding ChapterSet.SelectedEntity,Mode=TwoWay}">
+			<ListBox.Resources>
+				<Style TargetType="{x:Type ListBoxItem}">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="ListBoxItem">
+                                <Border Name="Border" Padding="1" SnapsToDevicePixels="true" Background="Transparent" Height="36" Visibility="{Binding IsSearchHit,Converter={StaticResource BooleanVisibilityConv}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="{Binding Color,Converter={StaticResource ColorResourceBrushConv}}" Height="36">
+                                            <mycontrol:ImageResourcePanel ImageResource="{Binding DisplayIcon}" Width="36" Height="36"/>
+                                        </Border>
+                                        <Label Content="{Binding Name}" FontSize="18"/>
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter TargetName="Border" Property="Background" Value="#70808080"/>
+                                    </Trigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsMouseOver" Value="true"/>
+                                            <Condition Property="IsSelected" Value="false"/>
+                                        </MultiTrigger.Conditions>
+                                        <Setter TargetName="Border" Property="Background" Value="#30808080"/>
+                                    </MultiTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</ListBox.Resources>
+        </ListBox>
+
+        <StackPanel Height="auto" Orientation="Horizontal" Grid.Row="2" x:Name="ReorderButtonSet" Visibility="Collapsed">
+            <Button Width="50" FontSize="16" Command="{Binding ChapterSet.Commands.UpEntityCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_arrow_up}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <Button Width="50" FontSize="16" Command="{Binding ChapterSet.Commands.DownEntityCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_arrow_down}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Height="auto" Orientation="Horizontal" Grid.Row="3">
+            <Button Width="50" FontSize="16" Command="{Binding ChapterSet.Commands.AddNewEntityCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_add}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <Button Width="50" FontSize="16" Command="{Binding ChapterSet.Commands.RemoveEntityCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_minus}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <Button Width="50" FontSize="16" Click="ReorderButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_sort}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

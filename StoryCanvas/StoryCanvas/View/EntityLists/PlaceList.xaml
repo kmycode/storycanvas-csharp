@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+						 xmlns:cvmainpage="clr-namespace:StoryCanvas.Converters.MainPage"
+						 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+             xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             x:Class="StoryCanvas.View.EntityLists.PlaceList">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<cvmainpage:TreeListViewMarginLevelConverter x:Key="TreeListViewMarginLevelConv"/>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+		</ResourceDictionary>
+	</ContentView.Resources>
+		
+	<Grid>
+		<Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+    <SearchBar Placeholder="{i18n:Translate Search}" Text="{Binding PlaceSet.SearchKeyword}"/>
+		<ListView ItemsSource="{Binding PlaceSet.SearchResult}" SelectedItem="{Binding PlaceSet.SelectedItem,Mode=TwoWay}" IsVisible="{Binding PlaceSet.IsSearching}" Grid.Row="1">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+          <ccontrols:EntityIconCell ColorResource="{Binding Entity.Color,Mode=OneWay}" ImageResource="{Binding Entity.DisplayIcon}" Text="{Binding Entity.Name}" Padding="{Binding Level,Converter={StaticResource TreeListViewMarginLevelConv}}"/>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+    <ListView ItemsSource="{Binding PlaceSet.EntityItems}" SelectedItem="{Binding PlaceSet.SelectedItem,Mode=TwoWay}" IsVisible="{Binding PlaceSet.IsSearching,Converter={StaticResource NegativeConv}}" Grid.Row="1">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ccontrols:EntityIconCell ColorResource="{Binding Entity.Color,Mode=OneWay}" ImageResource="{Binding Entity.DisplayIcon}" Text="{Binding Entity.Name}" Padding="{Binding Level,Converter={StaticResource TreeListViewMarginLevelConv}}"/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <Grid Grid.Row="2" IsVisible="false" x:Name="ReorderButtonSet">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Image="up.png"    FontSize="16" Command="{Binding PlaceSet.Commands.UpEntityCommand}" Grid.Column="0"/>
+      <Button Image="down.png"  FontSize="16" Command="{Binding PlaceSet.Commands.DownEntityCommand}" Grid.Column="1"/>
+      <Button Image="left.png"  FontSize="16" Command="{Binding PlaceSet.Commands.LeftEntityCommand}" Grid.Column="2"/>
+      <Button Image="right.png" FontSize="16" Command="{Binding PlaceSet.Commands.RightEntityCommand}" Grid.Column="3"/>
+    </Grid>
+    <Grid Grid.Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Image="plus.png"  FontSize="16" Command="{Binding PlaceSet.Commands.AddNewEntityCommand}" Grid.Column="0"/>
+      <Button Image="minus.png" FontSize="16" Command="{Binding PlaceSet.Commands.RemoveEntityCommand}" Grid.Column="1"/>
+      <Button Image="reorder.png" FontSize="16" Grid.Column="2" Clicked="ReorderButton_Click"/>
+    </Grid>
+	</Grid>
+</ContentView>

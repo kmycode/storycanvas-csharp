@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.SubPages.StorageSubPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.SubPages"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+             xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+             xmlns:cvwmainpage="clr-namespace:StoryCanvas.WPF.Converters.MainPage"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+             mc:Ignorable="d"  FontSize="16" FontFamily="Meiryo UI"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <cvwmainpage:ExistSlotColorConverter x:Key="ExistSlotColorConv"/>
+        <cvwcommon:BooleanVisibilityConverter x:Key="BooleanVisibilityConv"/>
+        <cvwcommon:NegativeBooleanVisibilityConverter x:Key="NegativeBooleanVisibilityConv"/>
+        <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="26" Content="{x:Static p:Resources.Storage}"/>
+            <ComboBox ItemsSource="{Binding StorageModels}" SelectedItem="{Binding Model}" FontSize="18" Grid.Column="1"/>
+        </Grid>
+
+        <Button Content="{x:Static p:Resources.Login}" Command="{Binding LoginCommand}" Visibility="{Binding HasLogined,Converter={StaticResource NegativeBooleanVisibilityConv}}" IsEnabled="{Binding IsLogining,Converter={StaticResource NegativeConv}}" FontSize="26" Margin="0,45,0,0" Grid.Row="2"/>
+        <metro:MetroProgressBar Height="30" Foreground="White" Visibility="{Binding IsLogining,Converter={StaticResource BooleanVisibilityConv}}" IsIndeterminate="True" Value="0" Grid.Row="3"/>
+
+        <ComboBox ItemsSource="{Binding Workspaces}" SelectedItem="{Binding SelectedWorkspace,Mode=TwoWay}" FontSize="18" Visibility="{Binding HasLogined,Converter={StaticResource BooleanVisibilityConv}}" Grid.Row="3"/>
+        <ListBox ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot,Mode=TwoWay}" Visibility="{Binding HasLogined,Converter={StaticResource BooleanVisibilityConv}}" Grid.Row="4">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding SlotName}" FontStretch="Expanded" FontSize="20" Foreground="{Binding IsExists,Converter={StaticResource ExistSlotColorConv}}"/>
+                        <Label Content="{Binding SlotComment}" Foreground="{Binding IsExists,Converter={StaticResource ExistSlotColorConv}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Row="5" Visibility="{Binding HasLogined,Converter={StaticResource BooleanVisibilityConv}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="{x:Static p:Resources.Load}" FontSize="20" Command="{Binding LoadCommand}"/>
+            <Button Content="{x:Static p:Resources.Save}" FontSize="20" Command="{Binding SaveCommand}" Grid.Column="1"/>
+            <Button Content="{x:Static p:Resources.Delete}" FontSize="20" Command="{Binding DeleteCommand}" Grid.Column="2"/>
+        </Grid>
+        <Grid Grid.Row="6" Visibility="{Binding HasLogined,Converter={StaticResource BooleanVisibilityConv}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="{x:Static p:Resources.LoadFile}" Command="{Binding OpenFileCommand}"/>
+            <Button Content="{x:Static p:Resources.SaveFile}" Command="{Binding SaveAsFileCommand}" Grid.Column="1"/>
+        </Grid>
+        <Button Grid.Row="8" FontSize="16" Content="{x:Static p:Resources.CreateNewStory}" Visibility="{Binding HasLogined,Converter={StaticResource BooleanVisibilityConv}}" Command="{Binding CreateNewCommand}" Grid.Column="1"/>
+    </Grid>
+</UserControl>

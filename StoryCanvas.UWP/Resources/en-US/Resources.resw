@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Abort" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="AboutApplication" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AddNewStoryline" xml:space="preserve">
+    <value>Add New Storyline</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ApplicationCopyright" xml:space="preserve">
+    <value>(c) KMY 2016-2017</value>
+  </data>
+  <data name="ApplicationLibrary" xml:space="preserve">
+    <value>Using Libraries</value>
+  </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>StoryCanvas</value>
+  </data>
+  <data name="ApplicationVersion" xml:space="preserve">
+    <value>2.2.0 beta</value>
+  </data>
+  <data name="ApplyParameterForExistingPeople" xml:space="preserve">
+    <value>Apply parameter to existing people</value>
+  </data>
+  <data name="Auth" xml:space="preserve">
+    <value>Authentication</value>
+  </data>
+  <data name="AuthorName" xml:space="preserve">
+    <value>Author Name</value>
+  </data>
+  <data name="AutoSave" xml:space="preserve">
+    <value>Auto Save (1 minute)</value>
+  </data>
+  <data name="AutoSaveDisabledBecauseNoSlotSelected" xml:space="preserve">
+    <value>Auto save is disabled because no slot selected to save.</value>
+  </data>
+  <data name="AutoSaveDisabledBecauseOfStoryConfig" xml:space="preserve">
+    <value>Auto save is disabled because of story setting.</value>
+  </data>
+  <data name="AutoSaveEnabled" xml:space="preserve">
+    <value>Auto save is enabled.</value>
+  </data>
+  <data name="AutoSaveNotice" xml:space="preserve">
+    <value>After creating new story, auto save is disabled until you save to a slot manually.</value>
+  </data>
+  <data name="BeingCalledName" xml:space="preserve">
+    <value>Being called</value>
+  </data>
+  <data name="BirthDay" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="CallingName" xml:space="preserve">
+    <value>Calling</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Chapter" xml:space="preserve">
+    <value>Chapter</value>
+  </data>
+  <data name="ChapterText" xml:space="preserve">
+    <value>Chapter and Text</value>
+  </data>
+  <data name="ChooseNetwork" xml:space="preserve">
+    <value>Choose Network</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Cloud" xml:space="preserve">
+    <value>Cloud</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CreateNewStory" xml:space="preserve">
+    <value>Create New Story</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="CustomColor" xml:space="preserve">
+    <value>CustomColor</value>
+  </data>
+  <data name="DeathDay" xml:space="preserve">
+    <value>Death day</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteEntityMessage" xml:space="preserve">
+    <value>Do you delete this entity?</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EmptySlot" xml:space="preserve">
+    <value>Empty Slot</value>
+  </data>
+  <data name="EndDateTime" xml:space="preserve">
+    <value>End Date Time</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>Entity</value>
+  </data>
+  <data name="ExistingSlot" xml:space="preserve">
+    <value>Existing Slot</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Font Size</value>
+  </data>
+  <data name="GoApplicationHP" xml:space="preserve">
+    <value>Go StoryCanvas HP</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="IsCreateNewMessage" xml:space="preserve">
+    <value>Do you create new story?</value>
+  </data>
+  <data name="IsDeleteSlotMessage" xml:space="preserve">
+    <value>Do you delete this slot?</value>
+  </data>
+  <data name="IsOverwriteSlotMessage" xml:space="preserve">
+    <value>Do you over-write this slot?</value>
+  </data>
+  <data name="IsQuitMessage" xml:space="preserve">
+    <value>Do you quit this application?</value>
+  </data>
+  <data name="IsWesternerName" xml:space="preserve">
+    <value>Name Order</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="LineHeight" xml:space="preserve">
+    <value>Line Height</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="LoadFile" xml:space="preserve">
+    <value>Load from File</value>
+  </data>
+  <data name="LocationSetting_DateFormatType" xml:space="preserve">
+    <value>USA</value>
+  </data>
+  <data name="LocationSetting_IsWesternerName" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginFailedMessage" xml:space="preserve">
+    <value>Login failed</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Memo" xml:space="preserve">
+    <value>Memo</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>Network</value>
+  </data>
+  <data name="NetworkConnectionFailed" xml:space="preserve">
+    <value>Network connection failed.</value>
+  </data>
+  <data name="NetworkStatusAbort" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="NetworkStatusDeserializing" xml:space="preserve">
+    <value>Loading Data</value>
+  </data>
+  <data name="NetworkStatusErrorAndAbort" xml:space="preserve">
+    <value>Aborted for Error</value>
+  </data>
+  <data name="NetworkStatusMakingTcp" xml:space="preserve">
+    <value>Making Tcp Server</value>
+  </data>
+  <data name="NetworkStatusMakingUdp" xml:space="preserve">
+    <value>Making Udp Server</value>
+  </data>
+  <data name="NetworkStatusNone" xml:space="preserve">
+    <value>Not Ready</value>
+  </data>
+  <data name="NetworkStatusNoSignalsAndAbort" xml:space="preserve">
+    <value>Aborted for No Signals from Receivers</value>
+  </data>
+  <data name="NetworkStatusReady" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="NetworkStatusReceived" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="NetworkStatusReceiving" xml:space="preserve">
+    <value>Receiving...</value>
+  </data>
+  <data name="NetworkStatusReceivingMetaData" xml:space="preserve">
+    <value>Receiving Meta Data</value>
+  </data>
+  <data name="NetworkStatusSending" xml:space="preserve">
+    <value>Sending...</value>
+  </data>
+  <data name="NetworkStatusSendingMetaData" xml:space="preserve">
+    <value>Sending Meta Data</value>
+  </data>
+  <data name="NetworkStatusSent" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="NetworkStatusWaitingForData" xml:space="preserve">
+    <value>Ready for Story Data</value>
+  </data>
+  <data name="NetworkStatusWaitingForSignal" xml:space="preserve">
+    <value>Ready for Signal</value>
+  </data>
+  <data name="NetworkTroubleShooting" xml:space="preserve">
+    <value>Network Trouble Shooting</value>
+  </data>
+  <data name="NewestVersionAvaliabledMessage" xml:space="preserve">
+    <value>Newest StoryCanvas Version:%Version% is avaliabled. Do you go to official page to download?</value>
+  </data>
+  <data name="NewScene" xml:space="preserve">
+    <value>New Scene</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoSupportedPixelFormatMessage" xml:space="preserve">
+    <value>This image pixel format is not supported.</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="ParameterForAllEntityAppliedFalse" xml:space="preserve">
+    <value>Removed parameter column which value is empty in all entities.</value>
+  </data>
+  <data name="ParameterForAllEntityAppliedTrue" xml:space="preserve">
+    <value>Added parameter column in all entities.</value>
+  </data>
+  <data name="ParameterForAllPeople" xml:space="preserve">
+    <value>Set all people</value>
+  </data>
+  <data name="Part" xml:space="preserve">
+    <value>Part</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Place</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>Preset</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="PrintConfig" xml:space="preserve">
+    <value>Print Config</value>
+  </data>
+  <data name="PrintSubTitle" xml:space="preserve">
+    <value>Print Sub Title</value>
+  </data>
+  <data name="PrintTitle" xml:space="preserve">
+    <value>Print Title</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="ReceiveNetwork" xml:space="preserve">
+    <value>Receive by Network</value>
+  </data>
+  <data name="RelatedChapters" xml:space="preserve">
+    <value>Related Chapters</value>
+  </data>
+  <data name="RelatedGroups" xml:space="preserve">
+    <value>Related Groups</value>
+  </data>
+  <data name="RelatedPeople" xml:space="preserve">
+    <value>Related People</value>
+  </data>
+  <data name="RelatedPlaces" xml:space="preserve">
+    <value>Related Places</value>
+  </data>
+  <data name="RelatedScenes" xml:space="preserve">
+    <value>Related Scenes</value>
+  </data>
+  <data name="RelatedWords" xml:space="preserve">
+    <value>Related Words</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveAsFile" xml:space="preserve">
+    <value>Save to File As...</value>
+  </data>
+  <data name="SaveFailedForNotChoosingSlot" xml:space="preserve">
+    <value>Can not save. Choose slot and save in Storage flyout.</value>
+  </data>
+  <data name="SaveFile" xml:space="preserve">
+    <value>Save to File</value>
+  </data>
+  <data name="SaveFinishMessage" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="SceneDesigner" xml:space="preserve">
+    <value>Scene Designer</value>
+  </data>
+  <data name="SceneText" xml:space="preserve">
+    <value>Scenario</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="SelectAnyEntityMessage" xml:space="preserve">
+    <value>Select any entity!</value>
+  </data>
+  <data name="SelectChapterMessage" xml:space="preserve">
+    <value>Select a chapter.</value>
+  </data>
+  <data name="SelectGroupMessage" xml:space="preserve">
+    <value>Select a group.</value>
+  </data>
+  <data name="SelectParameterMessage" xml:space="preserve">
+    <value>Select a parameter.</value>
+  </data>
+  <data name="SelectPersonMessage" xml:space="preserve">
+    <value>Select a person.</value>
+  </data>
+  <data name="SelectPlaceMessage" xml:space="preserve">
+    <value>Select a place.</value>
+  </data>
+  <data name="SelectRelationMessage" xml:space="preserve">
+    <value>Select a relation.</value>
+  </data>
+  <data name="SelectSceneMessage" xml:space="preserve">
+    <value>Select a scene.</value>
+  </data>
+  <data name="SendFinishMessage" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="SendNetwork" xml:space="preserve">
+    <value>Send to Network</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>Slot</value>
+  </data>
+  <data name="SmartPhone" xml:space="preserve">
+    <value>Smart Phone</value>
+  </data>
+  <data name="StartDateTime" xml:space="preserve">
+    <value>Start Date Time</value>
+  </data>
+  <data name="Storage" xml:space="preserve">
+    <value>Storage</value>
+  </data>
+  <data name="StorageLocal" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Storyline" xml:space="preserve">
+    <value>Storyline</value>
+  </data>
+  <data name="StorylineDesigner" xml:space="preserve">
+    <value>Storyline Designer</value>
+  </data>
+  <data name="StorySetting" xml:space="preserve">
+    <value>Story Setting</value>
+  </data>
+  <data name="SubEntity" xml:space="preserve">
+    <value>Sub Entity</value>
+  </data>
+  <data name="SubTitleFontSize" xml:space="preserve">
+    <value>Sub Title Font Size</value>
+  </data>
+  <data name="SubTitleMarginBottom" xml:space="preserve">
+    <value>Sub Title Margin Bottom</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="Switching" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="TextMarginBottom" xml:space="preserve">
+    <value>Text Margin Botton</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>Timeline</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="TitleEmpty" xml:space="preserve">
+    <value>(Empty Title)</value>
+  </data>
+  <data name="TitleFontSize" xml:space="preserve">
+    <value>Title Font Size</value>
+  </data>
+  <data name="TitleMarginBottom" xml:space="preserve">
+    <value>Title Margin Bottom</value>
+  </data>
+  <data name="UndefinedErrorMessage" xml:space="preserve">
+    <value>Undefined error occured</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Windows" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="Word" xml:space="preserve">
+    <value>Word</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>Workspace</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+</root>

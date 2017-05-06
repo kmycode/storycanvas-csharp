@@ -243,3 +243,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+Libraries/StoryCanvas.Native/Common/OneDriveStorageLicense.cs
+StoryCanvas.Shared/Common/DropboxLicense.cs

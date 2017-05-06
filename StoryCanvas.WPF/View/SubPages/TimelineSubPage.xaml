@@ -1,0 +1,215 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.SubPages.TimelineSubPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.SubPages"
+			 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+			 xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+             mc:Ignorable="d" FontFamily="Meiryo UI" FontSize="16"
+             d:DesignHeight="300" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <cvcommon:StoryDateFormatConverter x:Key="StoryDateFormatConv"/>
+        <cvcommon:StoryDateTimeConverter x:Key="StoryDateTimeConv"/>
+        <cvwcommon:BooleanVisibilityConverter x:Key="BooleanVisibilityConv"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition x:Name="NameViewportRow" Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="TimeDivisionColumn" Width="70"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <DatePicker SelectedDate="{Binding DisplayStartDay,Converter={StaticResource StoryDateTimeConv}}" FontSize="24"/>
+                    <!--
+                    <Label Content=" - "/>
+                    <Label Content="{Binding DisplayEndDay,Converter={StaticResource StoryDateFormatConv}}" FontSize="24"/>
+                    -->
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <!-- 前年ボタン-->
+                    <Button FontSize="20" Width="50" Command="{Binding PrevYearCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_previous}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_previous}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_previous}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 前月ボタン-->
+                    <Button FontSize="20" Width="50" Command="{Binding PrevMonthCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_previous}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_previous}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 前日ボタン-->
+                    <Button FontSize="20" Width="50" Command="{Binding PrevDayCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_navigate_previous}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 翌日ボタン-->
+                    <Button FontSize="20" Width="50" Command="{Binding NextDayCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_navigate_next}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 翌月ボタン-->
+                    <Button FontSize="20" Width="50" Command="{Binding NextMonthCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_next}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_next}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 翌年ボタン-->
+                    <Button FontSize="20" Width="50" Command="{Binding NextYearCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_next}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_next}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                            <Rectangle Width="8" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="UniformToFill" Visual="{StaticResource appbar_navigate_next}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 拡大ボタン-->
+                    <Button FontSize="20" Width="50" Click="ScaleUpButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_magnify_add}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 縮小ボタン-->
+                    <Button FontSize="20" Width="50" Click="ScaleDownButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_magnify_minus}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 編集ボタン-->
+                    <Button FontSize="20" Width="100" Command="{Binding EditSelectedSceneCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_edit}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </StackPanel>
+                    </Button>
+                    <!-- 人物表示選択パネル表示切り替えボタン -->
+                    <ToggleButton FontSize="20" Width="80" Content=">" Name="PersonShowListButton"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" x:Name="NameViewport" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden">
+            <Grid x:Name="NameArea" HorizontalAlignment="Left"></Grid>
+        </ScrollViewer>
+        <ScrollViewer Grid.Row="2" Grid.Column="0" x:Name="TimeDivisionViewport" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible">
+            <Grid HorizontalAlignment="Left">
+                <Border Margin="0,0,0,0" Width="70" Background="Green">
+                    <Rectangle Width="69" Fill="#ffffde" HorizontalAlignment="Left"/>
+                </Border>
+                <Grid x:Name="TimeDivisionArea" VerticalAlignment="Top"></Grid>
+            </Grid>
+        </ScrollViewer>
+        <ScrollViewer Grid.Row="2" Grid.Column="1" x:Name="TimelineViewport" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+            <Grid HorizontalAlignment="Left">
+                <Grid x:Name="TimelineArea" HorizontalAlignment="Left">
+                </Grid>
+                <Canvas x:Name="SceneItemArea" HorizontalAlignment="Left"></Canvas>
+            </Grid>
+        </ScrollViewer>
+        <Grid Visibility="{Binding IsChecked,ElementName=PersonShowListButton,Converter={StaticResource BooleanVisibilityConv}}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListBox Grid.ColumnSpan="2" Width="300" ItemsSource="{Binding PermanencePersonItems}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Person.Name}"/>
+                            <metro:ToggleSwitchButton Grid.Column="1" IsChecked="{Binding IsShowWithBinding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="{x:Static p:Resources.SelectAll}" Command="{Binding ShowAllPeopleCommand}" FontSize="16" Grid.Row="1" Grid.Column="0"/>
+            <Button Content="{x:Static p:Resources.Clear}" Command="{Binding ClearAllPeopleCommand}" FontSize="16" Grid.Row="1" Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</UserControl>

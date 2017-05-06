@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+						 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             x:Class="StoryCanvas.View.EntityLists.SexList">
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+    </ResourceDictionary>
+  </ContentView.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+    <SearchBar Placeholder="{i18n:Translate Search}" Text="{Binding SexSet.SearchKeyword}"/>
+    <ListView ItemsSource="{Binding SexSet.SearchResult}" SelectedItem="{Binding SexSet.SelectedEntity,Mode=TwoWay}" IsVisible="{Binding SexSet.IsSearching}" Grid.Row="1">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ccontrols:EntityIconCell ColorResource="{Binding Color,Mode=OneWay}" ImageResource="{Binding DisplayIcon}" Text="{Binding Name}"/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <ListView ItemsSource="{Binding SexSet.Entities}" SelectedItem="{Binding SexSet.SelectedEntity,Mode=TwoWay}" IsVisible="{Binding SexSet.IsSearching,Converter={StaticResource NegativeConv}}" Grid.Row="1">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ccontrols:EntityIconCell ColorResource="{Binding Color,Mode=OneWay}" ImageResource="{Binding DisplayIcon}" Text="{Binding Name}"/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <Grid Grid.Row="2" IsVisible="false" x:Name="ReorderButtonSet">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Image="up.png"    FontSize="16" Command="{Binding SexSet.Commands.UpEntityCommand}" Grid.Column="0"/>
+      <Button Image="down.png"  FontSize="16" Command="{Binding SexSet.Commands.DownEntityCommand}" Grid.Column="1"/>
+    </Grid>
+    <Grid Grid.Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Image="plus.png"  FontSize="16" Command="{Binding SexSet.Commands.AddNewEntityCommand}" Grid.Column="0"/>
+      <Button Image="minus.png" FontSize="16" Command="{Binding SexSet.Commands.RemoveEntityCommand}" Grid.Column="1"/>
+      <Button Image="reorder.png" FontSize="16" Grid.Column="2" Clicked="ReorderButton_Click"/>
+    </Grid>
+  </Grid>
+</ContentView>

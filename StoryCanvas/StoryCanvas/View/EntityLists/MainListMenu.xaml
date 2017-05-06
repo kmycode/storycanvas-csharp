@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+						 xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+	           xmlns:cvmainpage="clr-namespace:StoryCanvas.Converters.MainPage"
+             x:Class="StoryCanvas.View.EntityLists.MainListMenu">
+
+	<ContentView.Resources>
+		<ResourceDictionary>
+			<cvmainpage:MainModeListIndexConverter x:Key="MainModeListIndexConv"/>
+		</ResourceDictionary>
+	</ContentView.Resources>
+	
+	<!-- モード選択メニュー -->
+  <!--
+	<ListView x:Name="MainMenu" SelectedItem="{Binding MainMode,Converter={StaticResource MainModeListIndexConv}}">
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ViewCell>
+					<Label Text="{Binding}" FontSize="32" HeightRequest="48" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+				</ViewCell>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+  -->
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+
+    <ccontrols:WrapLayout>
+      <StackLayout>
+        <Button Image="person_menu.png"  WidthRequest="100" HeightRequest="100" Command="{Binding MainModeSelectCommand}" CommandParameter="EditPerson" Grid.Row="0"/>
+        <Label Text="{i18n:Translate Person}" HorizontalTextAlignment="Center"/>
+      </StackLayout>
+      <StackLayout>
+        <Button Image="group_menu.png"   WidthRequest="100" HeightRequest="100" Command="{Binding MainModeSelectCommand}" CommandParameter="EditGroup" Grid.Row="1"/>
+        <Label Text="{i18n:Translate Group}" HorizontalTextAlignment="Center"/>
+      </StackLayout>
+      <StackLayout>
+        <Button Image="place_menu.png"   WidthRequest="100" HeightRequest="100" Command="{Binding MainModeSelectCommand}" CommandParameter="EditPlace" Grid.Row="2"/>
+        <Label Text="{i18n:Translate Place}" HorizontalTextAlignment="Center"/>
+      </StackLayout>
+      <StackLayout>
+        <Button Image="scene_menu.png"   WidthRequest="100" HeightRequest="100" Command="{Binding MainModeSelectCommand}" CommandParameter="EditScene" Grid.Row="3"/>
+        <Label Text="{i18n:Translate Scene}" HorizontalTextAlignment="Center"/>
+      </StackLayout>
+      <StackLayout>
+        <Button Image="chapter_menu.png" WidthRequest="100" HeightRequest="100" Command="{Binding MainModeSelectCommand}" CommandParameter="EditChapter" Grid.Row="4"/>
+        <Label Text="{i18n:Translate Chapter}" HorizontalTextAlignment="Center"/>
+      </StackLayout>
+      <StackLayout>
+        <Button Image="word_menu.png" WidthRequest="100" HeightRequest="100" Command="{Binding MainModeSelectCommand}" CommandParameter="EditWord" Grid.Row="5"/>
+        <Label Text="{i18n:Translate Word}" HorizontalTextAlignment="Center"/>
+      </StackLayout>
+    </ccontrols:WrapLayout>
+  </Grid>
+</ContentView>

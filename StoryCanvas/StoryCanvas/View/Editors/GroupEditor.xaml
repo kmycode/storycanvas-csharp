@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+						 xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+						 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+						 xmlns:cvxcommon="clr-namespace:StoryCanvas.Converters.Common"
+						 xmlns:entities="clr-namespace:StoryCanvas.Shared.Models.Entities"
+             x:Class="StoryCanvas.View.Editors.GroupEditor">
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvcommon:StoryDateTimeConverter x:Key="StoryDateTimeConv"/>
+      <cvcommon:StoryDateFormatConverter x:Key="StoryDateFormatConv"/>
+      <cvcommon:TextLengthLimitterConverter x:Key="TextLengthLimitterConv"/>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+      <cvxcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+    </ResourceDictionary>
+  </ContentView.Resources>
+
+  <ScrollView>
+    <StackLayout>
+      <StackLayout IsVisible="{Binding IsDummy,Converter={StaticResource NegativeConv}}">
+        <StackLayout Orientation="Horizontal">
+          <ccontrols:ImageResourcePanel BackgroundColor="{Binding Color,Converter={StaticResource ColorResourceColorConv},Mode=OneWay}" ImageResource="{Binding DisplayIcon}" WidthRequest="44" HeightRequest="44"/>
+          <Label Text="{Binding Name}" FontSize="32"/>
+        </StackLayout>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+
+          <Grid.Resources>
+            <ResourceDictionary>
+              <Style TargetType="{x:Type Label}">
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+              </Style>
+            </ResourceDictionary>
+          </Grid.Resources>
+
+          <Label Text="{i18n:Translate Name}" Grid.Column="0" Grid.Row="0"/>
+          <Entry Text="{Binding Name,Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
+
+          <Label Text="{i18n:Translate Color}" Grid.Column="0" Grid.Row="1"/>
+          <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+            <Button Text="{i18n:Translate PickColor}" Command="{Binding ColorPickerCommand}"/>
+            <BoxView Color="{Binding Color,Converter={StaticResource ColorResourceColorConv},Mode=OneWay}" WidthRequest="40"/>
+          </StackLayout>
+
+          <!-- 関連人物 -->
+          <Label Text="{i18n:Translate RelatedPeople}" Grid.Column="0" Grid.Row="2"/>
+          <ccontrols:DynamicHeightListView Grid.Column="1" Grid.Row="2" ItemsSource="{Binding RelatedPeople}" SelectedItem="{Binding SelectedPersonRelation,Mode=TwoWay}">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <TextCell Text="{Binding Entity2.Name,Converter={StaticResource TextLengthLimitterConv}}" Detail="{Binding Note}"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ccontrols:DynamicHeightListView>
+          <Grid Grid.Column="1" Grid.Row="3">
+            <Button Text="{i18n:Translate Edit}" Command="{Binding EditPersonRelationCommand}"/>
+          </Grid>
+
+          <!-- 集団パラメータ -->
+          <Label Text="{i18n:Translate Parameter}" Grid.Column="0" Grid.Row="4"/>
+          <ccontrols:DynamicHeightListView Grid.Column="1" Grid.Row="4" ItemsSource="{Binding RelatedPersonParameters}" SelectedItem="{Binding SelectedRelatedPersonParameter,Mode=TwoWay}">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <EntryCell Text="{Binding Name}"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ccontrols:DynamicHeightListView>
+          <Grid Grid.Column="1" Grid.Row="5">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Text="{i18n:Translate Add}" Command="{Binding AddRelatedPersonParameterCommand}"/>
+            <Button Grid.Column="2" Text="{i18n:Translate Remove}" Command="{Binding RemoveRelatedPersonParameterCommand}"/>
+          </Grid>
+
+          <Label Text="{i18n:Translate Note}" Grid.Column="0" Grid.Row="6"/>
+          <ccontrols:HoldingEditorLabel Text="{Binding Note,Mode=TwoWay}" MinimumHeightRequest="300" Grid.Column="1" Grid.Row="6"/>
+        </Grid>
+      </StackLayout>
+      <Image IsVisible="{Binding IsDummy}" Source="swipe.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+    </StackLayout>
+  </ScrollView>
+</ContentView>

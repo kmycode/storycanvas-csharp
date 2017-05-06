@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+						 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+						 xmlns:cvxcommon="clr-namespace:StoryCanvas.Converters.Common"
+             x:Class="StoryCanvas.View.CustomControls.Pickers.ColorPicker"
+             Title="{i18n:Translate PickColor}">
+
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvxcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+      <cvcommon:ColorResourceCodeConverter x:Key="ColorResourceCodeConv"/>
+    </ResourceDictionary>
+  </ContentView.Resources>
+  
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+      <RowDefinition Height="auto"/>
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Text="{i18n:Translate Preset}" x:Name="PresetButton" Grid.Column="0"/>
+      <Button Text="{i18n:Translate Custom}" x:Name="CustomButton" Grid.Column="1"/>
+      <Button Text="RGB" x:Name="RGBButton" Grid.Column="2"/>
+      <Button Text="{i18n:Translate History}" x:Name="HistoryButton" Grid.Column="3"/>
+    </Grid>
+
+    <!-- プリセット -->
+    <ListView Grid.Row="1" x:Name="ColorList">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <BoxView Color="{Binding Color,Converter={StaticResource ColorResourceColorConv}}" WidthRequest="70"/>
+              <Label Text="{Binding Color,Converter={StaticResource ColorResourceCodeConv}}" VerticalTextAlignment="Center"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <!-- カスタム -->
+    <ListView Grid.Row="1" x:Name="CustomList" IsVisible="false">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <BoxView Color="{Binding Color,Converter={StaticResource ColorResourceColorConv}}" WidthRequest="70"/>
+              <Label Text="{Binding Color,Converter={StaticResource ColorResourceCodeConv}}" VerticalTextAlignment="Center"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <!-- RGB -->
+    <ScrollView Grid.Row="1" x:Name="RGBLayout" IsVisible="false">
+      <StackLayout Margin="24,0,24,0">
+        <BoxView x:Name="RGBPreview" HeightRequest="100"/>
+        <Label Text="R"/>
+        <Slider x:Name="RSlider" Maximum="255" Minimum="0"/>
+        <Label Text="G"/>
+        <Slider x:Name="GSlider" Maximum="255" Minimum="0"/>
+        <Label Text="B"/>
+        <Slider x:Name="BSlider" Maximum="255" Minimum="0"/>
+      </StackLayout>
+    </ScrollView>
+
+    <!-- 履歴 -->
+    <ListView Grid.Row="1" x:Name="HistoryList" IsVisible="false">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal">
+              <BoxView Color="{Binding Color,Converter={StaticResource ColorResourceColorConv}}" WidthRequest="70"/>
+              <Label Text="{Binding Color,Converter={StaticResource ColorResourceCodeConv}}" VerticalTextAlignment="Center"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </Grid>
+</ContentPage>

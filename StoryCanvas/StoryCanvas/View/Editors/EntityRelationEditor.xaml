@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+						 xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+						 xmlns:cvxcommon="clr-namespace:StoryCanvas.Converters.Common"
+             x:Class="StoryCanvas.View.Editors.EntityRelationEditor"
+             Title="{i18n:Translate Relation}">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cvcommon:TypeNameBooleanConverter x:Key="TypeNameBooleanConv"/>
+      <cvxcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <Grid>
+    <Grid IsVisible="{Binding IsDummy,Converter={StaticResource NegativeConv}}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <StackLayout Orientation="Horizontal" Grid.Row="0">
+        <ccontrols:ImageResourcePanel BackgroundColor="{Binding SelectedRelatedEntityItem.Entity1.Color,Converter={StaticResource ColorResourceColorConv},Mode=OneWay}" ImageResource="{Binding SelectedRelatedEntityItem.Entity1.DisplayIcon}" WidthRequest="44" HeightRequest="44"/>
+        <Label Text="{Binding SelectedRelatedEntityItem.Entity1.Name}" VerticalTextAlignment="Center"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" Grid.Row="1">
+        <ccontrols:ImageResourcePanel BackgroundColor="{Binding SelectedRelatedEntityItem.Entity2.Color,Converter={StaticResource ColorResourceColorConv},Mode=OneWay}" ImageResource="{Binding SelectedRelatedEntityItem.Entity2.DisplayIcon}" WidthRequest="44" HeightRequest="44"/>
+        <Label Text="{Binding SelectedRelatedEntityItem.Entity2.Name}" VerticalTextAlignment="Center"/>
+      </StackLayout>
+      <ScrollView Grid.Row="2">
+        <StackLayout>
+          <Grid IsVisible="{Binding SelectedRelatedEntityItem,Converter={StaticResource TypeNameBooleanConv},ConverterParameter=PersonPersonEntityRelate}">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto"/>
+              <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Text="{i18n:Translate CallingName}" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+            <Entry Text="{Binding SelectedRelatedEntityItem.FocusedPersonCallNotFocused}" Grid.Row="0" Grid.Column="1"/>
+            <Label Text="{i18n:Translate BeingCalledName}" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+            <Entry Text="{Binding SelectedRelatedEntityItem.NotFocusedPersonCallFocused}" Grid.Row="1" Grid.Column="1"/>
+          </Grid>
+          <Label Text="{i18n:Translate Note}"/>
+          <ccontrols:DynamicHeightEditor Text="{Binding SelectedRelatedEntityItem.Note}"/>
+        </StackLayout>
+      </ScrollView>
+    </Grid>
+    <StackLayout IsVisible="{Binding IsDummy}">
+      <Image Source="swipe.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+    </StackLayout>
+  </Grid>
+</ContentPage>

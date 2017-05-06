@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             x:Class="StoryCanvas.View.CustomControls.Pickers.StoryDatePicker"
+             Title="{i18n:Translate PickDate}">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		
+		<Grid.Resources>
+			<ResourceDictionary>
+				<Style TargetType="{x:Type Label}">
+					<Setter Property="HorizontalTextAlignment" Value="End"/>
+					<Setter Property="VerticalTextAlignment" Value="Center"/>
+				</Style>
+			</ResourceDictionary>
+		</Grid.Resources>
+		
+		<Label Text="{i18n:Translate NativePicker}" Grid.Column="0" Grid.Row="0"/>
+		<DatePicker x:Name="NativePicker" Margin="0,20,0,0" HorizontalOptions="StartAndExpand" MinimumDate="0010/1/1" MaximumDate="9999/12/31" Grid.Column="1" Grid.Row="0"/>
+
+		<Label Text="{i18n:Translate ManualPicker}" Grid.Column="0" Grid.Row="1"/>
+		<StackLayout Orientation="Horizontal" Margin="0,20,0,0" Grid.Column="1" Grid.Row="1">
+			<StackLayout Orientation="Horizontal">
+				<Label Text="{i18n:Translate Year}"/>
+				<Entry x:Name="YearInput" Keyboard="Numeric"/>
+			</StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Label Text="{i18n:Translate Month}"/>
+				<Picker x:Name="MonthInput">
+				</Picker>
+			</StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<Label Text="{i18n:Translate Day}"/>
+				<Picker x:Name="DayInput">
+				</Picker>
+			</StackLayout>
+		</StackLayout>
+
+    <Grid Grid.Row="2" Grid.ColumnSpan="2">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition/>
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
+      <Button x:Name="Clear" Text="{i18n:Translate Clear}" Grid.Column="2"/>
+    </Grid>
+  </Grid>
+</ContentPage>

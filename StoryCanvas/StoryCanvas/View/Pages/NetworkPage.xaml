@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             x:Class="StoryCanvas.View.Pages.NetworkPage"
+						 Title="{i18n:Translate Network}">
+	<StackLayout>
+		<Label Text="{i18n:Translate SendNetwork}"/>
+		<Button Text="{i18n:Translate SendNetwork}" Command="{Binding ReadySendModelCommand}"/>
+		<Label Text="{i18n:Translate ReceiveNetwork}"/>
+		<Button Text="{i18n:Translate ReceiveNetwork}" Command="{Binding ReadyReceiveModelCommand}"/>
+		<Label Text="{i18n:Translate NetworkTroubleShooting}"/>
+		<Button Text="{i18n:Translate NetworkTroubleShooting}" Command="{Binding GoNetworkTroubleShootingCommand}"/>
+	</StackLayout>
+</ContentPage>

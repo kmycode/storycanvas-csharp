@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+	           xmlns:cvmainpage="clr-namespace:StoryCanvas.Converters.MainPage"
+             x:Class="StoryCanvas.View.EntityLists.ViewTabListMenu">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <cvmainpage:MainModeListIndexConverter x:Key="MainModeListIndexConv"/>
+    </ResourceDictionary>
+  </ContentView.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+
+    <Button Text="{i18n:Translate Timeline}" FontSize="26" Command="{Binding MainModeSelectCommand}" CommandParameter="TimelinePage" Grid.Row="0"/>
+  </Grid>
+</ContentView>

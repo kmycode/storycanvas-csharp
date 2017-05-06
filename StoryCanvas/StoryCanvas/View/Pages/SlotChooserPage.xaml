@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             x:Class="StoryCanvas.View.Pages.SlotChooserPage"
+						 Title="{i18n:Translate PickSlot}">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		<ListView ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot,Mode=TwoWay}" Grid.Row="0">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextCell Text="{Binding SlotName}" Detail="{Binding SlotDetail}" IsEnabled="{Binding IsEnabled}"/>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<Button Text="{i18n:Translate Submit}" Command="{Binding SlotSelectCommand}" Grid.Row="1"/>
+	</Grid>
+</ContentPage>

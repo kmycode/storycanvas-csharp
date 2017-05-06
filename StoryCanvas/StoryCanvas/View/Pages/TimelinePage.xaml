@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					      	xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+                  xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+				     	    xmlns:cvxcommon="clr-namespace:StoryCanvas.Converters.Common"
+							    xmlns:i18n="clr-namespace:StoryCanvas"
+                  x:Class="StoryCanvas.View.Pages.TimelinePage"
+                  Title="{i18n:Translate Timeline}">
+  <MasterDetailPage.Resources>
+    <ResourceDictionary>
+      <cvcommon:StoryDateTimeFormatConverter x:Key="StoryDateTimeFormatConv"/>
+      <cvcommon:StoryDateFormatConverter x:Key="StoryDateFormatConv"/>
+      <cvcommon:NullBooleanConverter x:Key="NullBooleanConv"/>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+      <cvxcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+    </ResourceDictionary>
+  </MasterDetailPage.Resources>
+
+  <MasterDetailPage.ToolbarItems>
+    <ToolbarItem Name="{i18n:Translate Person}" Clicked="ShowMenuButton_Click" Order="Primary" Priority="0" Icon="menu.png"/>
+  </MasterDetailPage.ToolbarItems>
+
+  <MasterDetailPage.Master>
+    <ContentPage Title="{i18n:Translate Timeline}">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding PermanencePersonItems}">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <SwitchCell Text="{Binding Person.Name}" On="{Binding IsShowWithBinding,Mode=TwoWay}"/>
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Button Text="{i18n:Translate SelectAll}" Command="{Binding ShowAllPeopleCommand}" Grid.Column="0"/>
+          <Button Text="{i18n:Translate Clear}" Command="{Binding ClearAllPeopleCommand}" Grid.Column="1"/>
+        </Grid>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  
+  <MasterDetailPage.Detail>
+    <ContentPage>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="50"/>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="50"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+          </Grid.ColumnDefinitions>
+          <StackLayout Orientation="Vertical">
+            <Label Text="{Binding DisplayStartDay,Converter={StaticResource StoryDateFormatConv}}" FontSize="28"/>
+            <!--
+            <Label Text="{Binding DisplayEndDay,Converter={StaticResource StoryDateFormatConv}}" FontSize="18"/>
+            -->
+          </StackLayout>
+          <StackLayout Orientation="Horizontal" Grid.Column="1">
+            <!--
+            <Button Image="zoomout.png" WidthRequest="40" Clicked="ScaleDownButton_Click"/>
+            <Button Image="zoomin.png" WidthRequest="40" Clicked="ScaleUpButton_Click"/>
+            -->
+            <Button Image="reorder.png" WidthRequest="40" Clicked="ReorderButton_Click"/>
+            <Button Text="E" WidthRequest="40" Command="{Binding EditSelectedSceneCommand}"/>
+          </StackLayout>
+        </Grid>
+
+        <Grid IsVisible="False" x:Name="DateOperationButtons" Grid.Row="1" Grid.ColumnSpan="2">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Button Image="back3.png" FontSize="16" Command="{Binding PrevYearCommand}"  Grid.Column="0"/>
+          <Button Image="back2.png" FontSize="16" Command="{Binding PrevMonthCommand}" Grid.Column="1"/>
+          <Button Image="back.png"  FontSize="16" Command="{Binding PrevDayCommand}"   Grid.Column="2"/>
+          <Button Image="next.png"  FontSize="16" Command="{Binding NextDayCommand}"   Grid.Column="3"/>
+          <Button Image="next2.png" FontSize="16" Command="{Binding NextMonthCommand}" Grid.Column="4"/>
+          <Button Image="next3.png" FontSize="16" Command="{Binding NextYearCommand}"  Grid.Column="5"/>
+        </Grid>
+
+        <ScrollView Grid.Column="1" Grid.Row="2" x:Name="NameViewport" Orientation="Horizontal">
+          <AbsoluteLayout x:Name="NameArea">
+          </AbsoluteLayout>
+        </ScrollView>
+
+        <ScrollView Grid.Column="0" Grid.Row="3" x:Name="TimeDivisionViewport" Orientation="Vertical">
+          <AbsoluteLayout x:Name="TimeDivisionArea">
+          </AbsoluteLayout>
+        </ScrollView>
+        <ScrollView Grid.Column="1" Grid.Row="3" x:Name="TimelineViewport" Orientation="Both">
+          <Grid>
+            <AbsoluteLayout x:Name="TimelineArea">
+            </AbsoluteLayout>
+            <AbsoluteLayout x:Name="SceneItemArea">
+            </AbsoluteLayout>
+          </Grid>
+        </ScrollView>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

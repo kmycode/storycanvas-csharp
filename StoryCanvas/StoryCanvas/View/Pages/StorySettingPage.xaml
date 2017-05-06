@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StoryCanvas.View.Pages.StorySettingPage"
+						 xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+						 xmlns:cvxcommon="clr-namespace:StoryCanvas.Converters.Common"
+						 xmlns:i18n="clr-namespace:StoryCanvas"
+             Title="{i18n:Translate StorySetting}"
+             x:Name="Page">
+	
+	<ContentPage.Resources>
+		<ResourceDictionary>
+      <cvxcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+  <ScrollView>
+    <StackLayout>
+      <Label Text="{Binding Title}" FontSize="32"/>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+          <ResourceDictionary>
+            <Style TargetType="{x:Type Label}">
+              <Setter Property="HorizontalTextAlignment" Value="End"/>
+              <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+          </ResourceDictionary>
+        </Grid.Resources>
+
+        <Label Text="{i18n:Translate Title}" Grid.Column="0" Grid.Row="0"/>
+        <Entry Text="{Binding Title,Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
+        
+        <Label Text="{i18n:Translate AuthorName}" Grid.Column="0" Grid.Row="1"/>
+        <Entry Text="{Binding AuthorName,Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
+
+        <Label Text="{i18n:Translate Comment}" Grid.Column="0" Grid.Row="2"/>
+        <Entry Text="{Binding Comment,Mode=TwoWay}" Grid.Column="1" Grid.Row="2"/>
+
+        <Label Text="{i18n:Translate Overview}" Grid.Column="0" Grid.Row="3"/>
+        <ccontrols:HoldingEditorLabel Text="{Binding Overview,Mode=TwoWay}" Grid.Column="1" Grid.Row="3"/>
+
+        <Label Text="{i18n:Translate AutoSave}" HorizontalTextAlignment="Start" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+        <Grid Grid.Column="1" Grid.Row="5">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Label Text="{i18n:Translate SmartPhone}" HorizontalOptions="Start" Grid.Row="0" Grid.Column="0"/>
+          <Switch IsToggled="{Binding IsAutoSaveXF,Mode=TwoWay}" HorizontalOptions="End" Grid.Row="0" Grid.Column="1"/>
+          <Label Text="{i18n:Translate Windows}" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0"/>
+          <Switch IsToggled="{Binding IsAutoSaveWPF,Mode=TwoWay}" HorizontalOptions="End" Grid.Row="1" Grid.Column="1"/>
+        </Grid>
+
+        <Label Text="{i18n:Translate CustomColor}" HorizontalOptions="Start" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"/>
+        <ccontrols:ItemsView ItemsSource="{Binding ColorCustom}" Grid.Column="1" Grid.Row="7">
+          <ccontrols:ItemsView.ItemsPanel>
+            <StackLayout/>
+          </ccontrols:ItemsView.ItemsPanel>
+          <ccontrols:ItemsView.ItemTemplate>
+            <DataTemplate>
+              <StackLayout Orientation="Horizontal">
+                <Button Text="{i18n:Translate PickColor}"
+                        Command="{Binding BindingContext.CustomColorPickerCommand,Source={x:Reference Page}}"
+                        CommandParameter="{Binding}"/>
+                <BoxView Color="{Binding Color,Converter={StaticResource ColorResourceColorConv},Mode=OneWay}" WidthRequest="40"/>
+              </StackLayout>
+            </DataTemplate>
+          </ccontrols:ItemsView.ItemTemplate>
+        </ccontrols:ItemsView>
+
+        <!--
+        <Button Text="{i18n:Translate AutosaveEnquete}" Command="{Binding AutoSaveEnqueteCommand}" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"/>
+        -->
+      </Grid>
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

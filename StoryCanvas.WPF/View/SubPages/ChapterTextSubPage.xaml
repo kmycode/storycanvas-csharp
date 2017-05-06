@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.SubPages.ChapterTextSubPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.SubPages"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+			 xmlns:mycontrol="clr-namespace:StoryCanvas.WPF.View.CustomControls"
+	         xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+			 xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+             mc:Ignorable="d" FontSize="14" FontFamily="Meiryo UI"
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <cvcommon:StoryDateTimeFormatConverter x:Key="StoryDateTimeFormatConv"/>
+        <cvwcommon:ColorResourceBrushConverter x:Key="ColorResourceBrushConv"/>
+        <cvwcommon:EqualsVisibilityConverter x:Key="EqualsVisibilityConv"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="SelectChapterGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="{x:Static p:Resources.Chapter}" VerticalContentAlignment="Center" FontSize="18" Foreground="Gray"/>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Chapters}" SelectedItem="{Binding SelectedChapter,Mode=TwoWay}"/>
+            <Button Grid.Column="2" Command="{Binding ConfigPrintSelectedChapterTextCommand}" Width="80">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_page_bold}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="3" Command="{Binding PrintSelectedChapterTextCommand}" Width="80">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_printer}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="4" Command="{Binding NextViewModeCommand}" Width="80" Content="{x:Static p:Resources.Switching}" FontSize="16"/>
+        </Grid>
+
+        <!-- ChapterTextViewMode.Scenes -->
+        <ScrollViewer Grid.Row="1" Visibility="{Binding ViewMode,Converter={StaticResource EqualsVisibilityConv},ConverterParameter=Scenes}" HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl Grid.Row="1" x:Name="MainListBox" ItemsSource="{Binding SceneItems}" VirtualizingPanel.ScrollUnit="Pixel">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="White">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Width="32" Height="32" Background="{Binding Scene.Color,Converter={StaticResource ColorResourceBrushConv}}">
+                                            <mycontrol:ImageResourcePanel ImageResource="{Binding Scene.DisplayIcon}" Width="32" Height="32"/>
+                                        </Border>
+                                        <Label FontSize="20" Content="{Binding Scene.Name}"/>
+                                    </StackPanel>
+                                    <Button FontSize="20" Width="100" Command="{Binding EditSceneCommand}" Grid.Column="1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_edit}" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Margin="0,0,15,0" Content="{x:Static p:Resources.StartDateTime}"/>
+                                            <Label Content="{Binding Scene.StartDateTime,Converter={StaticResource StoryDateTimeFormatConv}}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Margin="0,0,15,0" Content="{x:Static p:Resources.EndDateTime}"/>
+                                            <Label Content="{Binding Scene.EndDateTime,Converter={StaticResource StoryDateTimeFormatConv}}"/>
+                                        </StackPanel>
+                                        <ListBox ItemsSource="{Binding RelatedEntitiesExceptForChapters}" SelectedItem="{Binding SelectedRelatedEntity}">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Name="Border" Padding="1" SnapsToDevicePixels="true" Height="36">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Border Background="{Binding RelatedEntity.Color,Converter={StaticResource ColorResourceBrushConv}}" Height="36">
+                                                                <mycontrol:ImageResourcePanel ImageResource="{Binding RelatedEntity.DisplayIcon}" Width="36" Height="36"/>
+                                                            </Border>
+                                                            <Label Content="{Binding RelatedEntity.Name}" FontSize="18"/>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <Button FontSize="20" Width="100" HorizontalAlignment="Left" Command="{Binding EditSelectedRelatedEntityCommand}" Grid.Column="1">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Rectangle Width="16" Height="16" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                                    <Rectangle.OpacityMask>
+                                                        <VisualBrush Stretch="Uniform" Visual="{StaticResource appbar_edit}" />
+                                                    </Rectangle.OpacityMask>
+                                                </Rectangle>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="5,5,15,40">
+                                        <TextBox Text="{Binding Scene.Text,UpdateSourceTrigger=PropertyChanged}" FontSize="14" MinHeight="300" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"/>
+                                        <Label Content="{Binding Scene.TextLength}" HorizontalContentAlignment="Right"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- ChapterTextViewMode.ScenesText -->
+        <TextBox TextWrapping="Wrap" IsReadOnly="True" FontSize="16" Text="{Binding AllScenesText,Mode=OneWay}" VerticalScrollBarVisibility="Auto" Visibility="{Binding ViewMode,Converter={StaticResource EqualsVisibilityConv},ConverterParameter=ScenesText}" Grid.Row="1"/>
+
+        <!-- ChapterTextViewMode.VerticalScenesText -->
+        <WebBrowser x:Name="VerticalBrowser" Visibility="{Binding ViewMode,Converter={StaticResource EqualsVisibilityConv},ConverterParameter=VerticalScenesText}" Grid.Row="1"/>
+    </Grid>
+</UserControl>

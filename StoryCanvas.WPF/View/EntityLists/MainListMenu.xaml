@@ -1,0 +1,69 @@
+﻿<metro:ContentControlEx x:Class="StoryCanvas.WPF.View.EntityLists.MainListMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+               xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.EntityLists"
+	         xmlns:cvmainpage="clr-namespace:StoryCanvas.WPF.Converters.MainPage"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+	<metro:ContentControlEx.Resources>
+		<cvmainpage:MainModeListIndexConverter x:Key="MainModeListIndexConv"/>
+	</metro:ContentControlEx.Resources>
+	
+	<Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- モード選択メニュー -->
+		<ListBox x:Name="ModeSelection" SelectedIndex="{Binding MainMode,Converter={StaticResource MainModeListIndexConv},Mode=TwoWay}">
+			<ListBox.Resources>
+				<Style TargetType="{x:Type ListBoxItem}">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="ListBoxItem">
+								<Border Name="Border" Padding="1" SnapsToDevicePixels="true" Background="White" Height="48">
+									<Label Content="{TemplateBinding Content}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24"/>
+								</Border>
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsSelected" Value="true">
+										<Setter TargetName="Border" Property="Background" Value="#FFCDCDCD"/>
+									</Trigger>
+									<MultiTrigger>
+										<MultiTrigger.Conditions>
+											<Condition Property="IsMouseOver" Value="true"/>
+											<Condition Property="IsSelected" Value="false"/>
+										</MultiTrigger.Conditions>
+										<Setter TargetName="Border" Property="Background" Value="#FFE4E4E4"/>
+									</MultiTrigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</ListBox.Resources>
+            <ListBoxItem Content="{x:Static p:Resources.People}"/>
+            <ListBoxItem Content="{x:Static p:Resources.Group}"/>
+            <ListBoxItem Content="{x:Static p:Resources.Place}"/>
+			<ListBoxItem Content="{x:Static p:Resources.Scene}"/>
+			<ListBoxItem Content="{x:Static p:Resources.Chapter}"/>
+		</ListBox>
+		
+		<!-- セーブ・ロード -->
+        <Button Height="32" FontSize="16" Content="{x:Static p:Resources.SaveFile}" Command="{Binding SaveFileCommand}" Grid.Row="1"/>
+        <Button Height="32" FontSize="16" Content="{x:Static p:Resources.SaveAsFile}" Command="{Binding SaveAsFileCommand}" Grid.Row="2"/>
+        <Button Height="32" FontSize="16" Content="{x:Static p:Resources.LoadFile}" Command="{Binding OpenFileCommand}" Grid.Row="3"/>
+        <Button Height="32" FontSize="16" Content="{x:Static p:Resources.Network}" Command="{Binding OpenNetworkPageCommand}" Grid.Row="4"/>
+		<Button Height="32" FontSize="16" Content="{x:Static p:Resources.AboutApplication}" Command="{Binding AboutApplicationCommand}" Grid.Row="5"/>
+	</Grid>
+</metro:ContentControlEx>

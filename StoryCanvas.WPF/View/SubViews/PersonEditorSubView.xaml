@@ -1,0 +1,24 @@
+﻿<mdialog:CustomDialog x:Class="StoryCanvas.WPF.View.SubViews.PersonEditorSubView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+            xmlns:mdialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.SubViews"
+             xmlns:editors="clr-namespace:StoryCanvas.WPF.View.Editors"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+             mc:Ignorable="d" FontFamily="Meiryo UI" Margin="0,60,0,60"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <editors:PersonEditor Grid.Row="1" IsPrimary="False"/>
+        <Button Content="{x:Static p:Resources.Close}" x:Name="CloseButton" HorizontalAlignment="Right" Grid.Row="3" Width="100" Style="{StaticResource AccentedSquareButtonStyle}"/>
+    </Grid>
+</mdialog:CustomDialog>

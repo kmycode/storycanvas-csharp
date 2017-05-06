@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutApplication" xml:space="preserve">
+    <value>StoryCanvasについて</value>
+  </data>
+  <data name="AddNewStoryline" xml:space="preserve">
+    <value>新しいストーリーラインを追加</value>
+  </data>
+  <data name="ApplicationLibrary" xml:space="preserve">
+    <value>借用したライブラリ</value>
+  </data>
+  <data name="AuthorName" xml:space="preserve">
+    <value>著者名</value>
+  </data>
+  <data name="Base" xml:space="preserve">
+    <value>基本</value>
+  </data>
+  <data name="BirthDay" xml:space="preserve">
+    <value>誕生日</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Chapter" xml:space="preserve">
+    <value>章</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="DeathDay" xml:space="preserve">
+    <value>死亡日</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="EditorDefaultMessage" xml:space="preserve">
+    <value>画面を左から右へスワイプしてください</value>
+  </data>
+  <data name="EmptySlot" xml:space="preserve">
+    <value>空のスロット</value>
+  </data>
+  <data name="EndDateTime" xml:space="preserve">
+    <value>終了日時</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="ExistingSlot" xml:space="preserve">
+    <value>すでにデータのあるスロット</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="GoApplicationHP" xml:space="preserve">
+    <value>StoryCanvasのHPを開く</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>集団</value>
+  </data>
+  <data name="IsOverwriteSlotMessage" xml:space="preserve">
+    <value>このスロットを上書きしますか？</value>
+  </data>
+  <data name="IsWesternerName" xml:space="preserve">
+    <value>名前が先</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>苗字</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>読み込み</value>
+  </data>
+  <data name="LoadFile" xml:space="preserve">
+    <value>ファイルを開く</value>
+  </data>
+  <data name="LocationSetting_IsWesternerName" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>メイン</value>
+  </data>
+  <data name="ManualPicker" xml:space="preserve">
+    <value>手動入力</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="NativePicker" xml:space="preserve">
+    <value>標準入力</value>
+  </data>
+  <data name="Network" xml:space="preserve">
+    <value>ネットワーク</value>
+  </data>
+  <data name="NetworkStatusAbort" xml:space="preserve">
+    <value>中止されました</value>
+  </data>
+  <data name="NetworkStatusDeserializing" xml:space="preserve">
+    <value>データを読み込み中です</value>
+  </data>
+  <data name="NetworkStatusErrorAndAbort" xml:space="preserve">
+    <value>エラーが発生したため中止しました</value>
+  </data>
+  <data name="NetworkStatusMakingTcp" xml:space="preserve">
+    <value>TCPサーバを立ち上げています</value>
+  </data>
+  <data name="NetworkStatusMakingUdp" xml:space="preserve">
+    <value>UDPサーバを立ち上げています</value>
+  </data>
+  <data name="NetworkStatusNone" xml:space="preserve">
+    <value>準備できていません</value>
+  </data>
+  <data name="NetworkStatusReady" xml:space="preserve">
+    <value>待機中</value>
+  </data>
+  <data name="NetworkStatusReceived" xml:space="preserve">
+    <value>受信完了</value>
+  </data>
+  <data name="NetworkStatusReceiving" xml:space="preserve">
+    <value>受信中...</value>
+  </data>
+  <data name="NetworkStatusReceivingMetaData" xml:space="preserve">
+    <value>メタデータを受信しています</value>
+  </data>
+  <data name="NetworkStatusSending" xml:space="preserve">
+    <value>送信中...</value>
+  </data>
+  <data name="NetworkStatusSendingMetaData" xml:space="preserve">
+    <value>メタデータを送信しています</value>
+  </data>
+  <data name="NetworkStatusSent" xml:space="preserve">
+    <value>送信完了</value>
+  </data>
+  <data name="NetworkStatusWaitingForData" xml:space="preserve">
+    <value>ストーリーデータを待機中です</value>
+  </data>
+  <data name="NetworkStatusWaitingForSignal" xml:space="preserve">
+    <value>相手からの信号を待機中です</value>
+  </data>
+  <data name="NewScene" xml:space="preserve">
+    <value>新しいシーン</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>備考</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="Part" xml:space="preserve">
+    <value>編</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>人物</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>人物</value>
+  </data>
+  <data name="PickDate" xml:space="preserve">
+    <value>日付を選択</value>
+  </data>
+  <data name="PickDateTime" xml:space="preserve">
+    <value>日時を選択</value>
+  </data>
+  <data name="PickLoadSlot" xml:space="preserve">
+    <value>読込スロットを選択</value>
+  </data>
+  <data name="PickSaveSlot" xml:space="preserve">
+    <value>保存先を選択</value>
+  </data>
+  <data name="PickSlot" xml:space="preserve">
+    <value>スロットを選択</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>場所</value>
+  </data>
+  <data name="ReceiveNetwork" xml:space="preserve">
+    <value>ネットワークから受信</value>
+  </data>
+  <data name="RelatedChapters" xml:space="preserve">
+    <value>関連する章</value>
+  </data>
+  <data name="RelatedGroups" xml:space="preserve">
+    <value>関連集団</value>
+  </data>
+  <data name="RelatedPeople" xml:space="preserve">
+    <value>関連人物</value>
+  </data>
+  <data name="RelatedPlaces" xml:space="preserve">
+    <value>関連場所</value>
+  </data>
+  <data name="RelatedScenes" xml:space="preserve">
+    <value>関連シーン</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SaveAsFile" xml:space="preserve">
+    <value>名前をつけてファイルへ保存</value>
+  </data>
+  <data name="SaveFile" xml:space="preserve">
+    <value>ファイルへ保存</value>
+  </data>
+  <data name="SaveFinishMessage" xml:space="preserve">
+    <value>保存しました</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>シーン</value>
+  </data>
+  <data name="SceneText" xml:space="preserve">
+    <value>脚本</value>
+  </data>
+  <data name="SendFinishMessage" xml:space="preserve">
+    <value>送信しました</value>
+  </data>
+  <data name="SendNetwork" xml:space="preserve">
+    <value>ネットワークへ送信</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>スロット</value>
+  </data>
+  <data name="StartDateTime" xml:space="preserve">
+    <value>開始日時</value>
+  </data>
+  <data name="Storage" xml:space="preserve">
+    <value>ストレージ</value>
+  </data>
+  <data name="Storyline" xml:space="preserve">
+    <value>ストーリーライン</value>
+  </data>
+  <data name="StorylineDesigner" xml:space="preserve">
+    <value>ストーリーラインデザイナ</value>
+  </data>
+  <data name="StorySetting" xml:space="preserve">
+    <value>ストーリー設定</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>タイトル</value>
+  </data>
+  <data name="UndefinedErrorMessage" xml:space="preserve">
+    <value>不明なエラーが発生しました</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="IsCreateNewMessage" xml:space="preserve">
+    <value>新しいストーリーを作成しますか？</value>
+  </data>
+  <data name="TitleEmpty" xml:space="preserve">
+    <value>（無題）</value>
+  </data>
+  <data name="CreateNewStory" xml:space="preserve">
+    <value>新しいストーリーを作成</value>
+  </data>
+  <data name="IsDeleteSlotMessage" xml:space="preserve">
+    <value>このスロットを削除しますか？</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>女</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>男</value>
+  </data>
+  <data name="NetworkStatusNoSignalsAndAbort" xml:space="preserve">
+    <value>受信側から信号を受け取れなかったので中止しました</value>
+  </data>
+  <data name="LocationSetting_DateFormatType" xml:space="preserve">
+    <value>Japan</value>
+  </data>
+  <data name="DeleteEntityMessage" xml:space="preserve">
+    <value>この要素を削除しますか？</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>ワークスペース</value>
+  </data>
+  <data name="StartPage" xml:space="preserve">
+    <value>スタートページ</value>
+  </data>
+  <data name="ChapterText" xml:space="preserve">
+    <value>章と脚本</value>
+  </data>
+  <data name="Memo" xml:space="preserve">
+    <value>メモ</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="SubEntity" xml:space="preserve">
+    <value>副要素</value>
+  </data>
+  <data name="Relation" xml:space="preserve">
+    <value>関係</value>
+  </data>
+  <data name="ChapterTextDefaultMessage" xml:space="preserve">
+    <value>画面を左から右へスワイプして、章とシーンを選択してください</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>色</value>
+  </data>
+  <data name="Timeline" xml:space="preserve">
+    <value>タイムライン</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>ビュー</value>
+  </data>
+  <data name="PickColor" xml:space="preserve">
+    <value>色を選択</value>
+  </data>
+  <data name="AutoSave" xml:space="preserve">
+    <value>オートセーブ(1分)</value>
+  </data>
+  <data name="AutoSaveNotice" xml:space="preserve">
+    <value>ストーリー新規作成時は、保存先のスロットを選択して手動で保存するまでオートセーブは行われません。</value>
+  </data>
+  <data name="ApplyParameterForExistingPeople" xml:space="preserve">
+    <value>変更を既存の人物に適用</value>
+  </data>
+  <data name="Hint1" xml:space="preserve">
+    <value>ヒント: オートセーブは、1分ごとにデータを自動で保存します</value>
+  </data>
+  <data name="Hint10" xml:space="preserve">
+    <value>ヒント: 「ストーリー設定」でタイトル・コメントを設定すると、スロットのリストに表示されます</value>
+  </data>
+  <data name="Hint11" xml:space="preserve">
+    <value>ヒント: StoryCanvas公式サイトのドキュメント内に、使い方のマニュアルがあります</value>
+  </data>
+  <data name="Hint12" xml:space="preserve">
+    <value>ヒント: 不明点、お困りの点などありましたら、サポートフォーラムへ。http://jbbs.shitaraba.net/otaku/17663/</value>
+  </data>
+  <data name="Hint2" xml:space="preserve">
+    <value>ヒント: 新規作成直後のストーリーでオートセーブを利用するには、データをどこかのスロットに保存する必要があります</value>
+  </data>
+  <data name="Hint3" xml:space="preserve">
+    <value>ヒント: 人物に独自のパラメータを設定することができます</value>
+  </data>
+  <data name="Hint4" xml:space="preserve">
+    <value>ヒント: 関連付けのリストで項目を選択して－ボタンを押すと、関連付けを解除できます</value>
+  </data>
+  <data name="Hint5" xml:space="preserve">
+    <value>ヒント: 関連付けのコメントは改行できます</value>
+  </data>
+  <data name="Hint6" xml:space="preserve">
+    <value>ヒント: 登場人物同士の呼び方を、人物同士の関連付けで設定することができます</value>
+  </data>
+  <data name="Hint7" xml:space="preserve">
+    <value>ヒント: StoryCanvasにはWindows(PC)版もあり、自宅Wi-Fiでデータを交換することができます</value>
+  </data>
+  <data name="Hint8" xml:space="preserve">
+    <value>ヒント: 「章と脚本」は、1つの章に関連付けられたシーンの脚本を一斉に編集することができます</value>
+  </data>
+  <data name="Hint9" xml:space="preserve">
+    <value>ヒント: 「タイムライン」は、開始・終了時刻が設定されたシーンを時系列に見ることができます</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>パラメータ</value>
+  </data>
+  <data name="ParameterForAllPeople" xml:space="preserve">
+    <value>全人物に適用</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>サポート</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>すべて選択</value>
+  </data>
+  <data name="BeingCalledName" xml:space="preserve">
+    <value>呼ばれ方</value>
+  </data>
+  <data name="CallingName" xml:space="preserve">
+    <value>呼び方</value>
+  </data>
+  <data name="Switching" xml:space="preserve">
+    <value>切替</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>履歴</value>
+  </data>
+  <data name="Preset" xml:space="preserve">
+    <value>プリセット</value>
+  </data>
+  <data name="CustomColor" xml:space="preserve">
+    <value>カスタム色</value>
+  </data>
+  <data name="EmptyTitle" xml:space="preserve">
+    <value>(無題)</value>
+  </data>
+  <data name="AutoSaveDisabledBecauseOfStoryConfig" xml:space="preserve">
+    <value>オートセーブはストーリー設定でオフになっています</value>
+  </data>
+  <data name="AutoSaveEnabled" xml:space="preserve">
+    <value>オートセーブは有効です</value>
+  </data>
+  <data name="AutoSaveDisabledBecauseNoSlotSelected" xml:space="preserve">
+    <value>どこかのスロットに保存されていないので、オートセーブは無効です</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>歳</value>
+  </data>
+  <data name="AutoSaveStoppedNotice" xml:space="preserve">
+    <value>保存ボタンをタップで上書き保存します</value>
+  </data>
+  <data name="SaveFailedForNotChoosingSlot" xml:space="preserve">
+    <value>保存できません。「ストレージ」画面で、スロットを選択して保存してください。</value>
+  </data>
+  <data name="AutosaveEnquete" xml:space="preserve">
+    <value>Ver1.4.4以降の利用者向けアンケート</value>
+  </data>
+  <data name="SelectAnyEntityMessage" xml:space="preserve">
+    <value>要素を選択してください</value>
+  </data>
+  <data name="SelectChapterMessage" xml:space="preserve">
+    <value>章を選択してください</value>
+  </data>
+  <data name="SelectGroupMessage" xml:space="preserve">
+    <value>集団を選択してください</value>
+  </data>
+  <data name="SelectParameterMessage" xml:space="preserve">
+    <value>パラメータを選択してください</value>
+  </data>
+  <data name="SelectPersonMessage" xml:space="preserve">
+    <value>人物を選択してください</value>
+  </data>
+  <data name="SelectPlaceMessage" xml:space="preserve">
+    <value>場所を選択してください</value>
+  </data>
+  <data name="SelectRelationMessage" xml:space="preserve">
+    <value>関連付けを選択してください</value>
+  </data>
+  <data name="SelectSceneMessage" xml:space="preserve">
+    <value>シーンを選択してください</value>
+  </data>
+  <data name="ManageParameter" xml:space="preserve">
+    <value>パラメータを管理</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>ja</value>
+  </data>
+  <data name="NetworkTroubleShooting" xml:space="preserve">
+    <value>うまくつながらない時は</value>
+  </data>
+  <data name="SmartPhone" xml:space="preserve">
+    <value>スマートフォン</value>
+  </data>
+  <data name="Windows" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>両方</value>
+  </data>
+  <data name="ParameterForAllEntityAppliedFalse" xml:space="preserve">
+    <value>何も書かれていないパラメータ項目を削除しました</value>
+  </data>
+  <data name="ParameterForAllEntityAppliedTrue" xml:space="preserve">
+    <value>全ての要素にパラメータ項目を追加しました</value>
+  </data>
+  <data name="DeletePicture" xml:space="preserve">
+    <value>写真を削除</value>
+  </data>
+  <data name="SelectPicture" xml:space="preserve">
+    <value>写真を選択</value>
+  </data>
+  <data name="TakePicture" xml:space="preserve">
+    <value>写真を撮る</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="CannotAccessCamera" xml:space="preserve">
+    <value>写真機能が利用できません。権限の設定を確認してください。</value>
+  </data>
+  <data name="RelatedWords" xml:space="preserve">
+    <value>関連用語</value>
+  </data>
+  <data name="Word" xml:space="preserve">
+    <value>用語</value>
+  </data>
+  <data name="RelatedEntities" xml:space="preserve">
+    <value>関連要素</value>
+  </data>
+  <data name="TextLength" xml:space="preserve">
+    <value>文字数</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="ImageSaveFailed" xml:space="preserve">
+    <value>画像の保存に失敗しました</value>
+  </data>
+  <data name="ImageLoadFailed" xml:space="preserve">
+    <value>画像の読み込みに失敗しました</value>
+  </data>
+  <data name="SelectWordMessage" xml:space="preserve">
+    <value>用語を選択してください</value>
+  </data>
+  <data name="LoginFailedMessage" xml:space="preserve">
+    <value>ログインに失敗しました</value>
+  </data>
+  <data name="StorageLocal" xml:space="preserve">
+    <value>ローカル</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>中止</value>
+  </data>
+  <data name="Authentication" xml:space="preserve">
+    <value>認証</value>
+  </data>
+  <data name="NetworkConnectionFailed" xml:space="preserve">
+    <value>ネットワーク接続に失敗しました</value>
+  </data>
+  <data name="SceneDesigner" xml:space="preserve">
+    <value>シーンデザイナ</value>
+  </data>
+  <data name="SaveDataConflictMessage" xml:space="preserve">
+    <value>現在編集中のデータが、他のデバイスなどによって更新された可能性があります。編集を続行しますか？</value>
+  </data>
+  <data name="AutoSaveDisabledBecauseWaitingUserAction" xml:space="preserve">
+    <value>ユーザの操作を待機中のため、オートセーブは無効です</value>
+  </data>
+</root>

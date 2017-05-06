@@ -1,0 +1,105 @@
+﻿<metro:MetroWindow x:Class="StoryCanvas.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:StoryCanvas.WPF"
+        xmlns:pages="clr-namespace:StoryCanvas.WPF.View.Pages"
+        xmlns:sub="clr-namespace:StoryCanvas.WPF.View.SubPages"
+        xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+	    xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+	    xmlns:behaviors="clr-namespace:StoryCanvas.WPF.Behaviors"
+        mc:Ignorable="d"
+        Closing="MetroWindow_Closing"
+        Activated="MetroWindow_Activated"
+        Title="{x:Static p:Resources.ApplicationName}"
+		FontFamily="'Meiryo UI'"
+		Height="670" Width="1055"
+        BorderThickness="0"
+        GlowBrush="Black"
+        SaveWindowPosition="True"
+        Icon="/StoryCanvas.WPF;component/Resources/icon.ico"
+        WindowTitleBrush="#3B8940">
+
+    <metro:MetroWindow.InputBindings>
+        <KeyBinding Command="{Binding SaveLastSlotCommand}" Key="S" Modifiers="Ctrl"/>
+    </metro:MetroWindow.InputBindings>
+
+    <metro:MetroWindow.Resources>
+        <cvwcommon:EqualsConverter x:Key="EqualsConv"/>
+    </metro:MetroWindow.Resources>
+    
+    <metro:MetroWindow.RightWindowCommands>
+        <metro:WindowCommands>
+            <Button Command="{Binding SaveLastSlotCommand}" ToolTip="{x:Static p:Resources.Save}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding OpenStoragePageCommand}" ToolTip="{x:Static p:Resources.Storage}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_database}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <!--
+            <Button Command="{Binding OpenStoragePageCommand}" ToolTip="{x:Static p:Resources.Cloud}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cloud}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            -->
+            <Button Command="{Binding OpenNetworkPageCommand}" ToolTip="{x:Static p:Resources.Network}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_network}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding AboutApplicationCommand}" ToolTip="{x:Static p:Resources.AboutApplication}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_information_circle}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </StackPanel>
+            </Button>
+        </metro:WindowCommands>
+    </metro:MetroWindow.RightWindowCommands>
+
+    <metro:MetroWindow.Flyouts>
+        <metro:FlyoutsControl x:Name="Flyouts">
+            <metro:Flyout x:Name="StorageFlyout" Width="350" Position="Right" IsPinned="False">
+                <sub:StorageSubPage/>
+            </metro:Flyout>
+            <metro:Flyout x:Name="NetworkFlyout" Width="350" Position="Right" IsPinned="False">
+                <sub:NetworkSubPage/>
+            </metro:Flyout>
+            <metro:Flyout x:Name="AboutFlyout" Width="350" Position="Right" IsPinned="False">
+                <sub:AboutSubPage/>
+            </metro:Flyout>
+        </metro:FlyoutsControl>
+    </metro:MetroWindow.Flyouts>
+
+    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
+        <Frame.Content>
+            <pages:StartPage/>
+        </Frame.Content>
+    </Frame>
+</metro:MetroWindow>

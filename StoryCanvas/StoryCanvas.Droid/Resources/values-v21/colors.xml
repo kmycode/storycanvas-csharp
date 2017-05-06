@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <color name="product_color">#3b8940</color>
+  <color name="product_color_dark">#2b6930</color>
+  <color name="product_color_light">#5ba960</color>
+  <color name="product_text_color_primary">#efefef</color>
+  <color name="product_text_color_secondary">#0f0f0f</color>
+  <color name="product_text_color_thirdary">#aaaaaa</color>
+</resources>

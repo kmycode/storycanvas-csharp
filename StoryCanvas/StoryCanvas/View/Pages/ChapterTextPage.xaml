@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					      	xmlns:ccontrols="clr-namespace:StoryCanvas.View.CustomControls"
+                  xmlns:cvcommon="clr-namespace:StoryCanvas.Shared.Converters.Common"
+							    xmlns:i18n="clr-namespace:StoryCanvas"
+                  x:Class="StoryCanvas.View.Pages.ChapterTextPage"
+							    Title="{i18n:Translate ChapterText}">
+  <MasterDetailPage.Resources>
+    <ResourceDictionary>
+      <cvcommon:StoryDateTimeFormatConverter x:Key="StoryDateTimeFormatConv"/>
+      <cvcommon:NullBooleanConverter x:Key="NullBooleanConv"/>
+      <cvcommon:NegativeConverter x:Key="NegativeConv"/>
+      <cvcommon:EqualsConverter x:Key="EqualsConv"/>
+    </ResourceDictionary>
+  </MasterDetailPage.Resources>
+  
+  <MasterDetailPage.Master>
+    <ContentPage Title="{i18n:Translate Chapter}">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+          <RowDefinition x:Name="SceneRow"/>
+          <RowDefinition x:Name="RelationRow"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Button Text="{i18n:Translate Both}" Grid.Column="0" x:Name="BothModeButton"/>
+          <Button Text="{i18n:Translate Scene}" Grid.Column="1" x:Name="SceneModeButton"/>
+          <Button Text="{i18n:Translate Relation}" Grid.Column="2" x:Name="RelationModeButton"/>
+        </Grid>
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
+          <Label Text="{i18n:Translate Chapter}" VerticalTextAlignment="Center"/>
+          <ccontrols:ObjectPicker ItemsSource="{Binding Chapters,Mode=OneWay}" SelectedItem="{Binding SelectedChapter,Mode=TwoWay}" Grid.Column="1"/>
+        </Grid>
+
+        <Grid Grid.Row="2" x:Name="SceneModeDisplay">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+          <ListView ItemsSource="{Binding SceneItems}" SelectedItem="{Binding SelectedSceneItem,Mode=TwoWay}" Grid.Row="0">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ccontrols:EntityIconCell ColorResource="{Binding Scene.Color}" ImageResource="{Binding Scene.DisplayIcon}" Text="{Binding Scene.Name}"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+          <StackLayout Grid.Row="1" x:Name="SceneDetailDisplay" IsVisible="false">
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{i18n:Translate StartDateTime}"/>
+              <Label Text="{Binding SelectedSceneItem.Scene.StartDateTime,Converter={StaticResource StoryDateTimeFormatConv}}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{i18n:Translate EndDateTime}"/>
+              <Label Text="{Binding SelectedSceneItem.Scene.EndDateTime,Converter={StaticResource StoryDateTimeFormatConv}}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{i18n:Translate TextLength}"/>
+              <Label Text="{Binding SelectedSceneItem.Scene.TextLength}"/>
+            </StackLayout>
+          </StackLayout>
+        </Grid>
+
+        <Grid Grid.Row="3" x:Name="RelationModeDisplay">
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+          </Grid.RowDefinitions>
+          <!--
+          <Label Grid.Row="0" x:Name="RelatedEntitiesLabel" Text="{i18n:Translate RelatedEntities}"/>
+          -->
+          <ListView Grid.Row="0" ItemsSource="{Binding SelectedSceneItem.RelatedEntitiesExceptForChapters}" SelectedItem="{Binding SelectedSceneItem.SelectedRelatedEntity}">
+            <ListView.ItemTemplate>
+              <DataTemplate>
+                <ccontrols:EntityIconCell ColorResource="{Binding RelatedEntity.Color}" ImageResource="{Binding RelatedEntity.DisplayIcon}" Text="{Binding RelatedEntity.Name}"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+          <Button Grid.Row="1" Text="{i18n:Translate Edit}" Command="{Binding SelectedSceneItem.EditSelectedRelatedEntityCommand}"/>
+        </Grid>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <ContentPage>
+      <ContentPage.ToolbarItems>
+        <ToolbarItem Name="{i18n:Translate Scene}" Command="{Binding EditSelectedSceneCommand}" Order="Primary" Priority="0" Icon="scene_toolbar.png"/>
+        <ToolbarItem Name="{i18n:Translate Switching}" Command="{Binding NextViewModeCommand}" Order="Primary" Priority="0" Icon="rightmenu.png"/>
+      </ContentPage.ToolbarItems>
+      <Grid>
+        <Grid IsVisible="{Binding IsSceneSelected}">
+          <Grid IsVisible="{Binding ViewMode,Converter={StaticResource EqualsConv},ConverterParameter=Scenes}">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="auto"/>
+              <RowDefinition Height="auto"/>
+              <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding SelectedSceneItem.Scene.Name}" FontSize="32" Grid.Row="1"/>
+            <ScrollView Grid.Row="2">
+              <ccontrols:DynamicHeightEditor Text="{Binding SelectedSceneItem.Scene.Text}" x:Name="ScenarioEditor"/>
+            </ScrollView>
+          </Grid>
+          <Grid IsVisible="{Binding ViewMode,Converter={StaticResource EqualsConv},ConverterParameter=ScenesText}">
+            <ScrollView>
+              <ccontrols:DynamicHeightEditor Text="{Binding AllScenesText,Mode=OneWay}"/>
+            </ScrollView>
+          </Grid>
+          <Grid IsVisible="{Binding ViewMode,Converter={StaticResource EqualsConv},ConverterParameter=VerticalScenesText}">
+            <WebView x:Name="VerticalBrowser"/>
+          </Grid>
+        </Grid>
+        <StackLayout IsVisible="{Binding IsSceneSelected,Converter={StaticResource NegativeConv}}">
+          <Image Source="swipe.png" HorizontalOptions="Start" VerticalOptions="Center"/>
+          <Label Text="{i18n:Translate ChapterTextDefaultMessage}"/>
+        </StackLayout>
+      </Grid>
+    </ContentPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

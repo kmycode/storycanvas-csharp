@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StoryCanvas.View.Pages.StartPage"
+             xmlns:i18n="clr-namespace:StoryCanvas"
+             Title="{i18n:Translate StartPage}"
+             NavigationPage.HasNavigationBar="false">
+  <Grid BackgroundColor="#3b8940">
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="36" Text="{i18n:Translate ApplicationName}" Grid.Row="1"/>
+    <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="18" Text="{i18n:Translate ApplicationVersion}" Grid.Row="2"/>
+    <Button TextColor="White" BackgroundColor="Transparent" Text="{i18n:Translate CreateNewStory}" Command="{Binding MainModeSelectCommand}" CommandParameter="None" Grid.Row="4"/>
+    <Button TextColor="White" BackgroundColor="Transparent" Text="{i18n:Translate Load}" Command="{Binding MainModeSelectCommand}" CommandParameter="StoragePage" Grid.Row="5"/>
+    <Button TextColor="White" BackgroundColor="Transparent" Text="{i18n:Translate ReceiveNetwork}" Command="{Binding ReadyReceiveModelCommand}" Grid.Row="6"/>
+    <Button TextColor="White" BackgroundColor="Transparent" Text="{i18n:Translate Support}" Command="{Binding GoSupportForumCommand}" Grid.Row="7"/>
+  </Grid>
+</ContentPage>

@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="StoryCanvas.WPF.View.SubPages.StorySettingSubPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StoryCanvas.WPF.View.SubPages"
+             xmlns:p="clr-namespace:StoryCanvas.WPF.Properties"
+			 xmlns:cvwcommon="clr-namespace:StoryCanvas.WPF.Converters.Common"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+			 xmlns:mycontrol="clr-namespace:StoryCanvas.WPF.View.CustomControls"
+             mc:Ignorable="d" FontSize="14" FontFamily="Meiryo UI"
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <cvwcommon:ColorResourceColorConverter x:Key="ColorResourceColorConv"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <ScrollViewer>
+
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.Resources>
+                    <Style TargetType="{x:Type Label}">
+                        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                        <Setter Property="Margin" Value="0,0,20,0"/>
+                    </Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,0,0,10"/>
+                        <Setter Property="Padding" Value="2"/>
+                    </Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Setter Property="Margin" Value="0,0,0,10"/>
+                    </Style>
+                    <Style TargetType="{x:Type ListBox}">
+                        <Setter Property="Margin" Value="0,0,0,10"/>
+                    </Style>
+                    <Style TargetType="{x:Type ItemsControl}">
+                        <Setter Property="Margin" Value="0,0,0,10"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Label Content="{Binding Title}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="28" HorizontalContentAlignment="Left"/>
+                
+                <Label Content="{x:Static p:Resources.Title}" Grid.Column="0" Grid.Row="1"/>
+                <TextBox Text="{Binding Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" x:Name="FirstEditControl"/>
+                
+                <Label Content="{x:Static p:Resources.AuthorName}" Grid.Column="0" Grid.Row="2"/>
+                <TextBox Text="{Binding AuthorName,Mode=TwoWay}" Grid.Column="1" Grid.Row="2"/>
+                
+                <Label Content="{x:Static p:Resources.Comment}" Grid.Column="0" Grid.Row="3"/>
+                <TextBox Text="{Binding Comment,Mode=TwoWay}" Grid.Column="1" Grid.Row="3"/>
+                
+                <Label Content="{x:Static p:Resources.Overview}" Grid.Column="0" Grid.Row="4"/>
+                <TextBox Text="{Binding Overview,Mode=TwoWay}" Grid.Column="1" Grid.Row="4" MinHeight="200" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"/>
+
+                <Label Content="{x:Static p:Resources.CustomColor}" Grid.Column="0" Grid.Row="5"/>
+                <ItemsControl ItemsSource="{Binding ColorCustom}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="5">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <mycontrol:ColorPicker Color="{Binding Color,Converter={StaticResource ColorResourceColorConv}}" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Width="500" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <Label Content="{x:Static p:Resources.AutoSave}" Grid.Column="0" Grid.Row="6"/>
+                <Grid Grid.Column="1" Grid.Row="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{x:Static p:Resources.Windows}" Grid.Column="0" Grid.Row="0"/>
+                    <metro:ToggleSwitch IsChecked="{Binding IsAutoSaveWPF,Mode=TwoWay}" OnLabel="{x:Static p:Resources.On}" OffLabel="{x:Static p:Resources.Off}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
+                    <Label Content="{x:Static p:Resources.SmartPhone}" Grid.Column="0" Grid.Row="1"/>
+                    <metro:ToggleSwitch IsChecked="{Binding IsAutoSaveXF,Mode=TwoWay}" OnLabel="{x:Static p:Resources.On}" OffLabel="{x:Static p:Resources.Off}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
