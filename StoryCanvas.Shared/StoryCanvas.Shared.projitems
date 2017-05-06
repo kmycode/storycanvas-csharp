@@ -149,7 +149,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewTools\ValueConverterBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewTools\ViewModelBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)_Comments\Comments.txt" />
-  </ItemGroup>
 </Project>
