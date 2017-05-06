@@ -78,15 +78,12 @@
     </Reference>
     <Reference Include="PCLThinCanvas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\KMY.PCLThinCanvas.0.3.2\lib\MonoAndroid10\PCLThinCanvas.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="PCLThinCanvas.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\KMY.PCLThinCanvas.0.3.2\lib\MonoAndroid10\PCLThinCanvas.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="PCLThinCanvas.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\KMY.PCLThinCanvas.0.3.2\lib\MonoAndroid10\PCLThinCanvas.Droid.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.CurrentActivity, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>

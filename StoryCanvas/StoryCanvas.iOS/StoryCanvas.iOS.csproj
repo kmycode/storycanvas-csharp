@@ -217,15 +217,12 @@
     </Reference>
     <Reference Include="PCLThinCanvas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\KMY.PCLThinCanvas.0.3.2\lib\Xamarin.iOS10\PCLThinCanvas.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="PCLThinCanvas.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\KMY.PCLThinCanvas.0.3.2\lib\Xamarin.iOS10\PCLThinCanvas.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="PCLThinCanvas.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\KMY.PCLThinCanvas.0.3.2\lib\Xamarin.iOS10\PCLThinCanvas.iOS.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.Media, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Media.2.6.2\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
