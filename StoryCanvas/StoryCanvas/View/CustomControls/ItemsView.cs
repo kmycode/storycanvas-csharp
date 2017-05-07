@@ -22,7 +22,7 @@ namespace StoryCanvas.View.CustomControls
 		/// </summary>
 		public static readonly BindableProperty ItemsPanelProperty = BindableProperty.Create<ItemsView, Layout<Xamarin.Forms.View>>(
 			p => p.ItemsPanel,
-			new StackLayout(),
+			null,
 			BindingMode.OneWay,
 			null,
 			OnItemsPanelChanged);
@@ -188,6 +188,7 @@ namespace StoryCanvas.View.CustomControls
 		/// </summary>
 		public ItemsView()
 		{
+            this.ItemsPanel = new StackLayout();
 			this.Content = this.ItemsPanel;
 		}
 
@@ -205,7 +206,7 @@ namespace StoryCanvas.View.CustomControls
 				this.InvalidateLayout();
 			}
 
-			var collection = this.ItemsSource as ObservableCollection<object>;
+			var collection = this.ItemsSource.Cast<object>().ToList();
 			if (e.NewItems == null || collection == null)
 			{
 				return;

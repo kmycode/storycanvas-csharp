@@ -76,46 +76,44 @@
           </Grid.RowDefinitions>
           <Label Text="{Binding SelectedSceneItem.Scene.Name}" FontSize="32" Grid.Row="1"/>
           <ScrollView Grid.Row="2">
-            <ccontrols:DynamicHeightListView ItemsSource="{Binding SelectedSceneItem.Scene.Scenario.Serifs}" RowHeight="180">
-              <ListView.ItemTemplate>
+            <ccontrols:ItemsView ItemsSource="{Binding SelectedSceneItem.Scene.Scenario.Serifs}">
+              <ccontrols:ItemsView.ItemTemplate>
                 <DataTemplate>
-                  <ViewCell>
                     <Grid>
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition/>
-                      </Grid.ColumnDefinitions>
-                      <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="auto"/>
-                      </Grid.RowDefinitions>
-                      <ccontrols:ImageResourcePanel Grid.RowSpan="3" VerticalOptions="Start" BackgroundColor="{Binding AnyEntity.Color,Converter={StaticResource ColorResourceColorConv}}" ImageResource="{Binding AnyEntity.DisplayIcon}" WidthRequest="44" HeightRequest="44"/>
-                      <Label Grid.Column="1" Grid.Row="0" Text="{Binding AnyEntity.Name}" TextColor="Gray"/>
-                      <Editor Text="{Binding Text}" Margin="0,8,0,0" Grid.Column="1" Grid.Row="1"/>
-                      <Grid Grid.Row="2" Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                          <ColumnDefinition/>
-                          <ColumnDefinition Width="auto"/>
-                          <ColumnDefinition Width="auto"/>
-                          <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <ccontrols:ImageResourcePanel Grid.RowSpan="3" VerticalOptions="Start" BackgroundColor="{Binding AnyEntity.Color,Converter={StaticResource ColorResourceColorConv}}" ImageResource="{Binding AnyEntity.DisplayIcon}" WidthRequest="44" HeightRequest="44"/>
+                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding AnyEntity.Name}" TextColor="Gray"/>
+                        <ccontrols:HoldingEditorLabel Text="{Binding Text}" Margin="0,8,0,0" Grid.Column="1" Grid.Row="1"/>
+                        <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="1" Command="{Binding UpSerifCommand}" Text="↑"/>
                         <Button Grid.Column="2" Command="{Binding DownSerifCommand}" Text="↓"/>
                         <Button Grid.Column="3" Command="{Binding RemoveSerifCommand}" Text="-"/>
-                      </Grid>
+                        </Grid>
                     </Grid>
-                  </ViewCell>
                 </DataTemplate>
-              </ListView.ItemTemplate>
-            </ccontrols:DynamicHeightListView>
+              </ccontrols:ItemsView.ItemTemplate>
+            </ccontrols:ItemsView>
           </ScrollView>
           <ScrollView Grid.Row="3">
-            <ccontrols:ItemsView2 ItemsSource="{Binding SelectedSceneItem.RelatedEntitiesExceptForChapters}">
-              <ccontrols:ItemsView2.ItemsPanel>
+            <ccontrols:ItemsView ItemsSource="{Binding SelectedSceneItem.RelatedEntitiesExceptForChapters}">
+              <ccontrols:ItemsView.ItemsPanel>
                 <StackLayout Orientation="Horizontal"/>
-              </ccontrols:ItemsView2.ItemsPanel>
-              <ccontrols:ItemsView2.ItemTemplate>
+              </ccontrols:ItemsView.ItemsPanel>
+              <ccontrols:ItemsView.ItemTemplate>
                 <DataTemplate>
                   <ccontrols:ImageResourceButton
                     Command="{Binding Entity.Scenario.AddSerifCommand}"
@@ -124,8 +122,8 @@
                     ImageResource="{Binding RelatedEntity.DisplayIcon}"
                     WidthRequest="44" HeightRequest="44"/>
                 </DataTemplate>
-              </ccontrols:ItemsView2.ItemTemplate>
-            </ccontrols:ItemsView2>
+              </ccontrols:ItemsView.ItemTemplate>
+            </ccontrols:ItemsView>
           </ScrollView>
         </Grid>
         <StackLayout IsVisible="{Binding IsSceneSelected,Converter={StaticResource NegativeConv}}">

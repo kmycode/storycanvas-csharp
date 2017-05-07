@@ -31,7 +31,7 @@ namespace StoryCanvas.View.CustomControls
 
 			var scroll = new ScrollView();
 			scroll.Content = this.Label;
-			scroll.HeightRequest = 300;
+			//scroll.HeightRequest = 300;
 
 			var button = new Button();
 			button.Text = AppResources.Edit;

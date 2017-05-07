@@ -78,7 +78,6 @@
     <Compile Include="View\CustomControls\ImageResourceButton.cs" />
     <Compile Include="View\CustomControls\ImageResourceCell.cs" />
     <Compile Include="View\CustomControls\ImageResourcePanel.cs" />
-    <Compile Include="View\CustomControls\ItemsView2.cs" />
     <Compile Include="View\CustomControls\ItemsView.cs" />
     <Compile Include="View\CustomControls\NullableDatePicker.xaml.cs">
       <DependentUpon>NullableDatePicker.xaml</DependentUpon>
