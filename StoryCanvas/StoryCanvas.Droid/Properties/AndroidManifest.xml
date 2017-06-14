@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="net.kmycode.storycanvas" android:installLocation="auto" android:versionName="2.2.0.0" android:versionCode="20">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="net.kmycode.storycanvas" android:installLocation="auto" android:versionName="2.2.0.1" android:versionCode="21">
 	<uses-sdk android:targetSdkVersion="23" android:minSdkVersion="16" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
