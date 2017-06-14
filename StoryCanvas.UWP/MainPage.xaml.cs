@@ -33,9 +33,6 @@ namespace StoryCanvas.UWP
     /// </summary>
     public sealed partial class MainPage : Page, IAuthBrowserProvider
 	{
-		private MainMode _beforeMainMode;
-		private bool _isStartPage = true;
-
 		public MainPage()
         {
 			AutofacUtil.OneDriveStorage = new OneDriveStorageModel();
@@ -49,61 +46,9 @@ namespace StoryCanvas.UWP
 				await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => message.Action());
 			});
             this.InitializeComponent();
-			this.DataContext = StoryViewModel.Default;
-
-			this._beforeMainMode = StoryViewModel.Default.MainMode;
+            this.DataContext = new StoryViewModel();
 
 			this.RegisterMessages();
-
-			// 画面遷移
-			((StoryViewModel)this.DataContext).PropertyChanged += (sender, e) =>
-			{
-				// メインモードが切り替えられた時
-				if (e.PropertyName == "MainMode")
-				{
-					throw new NotImplementedException();
-					/*
-					// フライアウト対応
-					foreach (Flyout flyout in this.Flyouts.Items)
-					{
-						flyout.IsOpen = false;
-					}
-
-					// フライアウトを表示してもそれまでのデータが消えないよう、編集中のテキストボックスからフォーカスを外す
-					this.DetermineCurrentInputing();
-
-					// フライアウトを表示しても、それまでの編集画面が閉じないようにする
-					MainMode mode = ((StoryViewModel)this.DataContext).MainMode;
-					switch (mode)
-					{
-						// フライアウト
-						case MainMode.StoragePage:
-							((StoryViewModel)this.DataContext).MainMode = this._beforeMainMode;
-							this.StorageFlyout.IsOpen = true;
-							break;
-						case MainMode.NetworkPage:
-							((StoryViewModel)this.DataContext).MainMode = this._beforeMainMode;
-							this.NetworkFlyout.IsOpen = true;
-							break;
-						case MainMode.AboutPage:
-							((StoryViewModel)this.DataContext).MainMode = this._beforeMainMode;
-							this.AboutFlyout.IsOpen = true;
-							break;
-						default:
-							this._beforeMainMode = mode;
-
-							// スタートページが表示されていれば閉じる
-							if (this._isStartPage && mode != MainMode.StartPage)
-							{
-								this._isStartPage = false;
-								this.MainFrame.Content = new MainPage();
-							}
-
-							break;
-					}
-					*/
-				}
-			};
 
 			// Autofacに自身を登録
 			AutofacUtil.AuthBrowserProvider = this;

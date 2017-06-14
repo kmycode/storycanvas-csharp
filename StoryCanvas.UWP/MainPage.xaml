@@ -5,113 +5,156 @@
     xmlns:local="using:StoryCanvas.UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:StoryCanvas.Shared.ViewModels"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:b="using:StoryCanvas.UWP.Behaviors"
+    xmlns:cvcommon="using:StoryCanvas.Shared.Converters.Common"
     mc:Ignorable="d">
 
-    <SplitView x:Name="Splitter" DisplayMode="CompactOverlay"
+    <Page.Resources>
+        <cvcommon:MainMode2BooleanConverter x:Key="MainMode2BooleanConv"/>
+    </Page.Resources>
+
+    <Grid>
+        <SplitView x:Name="Splitter" DisplayMode="CompactOverlay"
                CompactPaneLength="48" OpenPaneLength="320"
                PaneBackground="Black"
                IsPaneOpen="{Binding IsChecked,ElementName=HamburgerButton,Mode=TwoWay}">
-        <SplitView.Pane>
-            <Grid RequestedTheme="Dark">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                
-                <ToggleButton x:Name="HamburgerButton" VerticalAlignment="Top" 
+            <SplitView.Pane>
+                <Grid RequestedTheme="Dark">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <ToggleButton x:Name="HamburgerButton" VerticalAlignment="Top" 
                               Foreground="White"
                               Background="#3b8940"
                               Width="48" Height="48">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
-                </ToggleButton>
-                
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <StackPanel Margin="0">
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE2AF;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="人物"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE716;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="集団"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC43;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="場所"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8B2;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="シーン"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE14C;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="章"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CF;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="性別"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE929;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="パラメータ"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE71D;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="用語"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77C;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="メモ"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE82D;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="ストーリー設定"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="章と脚本"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE206;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="シーンデザイナ"/>
-                            </StackPanel>
-                        </ToggleButton>
-                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE121;" Width="44" Margin="0,0,4,0"/>
-                                <TextBlock Text="タイムライン"/>
-                            </StackPanel>
-                        </ToggleButton>
-                    </StackPanel>
-                </ScrollViewer>
-            </Grid>
-        </SplitView.Pane>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" />
+                    </ToggleButton>
 
-        <SplitView.Content>
-            <Frame x:Name="MainContentFrame" />
-        </SplitView.Content>
-    </SplitView>
+                    <!-- ハンバーガーメニュー -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="0">
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditPerson}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditPerson">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE2AF;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="人物"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditGroup}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditGroup">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE716;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="集団"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditPlace}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditPlace">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC43;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="場所"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditScene}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditScene">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8B2;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="シーン"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditChapter}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditChapter">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE14C;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="章"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditSex}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditSex">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CF;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="性別"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditParameter}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditParameter">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE929;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="パラメータ"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditWord}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditWord">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE71D;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="用語"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=EditMemo}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="EditMemo">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77C;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="メモ"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=StorySettingPage}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="StorySettingPage">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE82D;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="ストーリー設定"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=ChapterTextPage}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="ChapterTextPage">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="章と脚本"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=SceneDesignerPage}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="SceneDesignerPage">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE206;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="シーンデザイナ"/>
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                      IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=TimelinePage}"
+                                      Command="{Binding MainModeSelectCommand}" CommandParameter="TimelinePage">
+                                <StackPanel Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE121;" Width="44" Margin="0,0,4,0"/>
+                                    <TextBlock Text="タイムライン"/>
+                                </StackPanel>
+                            </ToggleButton>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </SplitView.Pane>
+
+            <SplitView.Content>
+                <!-- コンテンツを表示するフレーム -->
+                <Frame>
+                    <i:Interaction.Behaviors>
+                        <b:MainModeFrameBehavior MainMode="{Binding MainMode}"/>
+                    </i:Interaction.Behaviors>
+                </Frame>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
 </Page>

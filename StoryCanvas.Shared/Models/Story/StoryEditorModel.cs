@@ -30,8 +30,6 @@ namespace StoryCanvas.Shared.Models.Story
 			this._sexSelection.SelectionChanged += (e, o) => this.OnPropertyChanged("SelectedSex");
 			this._memoSelection.SelectionChanged += (e, o) => this.OnPropertyChanged("SelectedMemo");
 			this._parameterSelection.SelectionChanged += (e, o) => this.OnPropertyChanged("SelectedParameter");
-
-			Messenger.Default.Register<PageResizedMessage>((message) => this.IsWideMode = message.Width > 800);
 		}
 
 		/// <summary>
@@ -184,7 +182,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// 現在の画面モード
 		/// </summary>
 		private bool IsMainModeChanging = false;
-		private MainMode _mainMode = MainMode.StartPage;
+		private MainMode _mainMode = MainMode.EditPerson;
 		public MainMode MainMode
 		{
 			get
@@ -197,109 +195,7 @@ namespace StoryCanvas.Shared.Models.Story
 				this._mainMode = value;
 				this.OnPropertyChanged();
 
-				this.IsMainModeChanging = true;
-				switch (value)
-				{
-					case MainMode.EditPerson:
-					case MainMode.EditPlace:
-					case MainMode.EditGroup:
-					case MainMode.EditScene:
-					case MainMode.EditChapter:
-					case MainMode.EditWord:
-						this.MainTab = MainTab.Entity;
-						break;
-					case MainMode.EditSex:
-					case MainMode.EditParameter:
-					case MainMode.EditMemo:
-						this.MainTab = MainTab.SubEntity;
-						break;
-					case MainMode.StorySettingPage:
-					case MainMode.ChapterTextPage:
-					case MainMode.SceneDesignerPage:
-						this.MainTab = MainTab.Edit;
-						break;
-					case MainMode.TimelinePage:
-						this.MainTab = MainTab.View;
-						break;
-				}
-				this.IsMainModeChanging = false;
-
 				this.MainModeChanged(oldMode, value);
-			}
-		}
-
-		/// <summary>
-		/// メインとなるタブ（WPFでのみ有効）
-		/// </summary>
-		private MainTab _mainTab = MainTab.Entity;
-		public MainTab MainTab
-		{
-			get
-			{
-				return this._mainTab;
-			}
-			set
-			{
-				// 現在のタブ内で表示されているモードをキャッシュに記録
-				if (!this.IsMainModeChanging)
-				{
-					this.MainModeOfTabs.Remove(this._mainTab);
-					this.MainModeOfTabs.Add(this._mainTab, this.MainMode);
-				}
-
-				this._mainTab = value;
-				this.OnPropertyChanged();
-
-				if (!this.IsMainModeChanging)
-				{
-					// キャッシュに記録がないか探す
-					if (this.MainModeOfTabs.ContainsKey(this._mainTab))
-					{
-						this.MainMode = this.MainModeOfTabs[this._mainTab];
-					}
-
-					else
-					{
-						// それぞれのタブの一番左 or 上にあるモードを取得
-						switch (value)
-						{
-							case MainTab.Entity:
-								this.MainMode = MainMode.EditPerson;
-								break;
-							case MainTab.SubEntity:
-								this.MainMode = MainMode.EditSex;
-								break;
-							case MainTab.Edit:
-								this.MainMode = MainMode.StorySettingPage;
-								break;
-							case MainTab.View:
-								this.MainMode = MainMode.TimelinePage;
-								break;
-						}
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// それぞれのメインタブで、どのメインモードが表示状態になっているかを記録する
-		/// </summary>
-		private Dictionary<MainTab, MainMode> MainModeOfTabs = new Dictionary<MainTab, MainMode>();
-
-		/// <summary>
-		/// ワイドモード（画面の表示横幅が広い状態）
-		/// </summary>
-		private bool _isWideMode = false;
-		public bool IsWideMode
-		{
-			get
-			{
-				return this._isWideMode;
-			}
-			set
-			{
-				this._isWideMode = value;
-				this.OnPropertyChanged();
 			}
 		}
 

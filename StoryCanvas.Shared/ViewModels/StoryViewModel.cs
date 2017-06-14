@@ -24,116 +24,120 @@ namespace StoryCanvas.Shared.ViewModels
 	public class StoryViewModel : ViewModelBase
 	{
 		// シングルトン
+        [Obsolete]
 		public static readonly StoryViewModel Default = new StoryViewModel();
-		private StoryViewModel()
+		public StoryViewModel()
 		{
 			this.StoreModel(this.EditorModel);
 
-			StoryModel.CurrentStoryChanged += (story, oldStory) => {
-				this.OnPropertyChanged("People");
-				this.OnPropertyChanged("Groups");
-				this.OnPropertyChanged("Places");
-				this.OnPropertyChanged("Scenes");
-				this.OnPropertyChanged("Chapters");
-				this.OnPropertyChanged("Sexes");
-				this.OnPropertyChanged("Parameters");
-				this.OnPropertyChanged("Memoes");
-				this.OnPropertyChanged("Words");
-				story.LoadStreamCompleted += () =>
-				{
-				};
-			};
+            //StoryModel.CurrentStoryChanged += (story, oldStory) => {
+            //	this.OnPropertyChanged("People");
+            //	this.OnPropertyChanged("Groups");
+            //	this.OnPropertyChanged("Places");
+            //	this.OnPropertyChanged("Scenes");
+            //	this.OnPropertyChanged("Chapters");
+            //	this.OnPropertyChanged("Sexes");
+            //	this.OnPropertyChanged("Parameters");
+            //	this.OnPropertyChanged("Memoes");
+            //	this.OnPropertyChanged("Words");
+            //	story.LoadStreamCompleted += () =>
+            //	{
+            //	};
+            //};
 
-			this.EditorModel.PersonSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditPersonEntityPrimaryMessage(n));
-			this.EditorModel.GroupSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditGroupEntityPrimaryMessage(n));
-			this.EditorModel.PlaceSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditPlaceEntityPrimaryMessage(n));
-			this.EditorModel.ChapterSelection.SelectionChanged +=
-				(n,_) => Messenger.Default.Send(this, new EditChapterEntityPrimaryMessage(n));
-			this.EditorModel.SceneSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditSceneEntityPrimaryMessage(n));
-			this.EditorModel.SexSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditSexEntityPrimaryMessage(n));
-			this.EditorModel.ParameterSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditParameterEntityPrimaryMessage(n));
-			this.EditorModel.MemoSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditMemoEntityPrimaryMessage(n));
-			this.EditorModel.WordSelection.SelectionChanged +=
-				(n, _) => Messenger.Default.Send(this, new EditWordEntityPrimaryMessage(n));
+            //this.EditorModel.PersonSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditPersonEntityPrimaryMessage(n));
+            //this.EditorModel.GroupSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditGroupEntityPrimaryMessage(n));
+            //this.EditorModel.PlaceSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditPlaceEntityPrimaryMessage(n));
+            //this.EditorModel.ChapterSelection.SelectionChanged +=
+            //	(n,_) => Messenger.Default.Send(this, new EditChapterEntityPrimaryMessage(n));
+            //this.EditorModel.SceneSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditSceneEntityPrimaryMessage(n));
+            //this.EditorModel.SexSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditSexEntityPrimaryMessage(n));
+            //this.EditorModel.ParameterSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditParameterEntityPrimaryMessage(n));
+            //this.EditorModel.MemoSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditMemoEntityPrimaryMessage(n));
+            //this.EditorModel.WordSelection.SelectionChanged +=
+            //	(n, _) => Messenger.Default.Send(this, new EditWordEntityPrimaryMessage(n));
 
-			// 検索
-			this.PersonSearch.EntitySearchRequested += (sender, e) =>
-			 {
-				 this.StoryModel.Search(this.StoryModel.People, e.Query);
-				 this.OnPropertyChanged("PersonSearchResult");
-			 };
-			this.GroupSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.SearchTree(this.StoryModel.Groups, e.Query);
-			this.PlaceSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.SearchTree(this.StoryModel.Places, e.Query);
-			this.SceneSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.Search(this.StoryModel.Scenes, e.Query);
-			this.ChapterSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.Search(this.StoryModel.Chapters, e.Query);
-			this.SexSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.Search(this.StoryModel.Sexes, e.Query);
-			this.ParameterSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.Search(this.StoryModel.Parameters, e.Query);
-			this.MemoSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.Search(this.StoryModel.Memoes, e.Query);
-			this.WordSearch.EntitySearchRequested +=
-				(sender, e) => this.StoryModel.Search(this.StoryModel.Words, e.Query);
+            // 検索
+            //this.PersonSearch.EntitySearchRequested += (sender, e) =>
+            // {
+            //	 this.StoryModel.Search(this.StoryModel.People, e.Query);
+            //	 this.OnPropertyChanged("PersonSearchResult");
+            // };
+            //this.GroupSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.SearchTree(this.StoryModel.Groups, e.Query);
+            //this.PlaceSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.SearchTree(this.StoryModel.Places, e.Query);
+            //this.SceneSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.Search(this.StoryModel.Scenes, e.Query);
+            //this.ChapterSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.Search(this.StoryModel.Chapters, e.Query);
+            //this.SexSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.Search(this.StoryModel.Sexes, e.Query);
+            //this.ParameterSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.Search(this.StoryModel.Parameters, e.Query);
+            //this.MemoSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.Search(this.StoryModel.Memoes, e.Query);
+            //this.WordSearch.EntitySearchRequested +=
+            //	(sender, e) => this.StoryModel.Search(this.StoryModel.Words, e.Query);
 
-			StoryModel.CurrentStoryChanged += (newStory, oldStory) =>
-			{
-				this.PersonSet = new EntityListEditorModel<PersonEntity, EditPersonEntityPrimaryMessage>("Person", StoryModel.Current.People, (entity) => new EditPersonEntityPrimaryMessage(entity));
-				this.GroupSet = new EntityTreeEditorModel<GroupEntity, EditGroupEntityPrimaryMessage>("Group", StoryModel.Current.Groups, (entity) => new EditGroupEntityPrimaryMessage(entity));
-				this.PlaceSet = new EntityTreeEditorModel<PlaceEntity, EditPlaceEntityPrimaryMessage>("Place", StoryModel.Current.Places, (entity) => new EditPlaceEntityPrimaryMessage(entity));
-				this.SceneSet = new EntityListEditorModel<SceneEntity, EditSceneEntityPrimaryMessage>("Scene", StoryModel.Current.Scenes, (entity) => new EditSceneEntityPrimaryMessage(entity));
-				this.ChapterSet = new EntityListEditorModel<ChapterEntity, EditChapterEntityPrimaryMessage>("Chapter", StoryModel.Current.Chapters, (entity) => new EditChapterEntityPrimaryMessage(entity));
-				this.SexSet = new EntityListEditorModel<SexEntity, EditSexEntityPrimaryMessage>("Sex", StoryModel.Current.Sexes, (entity) => new EditSexEntityPrimaryMessage(entity));
-				this.ParameterSet = new EntityListEditorModel<ParameterEntity, EditParameterEntityPrimaryMessage>("Parameter", StoryModel.Current.Parameters, (entity) => new EditParameterEntityPrimaryMessage(entity));
-				this.MemoSet = new EntityListEditorModel<MemoEntity, EditMemoEntityPrimaryMessage>("Memo", StoryModel.Current.Memoes, (entity) => new EditMemoEntityPrimaryMessage(entity));
-				this.WordSet = new EntityTreeEditorModel<WordEntity, EditWordEntityPrimaryMessage>("Word", StoryModel.Current.Words, (entity) => new EditWordEntityPrimaryMessage(entity));
+            //StoryModel.CurrentStoryChanged += (newStory, oldStory) =>
+            //{
+            //	this.PersonSet = new EntityListEditorModel<PersonEntity, EditPersonEntityPrimaryMessage>("Person", StoryModel.Current.People, (entity) => new EditPersonEntityPrimaryMessage(entity));
+            //	this.GroupSet = new EntityTreeEditorModel<GroupEntity, EditGroupEntityPrimaryMessage>("Group", StoryModel.Current.Groups, (entity) => new EditGroupEntityPrimaryMessage(entity));
+            //	this.PlaceSet = new EntityTreeEditorModel<PlaceEntity, EditPlaceEntityPrimaryMessage>("Place", StoryModel.Current.Places, (entity) => new EditPlaceEntityPrimaryMessage(entity));
+            //	this.SceneSet = new EntityListEditorModel<SceneEntity, EditSceneEntityPrimaryMessage>("Scene", StoryModel.Current.Scenes, (entity) => new EditSceneEntityPrimaryMessage(entity));
+            //	this.ChapterSet = new EntityListEditorModel<ChapterEntity, EditChapterEntityPrimaryMessage>("Chapter", StoryModel.Current.Chapters, (entity) => new EditChapterEntityPrimaryMessage(entity));
+            //	this.SexSet = new EntityListEditorModel<SexEntity, EditSexEntityPrimaryMessage>("Sex", StoryModel.Current.Sexes, (entity) => new EditSexEntityPrimaryMessage(entity));
+            //	this.ParameterSet = new EntityListEditorModel<ParameterEntity, EditParameterEntityPrimaryMessage>("Parameter", StoryModel.Current.Parameters, (entity) => new EditParameterEntityPrimaryMessage(entity));
+            //	this.MemoSet = new EntityListEditorModel<MemoEntity, EditMemoEntityPrimaryMessage>("Memo", StoryModel.Current.Memoes, (entity) => new EditMemoEntityPrimaryMessage(entity));
+            //	this.WordSet = new EntityTreeEditorModel<WordEntity, EditWordEntityPrimaryMessage>("Word", StoryModel.Current.Words, (entity) => new EditWordEntityPrimaryMessage(entity));
 
-				this.StoreModel(this.PersonSet);
-				this.StoreModel(this.GroupSet);
-				this.StoreModel(this.PlaceSet);
-				this.StoreModel(this.SceneSet);
-				this.StoreModel(this.ChapterSet);
-				this.StoreModel(this.SexSet);
-				this.StoreModel(this.ParameterSet);
-				this.StoreModel(this.MemoSet);
-				this.StoreModel(this.WordSet);
+            //	this.StoreModel(this.PersonSet);
+            //	this.StoreModel(this.GroupSet);
+            //	this.StoreModel(this.PlaceSet);
+            //	this.StoreModel(this.SceneSet);
+            //	this.StoreModel(this.ChapterSet);
+            //	this.StoreModel(this.SexSet);
+            //	this.StoreModel(this.ParameterSet);
+            //	this.StoreModel(this.MemoSet);
+            //	this.StoreModel(this.WordSet);
 
-				this.StoreModel(this._beforeStorage);
-				this.StoreModel(newStory.StoryConfig);
+            //	this.StoreModel(this._beforeStorage);
+            //	this.StoreModel(newStory.StoryConfig);
 
-				newStory.LoadStreamCompleted += () =>
-				{
-					this.StoreModel(StoryModel.Current.StoryConfig);
-					this.OnPropertyChanged("Title");
-				};
+            //	newStory.LoadStreamCompleted += () =>
+            //	{
+            //		this.StoreModel(StoryModel.Current.StoryConfig);
+            //		this.OnPropertyChanged("Title");
+            //	};
 
-				StorageModelBase.LastUseStorageChanged += (sender, e) =>
-				{
-					this.SpendModel(this._beforeStorage);
-					this._beforeStorage = StorageModelBase.LastUseStorage;
-					this.StoreModel(this._beforeStorage);
-					this.OnPropertyChanged("AutoSaveStatus");
-				};
+            //	StorageModelBase.LastUseStorageChanged += (sender, e) =>
+            //	{
+            //		this.SpendModel(this._beforeStorage);
+            //		this._beforeStorage = StorageModelBase.LastUseStorage;
+            //		this.StoreModel(this._beforeStorage);
+            //		this.OnPropertyChanged("AutoSaveStatus");
+            //	};
+            //};
 
-				// ストーリーのロードが終わった時のイベントをまとめて設定する
-				//this.StoryModel.SaveSlotCompleted += (sender, e) => Messenger.Default.Send(this, new ProgressViewHideMessage());
-				//this.StoryModel.LoadSlotCompleted += (sender, e) => Messenger.Default.Send(this, new ProgressViewHideMessage());
-			};
+            StoryModel.CurrentStoryChanged += (newStory, oldStory) =>
+            {
+                this.OnPropertyChanged();
+            };
 		}
 
 		private StorageModelBase _beforeStorage = StorageModelBase.LastUseStorage;
 		private StoryModel StoryModel => StoryModel.Current;
 		private readonly StoryEditorModel EditorModel = StoryEditorModel.Default;
+
+        public StoryModel Story => this.StoryModel;
 
 		#region 検索
 
@@ -180,21 +184,6 @@ namespace StoryCanvas.Shared.ViewModels
 		}
 
 		/// <summary>
-		/// 現在のメインタブ
-		/// </summary>
-		public MainTab MainTab
-		{
-			get
-			{
-				return this.EditorModel.MainTab;
-			}
-			set
-			{
-				this.EditorModel.MainTab = value;
-			}
-		}
-
-		/// <summary>
 		/// パラメータを渡せばそのとおりにメインモードを設定してくれるコマンド
 		/// </summary>
 		private RelayCommand _mainModeSelectCommand;
@@ -207,7 +196,7 @@ namespace StoryCanvas.Shared.ViewModels
 #if XAMARIN_FORMS
 					this.IsMainModeChangable = false;
 #endif
-					this.MainMode = (MainMode)Enum.Parse(typeof(MainMode), mode.ToString());
+                    this.MainMode = (MainMode)Enum.Parse(typeof(MainMode), mode.ToString());
 				},
 				(obj) =>
 				{
@@ -227,36 +216,6 @@ namespace StoryCanvas.Shared.ViewModels
 			{
 				this._isMainModeChangable = value;
 				this.MainModeSelectCommand.OnCanExecuteChanged();
-			}
-		}
-
-		/// <summary>
-		/// パラメータを渡せばそのとおりにメインタブを設定してくれるコマンド
-		/// </summary>
-		private RelayCommand _mainTabSelectCommand;
-		public RelayCommand MainTabSelectCommand
-		{
-			get
-			{
-				return this._mainTabSelectCommand = this._mainTabSelectCommand ?? new RelayCommand((mode) =>
-				{
-					this.MainTab = (MainTab)Enum.Parse(typeof(MainTab), mode.ToString());
-				});
-			}
-		}
-
-		/// <summary>
-		/// 画面のワイドモード
-		/// </summary>
-		public bool IsWideMode
-		{
-			get
-			{
-				return this.EditorModel.IsWideMode;
-			}
-			set
-			{
-				this.EditorModel.IsWideMode = value;
 			}
 		}
 

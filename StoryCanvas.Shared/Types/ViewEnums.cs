@@ -37,18 +37,6 @@ namespace StoryCanvas.Shared.Types
 		AboutPage,
 	}
 
-	/// <summary>
-	/// メインページのタブ
-	/// </summary>
-	public enum MainTab
-	{
-		None,
-		Entity,
-		SubEntity,
-		Edit,
-		View,
-	}
-
 	/*
 	 * 1. Receiver が UDP を立ち上げ
 	 * 2. Receiver が TCP を立ち上げ
