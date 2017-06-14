@@ -20,7 +20,7 @@ namespace StoryCanvas.Shared.ViewModels
 		{
 			StorageModel.Default,
 			//AutofacUtil.OneDriveStorage,
-			DropboxStorageModel.Default,
+			//DropboxStorageModel.Default,
 		};
 
 		private StorageModelBase _model;

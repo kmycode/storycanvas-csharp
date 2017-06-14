@@ -116,6 +116,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -199,12 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StoryCanvas\StoryCanvas.csproj">
-      <Project>{72db721c-4752-472d-9159-dd9674748523}</Project>
-      <Name>StoryCanvas</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\information.png" />
@@ -301,7 +296,15 @@
       <Version>4.1.0.3</Version>
     </XamarinComponentReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoryCanvas\StoryCanvas.csproj">
+      <Project>{72db721c-4752-472d-9159-dd9674748523}</Project>
+      <Name>StoryCanvas</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\..\Libraries\Libraries.projitems" Label="Shared" />
+  <Import Project="..\..\StoryCanvas.XF\StoryCanvas.XF.projitems" Label="Shared" />
+  <Import Project="..\..\StoryCanvas.Shared\StoryCanvas.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

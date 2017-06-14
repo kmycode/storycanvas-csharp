@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace StoryCanvas.Shared.Models.IO
 {
+    /*
 	public class DropboxStorageSlot : StorageSlotBase
 	{
 		private DropboxStorageWorkspace Workspace;
@@ -86,4 +87,5 @@ namespace StoryCanvas.Shared.Models.IO
 			return time;
 		}
 	}
+    */
 }

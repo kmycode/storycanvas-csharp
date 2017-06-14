@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using DropNetRT.Exceptions;
+//using DropNetRT.Exceptions;
 
 namespace StoryCanvas.Shared.Models.IO
 {
+    /*
 	public class DropboxStorageWorkspace : StorageWorkspaceBase
 	{
 		public DropboxStorageModel Storage;
@@ -71,4 +72,5 @@ namespace StoryCanvas.Shared.Models.IO
 			}
 		}
 	}
+    */
 }

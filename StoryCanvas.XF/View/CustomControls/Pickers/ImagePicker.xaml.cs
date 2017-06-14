@@ -73,7 +73,7 @@ namespace StoryCanvas.View.CustomControls.Pickers
 			try
 			{
 				// 画像バイナリ取得
-				using (var stream = await file.OpenAsync(FileAccess.Read))
+				using (var stream = await file.OpenAsync(PCLStorage.FileAccess.Read))
 				{
 					binary = this.ReadFully(stream);
 				}
