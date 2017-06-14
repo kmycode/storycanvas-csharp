@@ -62,8 +62,6 @@ namespace StoryCanvas.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
-
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: 以前中断したアプリケーションから状態を読み込みます

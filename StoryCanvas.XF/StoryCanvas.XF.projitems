@@ -6,7 +6,7 @@
     <SharedGUID>a729290a-69b2-4540-a5bd-94a266bfe949</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>StoryCanvas</Import_RootNamespace>
+    <Import_RootNamespace>StoryCanvas.XF</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
