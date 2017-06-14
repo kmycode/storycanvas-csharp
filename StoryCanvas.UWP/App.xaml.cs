@@ -17,7 +17,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.ViewManagement;
 
 namespace StoryCanvas.UWP
 {
@@ -63,6 +62,8 @@ namespace StoryCanvas.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                Xamarin.Forms.Forms.Init(e);
+
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: 以前中断したアプリケーションから状態を読み込みます
@@ -80,13 +81,9 @@ namespace StoryCanvas.UWP
                     // このとき、必要な情報をナビゲーション パラメーターとして渡して、新しいページを
                     //構成します
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
-
-                    var color = new UISettings().GetColorValue(UIColorType.Foreground);
-                    ApplicationView.GetForCurrentView().TitleBar.BackgroundColor = color;
-
-                    // 現在のウィンドウがアクティブであることを確認します
-                    Window.Current.Activate();
                 }
+                // 現在のウィンドウがアクティブであることを確認します
+                Window.Current.Activate();
             }
 
 			// HockeyApp

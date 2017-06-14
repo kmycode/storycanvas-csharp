@@ -25,6 +25,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Libraries\Libraries.projitems*{05ad74ae-f7c3-4ae5-a9ba-e27f71ec144b}*SharedItemsImports = 4
 		StoryCanvas.Shared\StoryCanvas.Shared.projitems*{05ad74ae-f7c3-4ae5-a9ba-e27f71ec144b}*SharedItemsImports = 4
+		StoryCanvas.XF2\StoryCanvas.XF2.projitems*{05ad74ae-f7c3-4ae5-a9ba-e27f71ec144b}*SharedItemsImports = 4
 		StoryCanvas.XF2\StoryCanvas.XF2.projitems*{0e62529e-92ff-4d13-b008-2ef055b364ac}*SharedItemsImports = 13
 		StoryCanvas.Shared\StoryCanvas.Shared.projitems*{140aa74a-1579-43d8-a79a-dbdac383ab36}*SharedItemsImports = 13
 		Libraries\Libraries.projitems*{77b50c95-9cc5-4307-955f-eb579f1ba5ca}*SharedItemsImports = 13
