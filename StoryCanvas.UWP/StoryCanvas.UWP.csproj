@@ -155,7 +155,6 @@
   </ItemGroup>
   <Import Project="..\StoryCanvas.Shared\StoryCanvas.Shared.projitems" Label="Shared" />
   <Import Project="..\Libraries\Libraries.projitems" Label="Shared" />
-  <Import Project="..\StoryCanvas.XF2\StoryCanvas.XF2.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -47,8 +47,6 @@ namespace StoryCanvas.UWP
 			});
 
             this.InitializeComponent();
-
-            LoadApplication(new StoryCanvas.XF.App());
         }
     }
 }
