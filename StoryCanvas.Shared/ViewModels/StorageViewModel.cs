@@ -19,7 +19,7 @@ namespace StoryCanvas.Shared.ViewModels
 		public ObservableCollection<StorageModelBase> StorageModels { get; } = new ObservableCollection<StorageModelBase>
 		{
 			StorageModel.Default,
-			AutofacUtil.OneDriveStorage,
+			//AutofacUtil.OneDriveStorage,
 			DropboxStorageModel.Default,
 		};
 
