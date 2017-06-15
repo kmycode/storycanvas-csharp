@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Resources;
+using StoryCanvas.UWP.Resources.CustomResource;
 
 namespace StoryCanvas.UWP
 {
@@ -31,6 +33,9 @@ namespace StoryCanvas.UWP
         /// </summary>
         public App()
         {
+            // カスタムリソースを設定
+            CustomXamlResourceLoader.Current = new StringResource();
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 

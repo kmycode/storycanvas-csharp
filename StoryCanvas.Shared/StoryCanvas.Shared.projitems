@@ -17,7 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\BooleanNumberConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\ColorResourceCodeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\EqualsConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\MainMode2BooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MainMode2BooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\NegativeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\NullBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\StoryDateFormatConverter.cs" />
@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\TextLengthLimitterConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\TitleDisplayConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\TypeNameBooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MainMode2NameConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\Common\AlertMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\Common\UIThreadInvokeMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\EditEntity\DetermineInputingMessage.cs" />

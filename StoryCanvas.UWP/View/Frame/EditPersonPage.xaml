@@ -9,26 +9,17 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
     xmlns:b="using:StoryCanvas.UWP.Behaviors"
-    xmlns:cvcommon="using:StoryCanvas.Shared.Converters.Common"
+    xmlns:cv="using:StoryCanvas.Shared.Converters"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Style="{StaticResource FrameTitle}" Text="人物"/>
+        <ListBox ItemsSource="{Binding Story.People}"/>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <ListBox ItemsSource="{Binding Story.People}"/>
-
-            <Grid Grid.Column="1"/>
-        </Grid>
+        <Grid Grid.Column="1"/>
     </Grid>
 </Page>

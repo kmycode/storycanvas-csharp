@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StoryCanvas.Shared.Converters.Common
+namespace StoryCanvas.Shared.Converters
 {
     public class MainMode2BooleanConverter : ValueConverterBase<MainMode, bool, string>
     {
