@@ -16,6 +16,9 @@ namespace StoryCanvas.UWP.Behaviors
     /// </summary>
     class MainModeFrameBehavior : Behavior<Frame>
     {
+        /// <summary>
+        /// メインモード
+        /// </summary>
         public static readonly DependencyProperty MainModeProperty =
             DependencyProperty.Register(
                 nameof(MainMode),
@@ -25,11 +28,10 @@ namespace StoryCanvas.UWP.Behaviors
                 {
                     ((MainModeFrameBehavior)s).OnMainModeUpdated();
                 }));
-
         public MainMode MainMode
         {
-            get { return (MainMode)GetValue(MainModeProperty); }
-            set { SetValue(MainModeProperty, value); }
+            get => (MainMode)GetValue(MainModeProperty);
+            set => SetValue(MainModeProperty, value);
         }
 
         private void OnMainModeUpdated()

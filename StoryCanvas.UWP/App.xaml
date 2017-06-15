@@ -10,6 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/CommonStyles.xaml"/>
                 <ResourceDictionary Source="Styles/HumburgerMenuStyle.xaml"/>
+                <ResourceDictionary Source="Styles/EditBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

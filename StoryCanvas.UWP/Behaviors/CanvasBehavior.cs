@@ -1,0 +1,126 @@
+﻿using Microsoft.Xaml.Interactivity;
+using SkiaSharp;
+using StoryCanvas.Shared.View.Paint;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
+
+namespace StoryCanvas.UWP.Behaviors
+{
+    /// <summary>
+    /// SkiaSharpとの連携を行うビヘイビア
+    /// </summary>
+    public class CanvasBehavior : Behavior<Image>
+    {
+        /// <summary>
+        /// キャンバスへの描画ロジック
+        /// </summary>
+        public static readonly DependencyProperty CanvasProperty =
+            DependencyProperty.Register(
+                nameof(Canvas),
+                typeof(CanvasBase),
+                typeof(CanvasBehavior),
+                new PropertyMetadata(null, (s, e) =>
+                {
+                    var view = (CanvasBehavior)s;
+                    var oldValue = e.OldValue as CanvasBase;
+                    if (oldValue != null)
+                    {
+                        oldValue.RedrawRequested -= view.Canvas_RedrawRequested;
+                    }
+                    var newValue = e.NewValue as CanvasBase;
+                    if (newValue != null)
+                    {
+                        newValue.RedrawRequested += view.Canvas_RedrawRequested;
+                        view.RequestRedraw();
+                    }
+                }));
+        public CanvasBase Canvas
+        {
+            get => (CanvasBase)GetValue(CanvasProperty);
+            set => SetValue(CanvasProperty, value);
+        }
+
+        /// <summary>
+        /// キャンバスへの描画ロジックにわたす引数
+        /// </summary>
+        public static readonly DependencyProperty ArgumentProperty =
+            DependencyProperty.Register(
+                nameof(Argument),
+                typeof(object),
+                typeof(CanvasBehavior),
+                new PropertyMetadata(null, (s, e) =>
+                {
+                    ((CanvasBehavior)s).RequestRedraw();
+                }));
+        public object Argument
+        {
+            get => (object)GetValue(ArgumentProperty);
+            set => SetValue(ArgumentProperty, value);
+        }
+
+        /// <summary>
+        /// 再描画要求
+        /// </summary>
+        private void RequestRedraw()
+        {
+            this.Draw();
+        }
+
+        /// <summary>
+        /// 描画
+        /// </summary>
+        private void Draw()
+        {
+            if (this.Canvas == null) return;
+
+            var size = this.Canvas.GetCanvasSize();
+            this.AssociatedObject.Width = size.Item1;
+            this.AssociatedObject.Height = size.Item2;
+
+            this.Canvas.Argument = this.Argument;
+
+            using (var surface = SKSurface.Create((int)this.AssociatedObject.Width, (int)this.AssociatedObject.Height, SKColorType.Bgra8888, SKAlphaType.Opaque))
+            {
+                var canvas = surface.Canvas;
+
+                // 描画処理
+                this.Canvas.Draw(canvas);
+
+                // 描画結果を画面に反映
+                var stream = surface.Snapshot().Encode().AsStream();
+                var data = new byte[stream.Length];
+                stream.Read(data, 0, data.Length);
+                var bmp = new BitmapImage();
+                using (var rstream = new InMemoryRandomAccessStream())
+                {
+                    Task.Run(async () =>
+                    {
+                        await rstream.WriteAsync(data.AsBuffer());
+                    }).Wait();
+                    rstream.Seek(0);
+                    bmp.SetSource(rstream);
+                }
+                this.AssociatedObject.Source = bmp;
+            }
+        }
+
+        /// <summary>
+        /// 再描画が要求された時に呼び出される
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Canvas_RedrawRequested(object sender, EventArgs e)
+        {
+            this.RequestRedraw();
+        }
+    }
+}

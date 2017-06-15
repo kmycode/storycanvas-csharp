@@ -10,16 +10,51 @@
     xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
     xmlns:b="using:StoryCanvas.UWP.Behaviors"
     xmlns:cv="using:StoryCanvas.Shared.Converters"
+    xmlns:cvu="using:StoryCanvas.UWP.Converters"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <cvu:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConv"/>
+        <cvu:Boolean2NegativeVisibilityConverter x:Key="Boolean2NegativeVisibilityConv"/>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <ListBox ItemsSource="{Binding Story.People}"/>
+        <!-- 操作するバー -->
+        <StackPanel Grid.ColumnSpan="2" Height="48" Background="#dfdfdf" Orientation="Horizontal">
+            <ToggleButton Style="{StaticResource EditBarToggleButtonStyle}">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8FD;" Width="48"/>
+            </ToggleButton>
+            <ToggleButton x:Name="CanvasToggle" Style="{StaticResource EditBarToggleButtonStyle}">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80A;" Width="48"/>
+            </ToggleButton>
+            <ComboBox Width="300" VerticalAlignment="Stretch"
+                      Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}"/>
+        </StackPanel>
+        
+        <!-- 一覧 -->
+        <ListBox Grid.Row="1" ItemsSource="{Binding Story.People}"
+                 Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2NegativeVisibilityConv}}"/>
 
-        <Grid Grid.Column="1"/>
+        <!-- キャンバス -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Auto"
+                      Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
+            <Image>
+                <i:Interaction.Behaviors>
+                    <b:CanvasBehavior/>
+                </i:Interaction.Behaviors>
+            </Image>
+        </ScrollViewer>
+
+        <!-- 編集部分 -->
+        <Grid Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Page>

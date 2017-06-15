@@ -19,11 +19,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryCanvas.UWP", "StoryCan
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StoryCanvas.XF", "StoryCanvas.XF\StoryCanvas.XF.shproj", "{A729290A-69B2-4540-A5BD-94A266BFE949}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StoryCanvas.Shared.View", "StoryCanvas.Shared.View\StoryCanvas.Shared.View.shproj", "{48EFEE53-5D08-4758-B015-FDF1CDAD36EC}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Libraries\Libraries.projitems*{05ad74ae-f7c3-4ae5-a9ba-e27f71ec144b}*SharedItemsImports = 4
+		StoryCanvas.Shared.View\StoryCanvas.Shared.View.projitems*{05ad74ae-f7c3-4ae5-a9ba-e27f71ec144b}*SharedItemsImports = 4
 		StoryCanvas.Shared\StoryCanvas.Shared.projitems*{05ad74ae-f7c3-4ae5-a9ba-e27f71ec144b}*SharedItemsImports = 4
 		StoryCanvas.Shared\StoryCanvas.Shared.projitems*{140aa74a-1579-43d8-a79a-dbdac383ab36}*SharedItemsImports = 13
+		StoryCanvas.Shared.View\StoryCanvas.Shared.View.projitems*{48efee53-5d08-4758-b015-fdf1cdad36ec}*SharedItemsImports = 13
 		Libraries\Libraries.projitems*{77b50c95-9cc5-4307-955f-eb579f1ba5ca}*SharedItemsImports = 13
 		Libraries\Libraries.projitems*{84833dd0-8c1c-405b-b8f7-0bd5d49b08db}*SharedItemsImports = 4
 		StoryCanvas.Shared\StoryCanvas.Shared.projitems*{84833dd0-8c1c-405b-b8f7-0bd5d49b08db}*SharedItemsImports = 4
