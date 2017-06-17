@@ -161,9 +161,10 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             canvas.Translate(element.X, element.Y);
 
             // 名前とアイコン背景色を描画する
+            paint.TextSize = 18;
             paint.Color = element.Entity.Color.ToSKColor();
             canvas.DrawRect(new SKRect(0, 0, 100, 100), paint);
-            canvas.DrawText(element.Entity.Name, 8, 124, paint);
+            canvas.DrawText(element.Entity.Name, 8, 120, paint);
 
             canvas.Scale(scale);
 

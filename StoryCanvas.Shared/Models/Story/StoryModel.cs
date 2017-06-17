@@ -297,8 +297,15 @@ namespace StoryCanvas.Shared.Models.Story
 				FirstName = "義則",
 				Color = new ColorResource { R = 0x80, G = 0x40, B = 0x20 },
 			});
-			this.PersonPersonRelates.Add(new PersonPersonEntityRelate(this.People[0], this.People[1]));
-			this.PersonPersonRelates.Add(new PersonPersonEntityRelate(this.People[0], this.People[2]));
+			this.PersonPersonRelates.Add(new PersonPersonEntityRelate(this.People[0], this.People[1])
+            {
+                Note = "友達",
+                OtherNote = "好き",
+            });
+			this.PersonPersonRelates.Add(new PersonPersonEntityRelate(this.People[0], this.People[2])
+            {
+                Note = "敵",
+            });
 			this.SexPersonRelates.Add(new SexPersonEntityRelate(this.Sexes[1], this.People[0]));
 
 			this.Scenes.Add(new SceneEntity
@@ -369,7 +376,34 @@ namespace StoryCanvas.Shared.Models.Story
 			});
 			this.PersonSceneRelates.Add(new PersonSceneEntityRelate(this.People[1], this.Scenes[3]));
 
-			this.StoryConfig.Title = "サンプル小説";
+            // 人物のマップ
+            this._personEditorModel = new PersonEditorModel(this);
+            var map = new Editor.Map.SimpleEntityMap<PersonEntity>()
+            {
+                Name = "Debug map",
+            };
+            map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
+            {
+                Entity = this.People[0],
+                X = 30,
+                Y = 30,
+            });
+            map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
+            {
+                Entity = this.People[1],
+                X = 160,
+                Y = 30,
+            });
+            map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
+            {
+                Entity = this.People[2],
+                X = 130,
+                Y = 210,
+            });
+            this._personEditorModel.PersonMapGroup.Maps.Add(map);
+            this._personEditorModel.PersonMapGroup.SelectedMap = map;
+
+            this.StoryConfig.Title = "サンプル小説";
 			this.StoryConfig.Comment = "これはサンプルです。";
 #endif
 		}
@@ -785,11 +819,27 @@ namespace StoryCanvas.Shared.Models.Story
 			}
 		}
 
+        /// <summary>
+        /// 人物・人物関連付け
+        /// </summary>
+        public EachFocusableEntityRelationModel<PersonEntity> PersonPersonRelation
+        {
+            get
+            {
+                return this._personPersonRelation = this._personPersonRelation ?? new EachFocusableEntityRelationModel<PersonEntity>
+                {
+                    Relations = this.PersonPersonRelates,
+                };
+            }
+        }
+        private EachFocusableEntityRelationModel<PersonEntity> _personPersonRelation;
+
 		/// <summary>
 		/// 人物に関連付けられている人物を取得
 		/// </summary>
 		/// <param name="person">人物</param>
 		/// <returns>人物</returns>
+        [Obsolete]
 		public IEnumerable<PersonPersonEntityRelate> FindRelatedPeople(PersonEntity person)
 		{
 			var list = this.PersonPersonRelates.Where((obj) => obj.Entity1 == person || obj.Entity2 == person);
@@ -805,6 +855,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// </summary>
 		/// <param name="person">人物</param>
 		/// <returns>関連付けられていない人物</returns>
+        [Obsolete]
 		public IEnumerable<PersonEntity> FindNotRelatedPeople(PersonEntity person)
 		{
 			var related = this.FindRelatedPeople(person);
@@ -837,42 +888,12 @@ namespace StoryCanvas.Shared.Models.Story
 			return list;
 		}
 
-		[Obsolete("未決定の仕様")]
-		public EntityListSelectionModel<PersonEntity> GetPersonPersonRelationSwitchModel(PersonEntity person)
-		{
-			var model = new EntityListSelectionModel<PersonEntity>(this.People);
-
-			// 既存の関連付け状態を登録
-			var related = this.FindRelatedPeople(person);
-			foreach (var cell in model.Cells)
-			{
-				foreach (var item in related)
-				{
-					if (item.NotFocusedEntity.Id == cell.Entity.Id)
-					{
-						cell.IsSelected = true;
-						break;
-					}
-				}
-			}
-
-			// 適用時に関連付けを反映
-			model.Applied += (sender, e) =>
-			{
-				var m = (EntityListSelectionModel<PersonEntity>)sender;
-				foreach (var cell in m.Cells)
-				{
-				}
-			};
-
-			return model;
-		}
-
 		/// <summary>
 		/// 新しい関連付けを追加
 		/// </summary>
 		/// <param name="person">人物</param>
 		/// <param name="scene">人物</param>
+        [Obsolete]
 		public void AddRelate(PersonEntity person, PersonEntity scene)
 		{
 			if (person != scene && !this.PersonPersonRelates.ContainsIf((item) => (item.Entity1 == person && item.Entity2 == scene) || (item.Entity2 == person && item.Entity1 == scene)))
@@ -886,6 +907,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// </summary>
 		/// <param name="person">人物</param>
 		/// <param name="scene">人物</param>
+        [Obsolete]
 		public void RemoveRelate(PersonEntity person, PersonEntity scene)
 		{
 			this.PersonPersonRelates.RemoveIf((item) => (item.Entity1 == person && item.Entity2 == scene) || (item.Entity2 == person && item.Entity1 == scene));
@@ -1251,30 +1273,6 @@ namespace StoryCanvas.Shared.Models.Story
                 if (this._personEditorModel == null)
                 {
                     this._personEditorModel = new PersonEditorModel(this);
-#if DEBUG
-                    var map = new Editor.Map.SimpleEntityMap<PersonEntity>();
-                    map.Name = "Debug map";
-                    map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
-                    {
-                        Entity = this.People[0],
-                        X = 30,
-                        Y = 30,
-                    });
-                    map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
-                    {
-                        Entity = this.People[1],
-                        X = 160,
-                        Y = 30,
-                    });
-                    map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
-                    {
-                        Entity = this.People[2],
-                        X = 130,
-                        Y = 210,
-                    });
-                    this._personEditorModel.PersonMapGroup.Maps.Add(map);
-                    this._personEditorModel.PersonMapGroup.SelectedMap = map;
-#endif
                 }
                 return this._personEditorModel;
             }

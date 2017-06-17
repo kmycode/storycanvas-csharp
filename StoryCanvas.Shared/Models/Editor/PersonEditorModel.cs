@@ -19,10 +19,12 @@ namespace StoryCanvas.Shared.Models.Editor
         private SimpleEntityMapGroup<PersonEntity> _personMapGroup = new SimpleEntityMapGroup<PersonEntity>();
         public SimpleEntityMapGroup<PersonEntity> PersonMapGroup => this._personMapGroup;
 
-        public PersonMapCanvas PersonMapCanvas { get; } = new PersonMapCanvas();
+        public PersonMapCanvas PersonMapCanvas { get; }
 
         public PersonEditorModel(StoryModel story) : base(story)
         {
+            this.PersonMapCanvas = new PersonMapCanvas(story.PersonPersonRelation);
+
             this.PersonMapGroup.SelectedMapChanged += (sender, e) =>
             {
                 this.PersonMapCanvas.Map = this.PersonMapGroup.SelectedMap;

@@ -5,6 +5,8 @@ using SkiaSharp;
 using StoryCanvas.Shared.View.Paint.Editor;
 using StoryCanvas.Shared.Models.Entities;
 using StoryCanvas.Shared.Models.Editor.Map;
+using StoryCanvas.Shared.Models.EntitySet;
+using StoryCanvas.Shared.Models.EntityRelate;
 
 namespace StoryCanvas.Shared.View.Paint
 {
@@ -19,7 +21,11 @@ namespace StoryCanvas.Shared.View.Paint
             set => ((SimpleEntityMapCanvasContainer<PersonEntity>)this.Container).Map = value;
         }
 
-        public PersonMapCanvas() : base(new SimpleEntityMapCanvasContainer<PersonEntity>())
+        public PersonMapCanvas(EachEntityRelationModel<PersonEntity> relations) : base(new SimpleEntityMapCanvasContainer<PersonEntity>
+        {
+            EachRelations = relations,
+            DrawRelationHelper = new DrawEachPersonRelationHelper(),
+        })
         {
         }
     }

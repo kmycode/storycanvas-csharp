@@ -93,13 +93,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntityListEditorModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntitySearchModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntitySetCommandModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntityFilteredListModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntityListModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntityReferenceModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntitySelectionModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntitySetEditorModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntitySetModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntitySetSelectionModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntityTreeEditorModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EntitySet\EntityTreeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IO\DropboxStorageModel.cs" />

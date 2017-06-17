@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using StoryCanvas.Shared.Models.Entities;
 using static StoryCanvas.Shared.ViewTools.ControlModels.TreeListViewControlModel;
 using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace StoryCanvas.Shared.Models.EntitySet
 {
@@ -385,9 +386,76 @@ namespace StoryCanvas.Shared.Models.EntitySet
 
 		public override IEnumerator<E> GetEnumerator()
 		{
-			return (IEnumerator<E>)this.List.GetEnumerator();
+            return new Enumerator(this);
 		}
 
-		#endregion
-	}
+        private class Enumerator : IEnumerator<E>
+        {
+            public EntityTreeModel<E> Tree { get; private set; }
+
+            public E Current { get; private set; }
+
+            object IEnumerator.Current => this.Current;
+
+            private Stack<ParentIndex> indices = new Stack<ParentIndex>();
+
+            public Enumerator(EntityTreeModel<E> tree)
+            {
+                this.Tree = tree;
+                this.Current = tree.Root;
+            }
+
+            public void Dispose()
+            {
+                this.Tree = null;
+                this.Current = null;
+                this.indices = null;
+            }
+
+            public bool MoveNext()
+            {
+                // 自分に子がいるか？
+                var entity = (E)this.Current.Children.FirstOrDefault();
+                if (entity != null)
+                {
+                    this.Current = entity;
+                    this.indices.Push(new ParentIndex
+                    {
+                        Entity = entity,
+                        ChildIndex = 0,
+                    });
+                    return true;
+                }
+                
+                // 自分、または親、またはその親、...に弟はいるか？
+                while (this.indices.Count > 0)
+                {
+                    var parent = this.indices.Pop();
+                    parent.ChildIndex++;
+                    entity = (E)parent.Entity.Children.ElementAtOrDefault(parent.ChildIndex);
+                    if (entity != null)
+                    {
+                        this.Current = entity;
+                        this.indices.Push(parent);
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            public void Reset()
+            {
+                this.Current = this.Tree.Root;
+            }
+
+            private class ParentIndex
+            {
+                public E Entity { get; set; }
+                public int ChildIndex { get; set; }
+            }
+        }
+
+        #endregion
+    }
 }

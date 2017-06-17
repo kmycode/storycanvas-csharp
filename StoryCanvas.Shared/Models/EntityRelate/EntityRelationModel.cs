@@ -22,6 +22,158 @@ namespace StoryCanvas.Shared.Models.EntityRelate
 		public E2 Entity2 { get; private set; }
 	}
 
+    public interface IEntityRelationModel<E1, E2> where E1 : Entity where E2 : Entity
+    {
+        /// <summary>
+        /// 指定したエンティティに関連付けられたエンティティを列挙する
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        IEnumerable<EntityRelateBase<E1, E2>> FindRelated(E1 target);
+
+        /// <summary>
+        /// 指定したエンティティに関連付けられたエンティティを列挙する
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        IEnumerable<EntityRelateBase<E1, E2>> FindRelated(E2 target);
+
+        /// <summary>
+        /// 指定した要素同士が関連付けられているか確認する
+        /// </summary>
+        /// <param name="e1"></param>
+        /// <param name="e2"></param>
+        /// <returns></returns>
+        bool IsRelated(E1 e1, E2 e2);
+
+        /// <summary>
+        /// 指定したエンティティに関連付けられていないエンティティを列挙する
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="set"></param>
+        /// <returns></returns>
+        IEnumerable<E2> FindNotRelated(E1 target, IEnumerable<E2> set);
+
+        /// <summary>
+        /// 指定したエンティティに関連付けられていないエンティティを列挙する
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="set"></param>
+        /// <returns></returns>
+        IEnumerable<E1> FindNotRelated(E2 target, IEnumerable<E1> set);
+
+        /// <summary>
+        /// 指定した範囲の要素同士の関連付けのみを取得する
+        /// </summary>
+        /// <param name="targets1"></param>
+        /// <param name="targets2"></param>
+        /// <returns></returns>
+        IEnumerable<EntityRelateBase<E1, E2>> GetRelationRange(IEnumerable<E1> targets1, IEnumerable<E2> targets2);
+    }
+
+    /// <summary>
+    /// エンティティ同士の関連付け。なお、E1とE2が同一の型であることは想定しない
+    /// </summary>
+    /// <typeparam name="E1">関連付け元の型</typeparam>
+    /// <typeparam name="E2">関連付け先の型</typeparam>
+    public class EntityRelationModel<E1, E2> : IEntityRelationModel<E1, E2>
+        where E1 : Entity where E2 : Entity
+    {
+        /// <summary>
+        /// エンティティ関連付けのリスト
+        /// </summary>
+        public IEnumerable<EntityRelateBase<E1, E2>> Relations { get; set; }
+
+        public IEnumerable<EntityRelateBase<E1, E2>> FindRelated(E1 target)
+        {
+            return this.Relations.Where((obj) => obj.Entity1.Id == target.Id);
+        }
+
+        public IEnumerable<EntityRelateBase<E1, E2>> FindRelated(E2 target)
+        {
+            return this.Relations.Where((obj) => obj.Entity2.Id == target.Id);
+        }
+
+        public bool IsRelated(E1 e1, E2 e2)
+        {
+            return this.Relations.Any(obj => obj.Entity1.Id == e1.Id && obj.Entity2.Id == e2.Id);
+        }
+
+        public IEnumerable<E2> FindNotRelated(E1 target, IEnumerable<E2> set)
+        {
+            return set.Where(obj => !this.IsRelated(target, obj));
+        }
+
+        public IEnumerable<E1> FindNotRelated(E2 target, IEnumerable<E1> set)
+        {
+            return set.Where(obj => !this.IsRelated(obj, target));
+        }
+
+        public IEnumerable<EntityRelateBase<E1, E2>> GetRelationRange(IEnumerable<E1> targets1, IEnumerable<E2> targets2)
+        {
+            return this.Relations.Where(obj => targets1.Any(t => t.Id == obj.Entity1.Id) && targets2.Any(t => t.Id == obj.Entity2.Id));
+        }
+    }
+
+    /// <summary>
+    /// エンティティ同士の関連付け。なお、E1とE2が同一の型であることを想定する
+    /// </summary>
+    /// <typeparam name="E">エンティティの型</typeparam>
+    public class EachEntityRelationModel<E> : IEntityRelationModel<E, E>
+        where E : Entity
+    {
+        /// <summary>
+        /// エンティティ関連付けのリスト
+        /// </summary>
+        public IEnumerable<EntityRelateBase<E, E>> Relations { get; set; }
+        
+        public virtual IEnumerable<EntityRelateBase<E, E>> FindRelated(E target)
+        {
+            return this.Relations.Where((obj) => obj.Entity1.Id == target.Id ||
+                                                 obj.Entity2.Id == target.Id);
+        }
+        
+        public bool IsRelated(E obj1, E obj2)
+        {
+            return this.Relations.Any(obj => (obj.Entity1.Id == obj1.Id && obj.Entity2.Id == obj2.Id) ||
+                                             (obj.Entity1.Id == obj2.Id && obj.Entity2.Id == obj1.Id));
+        }
+        
+        public IEnumerable<E> FindNotRelated(E target, IEnumerable<E> set)
+        {
+            return set.Where(obj => !this.IsRelated(obj, target));
+        }
+        
+        public IEnumerable<EntityRelateBase<E, E>> GetRelationRange(IEnumerable<E> targets)
+        {
+            return this.Relations.Where(obj => targets.Any(t => t.Id == obj.Entity1.Id) && targets.Any(t => t.Id == obj.Entity2.Id));
+        }
+        
+        public IEnumerable<EntityRelateBase<E, E>> GetRelationRange(IEnumerable<E> targets1, IEnumerable<E> targets2)
+        {
+            return this.GetRelationRange(targets1.Union(targets2));
+        }
+    }
+
+    /// <summary>
+    /// エンティティ同士の関連付け。なお、E1とE2が同一の型であることを想定し、かつ
+    /// エンティティ同士の関連付けに可変の方向（Focus）が設定可能である
+    /// </summary>
+    /// <typeparam name="E">エンティティの型</typeparam>
+    public class EachFocusableEntityRelationModel<E> : EachEntityRelationModel<E>
+        where E : Entity
+    {
+        public override IEnumerable<EntityRelateBase<E, E>> FindRelated(E target)
+        {
+            var result = base.FindRelated(target);
+            foreach (var r in result)
+            {
+                ((FocusableEntityRelateBase<E, E>)r).FocusedEntity = target;
+            }
+            return result;
+        }
+    }
+
 	/// <summary>
 	/// エンティティ同士の関連付け
 	/// 
@@ -30,6 +182,7 @@ namespace StoryCanvas.Shared.Models.EntityRelate
 	/// v1.0のStoryModelでデータコントラクトのメンバとして登録してしまったため、
 	/// このような複雑な形式になっている
 	/// </summary>
+    [Obsolete("v3.0で削除")]
     public class EntityRelationModel<R, E1, E2> where R : EntityRelateBase<E1, E2>
 		where E1 : Entity where E2 : Entity
     {

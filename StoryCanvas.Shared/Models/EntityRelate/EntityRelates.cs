@@ -699,10 +699,39 @@ namespace StoryCanvas.Shared.Models.EntityRelate
 					this._otherNote = value;
 				}
 				this.OnPropertyChanged("Note");
-			}
-		}
+                this.OnPropertyChanged("OtherNote");
+            }
+        }
+        public string OtherNote
+        {
+            get
+            {
+                if (this.IsSameEntity(this.FocusedEntity, this.Entity1))
+                {
+                    return this._otherNote;
+                }
+                else if (this.IsSameEntity(this.FocusedEntity, this.Entity2))
+                {
+                    return base.Note;
+                }
+                return null;
+            }
+            set
+            {
+                if (this.IsSameEntity(this.FocusedEntity, this.Entity1))
+                {
+                    this._otherNote = value;
+                }
+                else if (this.IsSameEntity(this.FocusedEntity, this.Entity2))
+                {
+                    base.Note = value;
+                }
+                this.OnPropertyChanged("OtherNote");
+                this.OnPropertyChanged("Note");
+            }
+        }
 
-		private bool IsSameEntity(IEntity e1, IEntity e2)
+        private bool IsSameEntity(IEntity e1, IEntity e2)
 		{
 			return e1 != null && e2 != null && e1.Id == e2.Id && e1.GetType() == e2.GetType();
 		}

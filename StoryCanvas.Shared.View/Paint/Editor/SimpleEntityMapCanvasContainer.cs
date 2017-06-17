@@ -5,6 +5,7 @@ using System.Text;
 using SkiaSharp;
 using StoryCanvas.Shared.Models.Editor.Map;
 using System.Linq;
+using StoryCanvas.Shared.Models.EntityRelate;
 
 namespace StoryCanvas.Shared.View.Paint.Editor
 {
@@ -14,10 +15,12 @@ namespace StoryCanvas.Shared.View.Paint.Editor
     class SimpleEntityMapCanvasContainer<T> : IEntityEditorCanvasContainer<T>
         where T : Entity
     {
-        public SimpleEntityMap<PersonEntity> Map { get; set; } = new SimpleEntityMap<PersonEntity>();
+        public SimpleEntityMap<T> Map { get; set; } = new SimpleEntityMap<T>();
         public MapElement DraggingElement { get; set; }
         public EntityEditorCanvasBase<T> Canvas { get; set; }
         public bool CanDragMap { get; private set; } = true;
+        public EachEntityRelationModel<T> EachRelations { get; set; }
+        public IDrawRelationHelper DrawRelationHelper { get; set; }
 
         public MapElement SelectedElement
         {
@@ -38,10 +41,37 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         {
             paint.TextSize = 18;
 
+            // 関係を描画
+            this.DrawRelations(canvas, paint);
+
             // 要素群を描画
             foreach (var element in this.Map.Elements)
             {
                 EntityEditorCanvasUtil.DrawMapElement(element, canvas, paint);
+            }
+        }
+
+        /// <summary>
+        /// エンティティ同士の関係を描画する
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="paint"></param>
+        private void DrawRelations(SKCanvas canvas, SKPaint paint)
+        {
+            foreach (var data in this.EachRelations.GetRelationRange(this.Map.Elements.Select(e => e.Entity))
+                                                   .Join(this.Map.Elements, r => r.Entity1.Id, e => e.Entity.Id, (r, e) => new { Element = e, Relation = r, })
+                                                   .Join(this.Map.Elements, r => r.Relation.Entity2.Id, e => e.Entity.Id, (r, e) => new { Element1 = r.Element, Element2 = e, Relation = r.Relation, }))
+            {
+                if (this.DrawRelationHelper != null)
+                {
+                    // 関連付けを描画する
+                    this.DrawRelationHelper.DrawRelation(canvas, paint, data.Element1, data.Element2, data.Relation);
+                }
+                else
+                {
+                    // 線だけひいて終わる
+                    canvas.DrawLine(data.Element1.X + 50, data.Element1.Y + 50, data.Element2.X + 50, data.Element2.Y + 50, paint);
+                }
             }
         }
 

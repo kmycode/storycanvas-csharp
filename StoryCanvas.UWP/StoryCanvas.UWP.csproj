@@ -177,6 +177,9 @@
       <Name>StoryCanvas</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Paint\Editor\" />
+  </ItemGroup>
   <Import Project="..\StoryCanvas.Shared\StoryCanvas.Shared.projitems" Label="Shared" />
   <Import Project="..\Libraries\Libraries.projitems" Label="Shared" />
   <Import Project="..\StoryCanvas.Shared.View\StoryCanvas.Shared.View.projitems" Label="Shared" />
