@@ -53,6 +53,25 @@ namespace StoryCanvas.Shared.ViewTools.Resources
 			}
 		}
 
+        // 両方
+        public Stream ImageStream
+        {
+            get
+            {
+                Stream fs = null;
+#if WINDOWS_UWP
+                Task.Run(async () =>
+                {
+                    var file = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri(this.UWPPath, UriKind.Absolute));
+                    fs = await file.OpenStreamForReadAsync();
+                }).Wait();
+#else
+                throw new NotImplementedException();
+#endif
+                return fs;
+            }
+        }
+
 		// 画像が保存されている場所の種類
 		[DataMember]
 		public Type ResourceType { get; set; } = Type.ApplicationResource;

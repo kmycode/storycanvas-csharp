@@ -1,5 +1,4 @@
-﻿using StoryCanvas.Shared.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,8 +25,6 @@ namespace StoryCanvas.UWP.View.Frame
         public EditPersonPage()
         {
             this.InitializeComponent();
-
-            this.DataContext = new StoryViewModel();
         }
     }
 }

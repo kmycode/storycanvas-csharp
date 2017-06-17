@@ -98,6 +98,7 @@
     <Compile Include="Behaviors\CanvasBehavior.cs" />
     <Compile Include="Behaviors\MainModeFrameBehavior.cs" />
     <Compile Include="Converters\Boolean2VisibilityConverter.cs" />
+    <Compile Include="Converters\EnumEquals2VisibilityConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -116,15 +117,15 @@
     <None Include="StoryCanvas.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\EntityIcons\chapter_white.png" />
-    <Resource Include="Assets\EntityIcons\group_white.png" />
-    <Resource Include="Assets\EntityIcons\memo_white.png" />
-    <Resource Include="Assets\EntityIcons\parameter_white.png" />
-    <Resource Include="Assets\EntityIcons\person_white.png" />
-    <Resource Include="Assets\EntityIcons\place_white.png" />
-    <Resource Include="Assets\EntityIcons\scene_white.png" />
-    <Resource Include="Assets\EntityIcons\sex_white.png" />
-    <Resource Include="Assets\EntityIcons\word_white.png" />
+    <Content Include="Assets\EntityIcons\chapter_white.png" />
+    <Content Include="Assets\EntityIcons\group_white.png" />
+    <Content Include="Assets\EntityIcons\memo_white.png" />
+    <Content Include="Assets\EntityIcons\parameter_white.png" />
+    <Content Include="Assets\EntityIcons\person_white.png" />
+    <Content Include="Assets\EntityIcons\place_white.png" />
+    <Content Include="Assets\EntityIcons\scene_white.png" />
+    <Content Include="Assets\EntityIcons\sex_white.png" />
+    <Content Include="Assets\EntityIcons\word_white.png" />
     <Resource Include="Assets\Icons\bar_edit.png" />
     <Resource Include="Assets\Icons\bar_edit_selected.png" />
     <Resource Include="Assets\Icons\bar_entity.png" />

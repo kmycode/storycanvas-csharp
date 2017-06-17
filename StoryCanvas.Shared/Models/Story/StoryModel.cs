@@ -27,6 +27,7 @@ using StoryCanvas.Shared.Messages.Page;
 using StoryCanvas.Shared.Models.IO;
 using StoryCanvas.Shared.Models.Network;
 using System.Collections.ObjectModel;
+using StoryCanvas.Shared.Models.Editor;
 
 #if XAMARIN_FORMS
 using StoryCanvas.Messages.IO;
@@ -1237,11 +1238,53 @@ namespace StoryCanvas.Shared.Models.Story
 			}
 		}
 
-		#endregion
+        #endregion
 
-		#region ファイル
+        #region 編集画面用モデル
 
-		private SerializationModel Serialization = new SerializationModel();
+        [DataMember]
+        private PersonEditorModel _personEditorModel;
+        public PersonEditorModel PersonEditorModel
+        {
+            get
+            {
+                if (this._personEditorModel == null)
+                {
+                    this._personEditorModel = new PersonEditorModel(this);
+#if DEBUG
+                    var map = new Editor.Map.SimpleEntityMap<PersonEntity>();
+                    map.Name = "Debug map";
+                    map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
+                    {
+                        Entity = this.People[0],
+                        X = 30,
+                        Y = 30,
+                    });
+                    map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
+                    {
+                        Entity = this.People[1],
+                        X = 160,
+                        Y = 30,
+                    });
+                    map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
+                    {
+                        Entity = this.People[2],
+                        X = 130,
+                        Y = 210,
+                    });
+                    this._personEditorModel.PersonMapGroup.Maps.Add(map);
+                    this._personEditorModel.PersonMapGroup.SelectedMap = map;
+#endif
+                }
+                return this._personEditorModel;
+            }
+        }
+
+        #endregion
+
+        #region ファイル
+
+        private SerializationModel Serialization = new SerializationModel();
 
 		/// <summary>
 		/// 排他制御用のロックオブジェクト

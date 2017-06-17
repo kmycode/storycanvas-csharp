@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Paint\CanvasBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Paint\PersonMapCanvas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Paint\CanvasUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\EntityEditorCanvasBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\PersonMapCanvas.cs" />
   </ItemGroup>
 </Project>

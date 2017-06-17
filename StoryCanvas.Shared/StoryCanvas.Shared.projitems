@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\BooleanNumberConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\ColorResourceCodeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\EqualsConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumEqualsConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MainMode2BooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\NegativeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\Common\NullBooleanConverter.cs" />
@@ -64,6 +65,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryCalendar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryDate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryTime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\SimpleEntityMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\EntityEditorModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\MapElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\MapEntityElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\SimpleEntityMapGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\PersonEditorModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\MemoEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\ChapterEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\Entity.cs" />
@@ -137,6 +144,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Entities\StorylineEntityViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Entities\SceneEntityViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Entities\WordEntityViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EntityEditors\EntityEditorViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EntityEditors\PersonEditorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NetworkViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StorageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StorylineDesignerViewModel.cs" />

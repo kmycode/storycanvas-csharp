@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:StoryCanvas.Shared.ViewModels"
+    xmlns:vme="using:StoryCanvas.Shared.ViewModels.EntityEditors"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
     xmlns:b="using:StoryCanvas.UWP.Behaviors"
@@ -13,6 +14,10 @@
     xmlns:cvu="using:StoryCanvas.UWP.Converters"
     mc:Ignorable="d">
 
+    <Page.DataContext>
+        <vme:PersonEditorViewModel/>
+    </Page.DataContext>
+    
     <Page.Resources>
         <cvu:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConv"/>
         <cvu:Boolean2NegativeVisibilityConverter x:Key="Boolean2NegativeVisibilityConv"/>
@@ -37,7 +42,17 @@
                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80A;" Width="48"/>
             </ToggleButton>
             <ComboBox Width="300" VerticalAlignment="Stretch"
-                      Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}"/>
+                      ItemsSource="{Binding Editor.PersonMapGroup.Maps}"
+                      SelectedItem="{Binding Editor.PersonMapGroup.SelectedMap,Mode=TwoWay}"
+                      Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Height="36">
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         
         <!-- 一覧 -->
@@ -45,14 +60,12 @@
                  Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2NegativeVisibilityConv}}"/>
 
         <!-- キャンバス -->
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Auto"
-                      Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
-            <Image>
-                <i:Interaction.Behaviors>
-                    <b:CanvasBehavior/>
-                </i:Interaction.Behaviors>
-            </Image>
-        </ScrollViewer>
+        <Border Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
+            <i:Interaction.Behaviors>
+                <b:CanvasBehavior Canvas="{Binding Editor.PersonMapCanvas}"/>
+            </i:Interaction.Behaviors>
+        </Border>
 
         <!-- 編集部分 -->
         <Grid Grid.Column="1" Grid.Row="1"/>
