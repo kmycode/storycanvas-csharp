@@ -20,7 +20,15 @@ namespace StoryCanvas.Shared.View.Paint
 
         private double lastTapY;
 
-        private bool isDragging;
+        /// <summary>
+        /// ドラッグ中であるか
+        /// </summary>
+        private bool IsDragging { get; set; }
+
+        /// <summary>
+        /// ドラッグ可能であるか（ドラッグによって画面全体が動くかどうか。サブクラスのドラッグ処理は制御できない）
+        /// </summary>
+        protected bool CanDrag { get; set; } = true;
 
         /// <summary>
         /// 描画の時に使われる引数
@@ -40,12 +48,12 @@ namespace StoryCanvas.Shared.View.Paint
         /// <summary>
         /// キャンバスの横幅
         /// </summary>
-        public int Width { get; protected set; } = 500;
+        public int Width { get; set; } = 500;
 
         /// <summary>
         /// キャンバスの高さ
         /// </summary>
-        public int Height { get; protected set; } = 500;
+        public int Height { get; set; } = 500;
 
         /// <summary>
         /// 画面への描画を行う
@@ -53,10 +61,12 @@ namespace StoryCanvas.Shared.View.Paint
         /// <param name="canvas">キャンバス</param>
         public void Draw(SKSurface surface, SKColorType colorType)
         {
-            surface.Canvas.Translate(this.X, this.Y);
-
+            // キャッシュがない、または無効化されたときは、描画しなおす
             if (this.cache == null)
             {
+                // マップを最新のサイズに更新する
+                this.ResizeMap();
+                
                 using (var buffer = SKSurface.Create(this.Width, this.Height, colorType, SKAlphaType.Premul))
                 {
                     using (var paint = new SKPaint
@@ -74,14 +84,42 @@ namespace StoryCanvas.Shared.View.Paint
                 }
             }
 
+            // キャッシュを描画
+            surface.Canvas.Translate(this.X, this.Y);
             surface.Canvas.DrawImage(this.cache, 0, 0);
+
+            // フローティング中の要素を描画
+            using (var ppaint = new SKPaint
+            {
+                IsAntialias = true,
+            })
+            {
+                this.DrawFloatingElements(surface.Canvas, ppaint);
+            }
+        }
+
+        /// <summary>
+        /// マップのリサイズを行う
+        /// </summary>
+        protected virtual void ResizeMap()
+        {
         }
 
         /// <summary>
         /// 描画内容を更新する。X、Yなどで指定された部分ではなく、全範囲を描画する
         /// </summary>
         /// <param name="canvas">キャンバス</param>
+        /// <param name="paint">ペイント</param>
         protected abstract void DrawUpdate(SKCanvas canvas, SKPaint paint);
+
+        /// <summary>
+        /// フローティング中の要素を描画する
+        /// </summary>
+        /// <param name="canvas">キャンバス</param>
+        /// <param name="paint">ペイント</param>
+        protected virtual void DrawFloatingElements(SKCanvas canvas, SKPaint paint)
+        {
+        }
         
         /// <summary>
         /// 描画のキャッシュを無効にし、描画内容を更新する
@@ -98,7 +136,7 @@ namespace StoryCanvas.Shared.View.Paint
         /// <param name="y">画面上のY</param>
         public virtual void OnTapStart(double x, double y)
         {
-            this.isDragging = true;
+            this.IsDragging = true;
             this.lastTapX = x;
             this.lastTapY = y;
         }
@@ -110,7 +148,7 @@ namespace StoryCanvas.Shared.View.Paint
         /// <param name="y">画面上のY</param>
         public virtual void OnTapEnd(double x, double y)
         {
-            this.isDragging = false;
+            this.IsDragging = false;
         }
 
         /// <summary>
@@ -120,22 +158,32 @@ namespace StoryCanvas.Shared.View.Paint
         /// <param name="y">画面上のY</param>
         public virtual void OnTapMove(double x, double y)
         {
-            if (this.isDragging)
+            if (this.IsDragging && this.CanDrag)
             {
                 var dx = this.lastTapX - x;
                 var dy = this.lastTapY - y;
 
-                this.X -= (float)dx;
-                this.Y -= (float)dy;
-                
-                if (this.X < -this.Width) this.X = -this.Width;
-                if (this.Y < -this.Height) this.Y = -this.Height;
-
                 this.lastTapX = x;
                 this.lastTapY = y;
 
-                this.RequestRedraw();
+                this.OnDragging(dx, dy);
             }
+        }
+
+        /// <summary>
+        /// ドラッグ中である時に呼び出される
+        /// </summary>
+        /// <param name="dx">差分X</param>
+        /// <param name="dy">差分Y</param>
+        protected virtual void OnDragging(double dx, double dy)
+        {
+            this.X -= (float)dx;
+            this.Y -= (float)dy;
+
+            if (this.X < -this.Width) this.X = -this.Width;
+            if (this.Y < -this.Height) this.Y = -this.Height;
+
+            this.RequestRedraw();
         }
 
         /// <summary>
