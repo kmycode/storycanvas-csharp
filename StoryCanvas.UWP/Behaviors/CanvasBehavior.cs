@@ -191,6 +191,8 @@ namespace StoryCanvas.UWP.Behaviors
                     this.AssociatedObject.Child = new Image
                     {
                         Source = bmp,
+                        Stretch = Stretch.None,
+                        HorizontalAlignment = HorizontalAlignment.Left,
                     };
                 }
             }

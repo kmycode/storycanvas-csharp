@@ -3,6 +3,7 @@ using StoryCanvas.Shared.Models.Editor.Map;
 using StoryCanvas.Shared.ViewTools.Resources;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace StoryCanvas.Shared.View.Paint
@@ -31,10 +32,10 @@ namespace StoryCanvas.Shared.View.Paint
         /// <param name="x">ある点の座標X</param>
         /// <param name="y">ある点の座標Y</param>
         /// <returns>距離。ただし２乗されているので注意</returns>
-        public static float GetDistanceBetweenLineAndPosition(MapElement e1, MapElement e2, float x, float y)
+        public static float GetDistanceBetweenLimitedLineAndPosition(MapElement e1, MapElement e2, float x, float y)
         {
-            var equ = MathUtil.GetLinearEquation(e1.X, e1.Y, e2.X, e2.Y);
-            return MathUtil.GetDistanceBetweenLineAndPosition(equ, x, y);
+            var dl = MathUtil.GetDistanceBetweenLimitedLineAndPosition(x, y, e1.X, e1.Y, e2.X, e2.Y);
+            return dl;
         }
     }
 }

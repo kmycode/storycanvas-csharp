@@ -2,6 +2,7 @@
 using StoryCanvas.Shared.Models.Common;
 using StoryCanvas.Shared.Models.Editor.Map;
 using StoryCanvas.Shared.Models.Entities;
+using StoryCanvas.Shared.Models.EntityRelate;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,20 +10,14 @@ using System.Text;
 namespace StoryCanvas.Shared.View.Paint.Editor
 {
     /// <summary>
-    /// エンティティのキャンバスを描画するロジック
+    /// エンティティの関連付けを描画するロジック
     /// </summary>
-    public interface IEntityEditorCanvasContainer<E> : IEntityCanvasContainer<E>
+    public interface IEachEntityRelationEditorCanvasContainer<E> : IEntityCanvasContainer<E>
         where E : Entity
     {
-        /// <summary>
-        /// 現在選択されている要素
-        /// </summary>
-        MapEntityElement<E> SelectedElement { get; set; }
+        EachEntityRelationModel<E> EachRelations { get; set; }
 
-        /// <summary>
-        /// 現在ドラッグ中の要素
-        /// </summary>
-        MapEntityElement<E> DraggingElement { get; set; }
+        EntityRelateBase<E, E> SelectedRelation { get; set; }
 
         /// <summary>
         /// エンティティの選択枠など、更新頻度の高いものを描画する
@@ -32,8 +27,8 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         void DrawFloatingElements(SKCanvas canvas, SKPaint paint);
 
         /// <summary>
-        /// エンティティの選択を変更した時に発行
+        /// 関連付けの選択を変更した時に発行
         /// </summary>
-        event ValueChangedEventHandler<MapEntityElement<E>> SelectedEntityChanged;
+        event ValueChangedEventHandler<EntityRelateBase<E, E>> SelectedRelationChanged;
     }
 }

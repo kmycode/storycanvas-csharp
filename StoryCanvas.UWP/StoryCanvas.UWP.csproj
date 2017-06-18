@@ -104,6 +104,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CustomResource\StringResource.cs" />
+    <Compile Include="View\Control\EditRow.xaml.cs">
+      <DependentUpon>EditRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EntityEditor\PersonEditor.xaml.cs">
+      <DependentUpon>PersonEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Frame\EditPersonPage.xaml.cs">
       <DependentUpon>EditPersonPage.xaml</DependentUpon>
     </Compile>
@@ -165,6 +171,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="View\Control\EditRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EntityEditor\PersonEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Frame\EditPersonPage.xaml">
       <SubType>Designer</SubType>

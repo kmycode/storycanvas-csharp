@@ -13,14 +13,8 @@ namespace StoryCanvas.Shared.View.Paint
     /// <summary>
     /// 人物マップのキャンバス
     /// </summary>
-    public class PersonMapCanvas : EntityEditorCanvasBase<PersonEntity>
+    public class PersonMapCanvas : EntityEditorCanvasWithSimpleMapBase<PersonEntity>
     {
-        public SimpleEntityMap<PersonEntity> Map
-        {
-            get => ((SimpleEntityMapCanvasContainer<PersonEntity>)this.Container).Map;
-            set => ((SimpleEntityMapCanvasContainer<PersonEntity>)this.Container).Map = value;
-        }
-
         public PersonMapCanvas(EachEntityRelationModel<PersonEntity> relations) : base(new SimpleEntityMapCanvasContainer<PersonEntity>
         {
             EachRelations = relations,

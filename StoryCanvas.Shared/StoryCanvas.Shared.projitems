@@ -60,6 +60,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Messages\Picker\DateTimePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\Picker\FilePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Messages\StorylineDesigner\AddSceneToDesignerMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Common\CommonEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Common\Config.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Cryptography\IMD5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryCalendar.cs" />

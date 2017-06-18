@@ -5,6 +5,7 @@
     xmlns:local="using:StoryCanvas.UWP.View.Frame"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ee="using:StoryCanvas.UWP.View.EntityEditor"
     xmlns:vm="using:StoryCanvas.Shared.ViewModels"
     xmlns:vme="using:StoryCanvas.Shared.ViewModels.EntityEditors"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
@@ -42,8 +43,8 @@
                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80A;" Width="48"/>
             </ToggleButton>
             <ComboBox Width="300" VerticalAlignment="Stretch"
-                      ItemsSource="{Binding Editor.PersonMapGroup.Maps}"
-                      SelectedItem="{Binding Editor.PersonMapGroup.SelectedMap,Mode=TwoWay}"
+                      ItemsSource="{Binding Editor.MapGroup.Maps}"
+                      SelectedItem="{Binding Editor.MapGroup.SelectedMap,Mode=TwoWay}"
                       Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -63,11 +64,15 @@
         <Border Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                         Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
             <i:Interaction.Behaviors>
-                <b:CanvasBehavior Canvas="{Binding Editor.PersonMapCanvas}"/>
+                <b:CanvasBehavior Canvas="{Binding Editor.Canvas}"/>
             </i:Interaction.Behaviors>
         </Border>
 
         <!-- 編集部分 -->
-        <Grid Grid.Column="1" Grid.Row="1"/>
+        <Grid Grid.Column="1" Grid.Row="1"
+              Width="400" Background="#ececec"
+              Visibility="{Binding Editor.IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
+            <ee:PersonEditor Entity="{Binding Editor.SelectedEntity}"/>
+        </Grid>
     </Grid>
 </Page>

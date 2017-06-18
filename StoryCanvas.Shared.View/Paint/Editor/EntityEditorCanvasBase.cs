@@ -1,4 +1,5 @@
 ﻿using SkiaSharp;
+using StoryCanvas.Shared.Models.Common;
 using StoryCanvas.Shared.Models.Editor.Map;
 using StoryCanvas.Shared.Models.Entities;
 using StoryCanvas.Shared.Models.EntityRelate;
@@ -29,7 +30,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         /// <summary>
         /// 選択中のエンティティを含む要素
         /// </summary>
-        public MapElement SelectedElement
+        public MapEntityElement<T> SelectedElement
         {
             get => this.Container.SelectedElement;
             set => this.Container.SelectedElement = value;
@@ -39,7 +40,15 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         {
             this.Container = container;
             this.Container.Canvas = this;
-            this.Container.SelectedEntityChanged += (sender, e) => this.SelectedEntityChanged?.Invoke(this, e);
+            this.Container.SelectedEntityChanged += (sender, e) => this.SelectedEntityChanged?.Invoke(this, new ValueChangedEventArgs<T>
+            {
+                OldValue = e.OldValue?.Entity,
+                NewValue = e.NewValue?.Entity,
+            });
+            if (this.Container is IEachEntityRelationEditorCanvasContainer<T> relationContainer)
+            {
+                relationContainer.SelectedRelationChanged += (sender, e) => this.SelectedRelationChanged?.Invoke(this, e);
+            }
         }
 
         protected override void ResizeMap()
@@ -72,10 +81,13 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         public override void OnTapEnd(double x, double y)
         {
             // タップであるか判定
-            this.tapping.Stop();
-            if (this.tapping.ElapsedMilliseconds < 200)
+            if (this.tapping.IsRunning)
             {
-                this.OnTapped(x, y);
+                this.tapping.Stop();
+                if (this.tapping.ElapsedMilliseconds < 200)
+                {
+                    this.OnTapped(x, y);
+                }
             }
 
             this.Container.OnTapEnd(x, y);
@@ -127,11 +139,13 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         {
             x -= this.X;
             y -= this.Y;
+            x -= 50;
+            y -= 50;
             foreach (var data in relations.Join(elements, r => r.Entity1.Id, e => e.Entity.Id, (r, e) => new { Element = e, Relation = r, })
                                           .Join(elements, r => r.Relation.Entity2.Id, e => e.Entity.Id, (r, e) => new { Element1 = r.Element, Element2 = e, Relation = r.Relation, })
                                           .Reverse())
             {
-                var d2 = CanvasUtil.GetDistanceBetweenLineAndPosition(data.Element1, data.Element2, (float)x - 50, (float)y - 50);
+                var d2 = CanvasUtil.GetDistanceBetweenLimitedLineAndPosition(data.Element1, data.Element2, (float)x, (float)y);
                 if (d2 < 30 * 30)
                 {
                     return (data.Relation, data.Element1, data.Element2);
@@ -142,9 +156,33 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         }
 
         /// <summary>
-        /// 選択中のエンティティが変更された時に呼び出し
+        /// 要素の選択を変更したときに発行
         /// </summary>
-        public event EventHandler SelectedEntityChanged;
+        public event ValueChangedEventHandler<MapElement> SelectedElementChanged;
+
+        /// <summary>
+        /// エンティティの選択を変更した時に発行
+        /// </summary>
+        public event ValueChangedEventHandler<T> SelectedEntityChanged;
+
+        /// <summary>
+        /// 関連付けの選択を変更した時に発行
+        /// </summary>
+        public event ValueChangedEventHandler<EntityRelateBase<T, T>> SelectedRelationChanged;
+    }
+
+    public class EntityEditorCanvasWithSimpleMapBase<T> : EntityEditorCanvasBase<T>
+        where T : Entity
+    {
+        public SimpleEntityMap<T> Map
+        {
+            get => ((SimpleEntityMapCanvasContainer<T>)this.Container).Map;
+            set => ((SimpleEntityMapCanvasContainer<T>)this.Container).Map = value;
+        }
+
+        public EntityEditorCanvasWithSimpleMapBase(IEntityEditorCanvasContainer<T> container) : base(container)
+        {
+        }
     }
 
     static class EntityEditorCanvasUtil

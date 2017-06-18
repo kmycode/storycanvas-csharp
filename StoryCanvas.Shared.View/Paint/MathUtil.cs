@@ -30,7 +30,7 @@ namespace StoryCanvas.Shared.View.Paint
         }
 
         /// <summary>
-        /// 線と点の距離をもとめる
+        /// 直線と点の距離をもとめる
         /// （点から線に垂線をおろしたときの垂線の長さ）
         /// 結果は2乗されて返ってくるので注意すること
         /// </summary>
@@ -46,6 +46,40 @@ namespace StoryCanvas.Shared.View.Paint
             var k = abc * abc / (equation.A * equation.A + equation.B * equation.B);
             k = (float)Math.Sqrt(k);
             return abc * abc / (equation.A * equation.A + equation.B * equation.B);
+        }
+
+        /// <summary>
+        /// 線分と点の距離を求める
+        /// 結果は2乗されて返ってくるので注意すること
+        /// </summary>
+        /// <remarks>
+        /// thanks http://qiita.com/yellow_73/items/bcd4e150e7caa0210ee6
+        /// </remarks>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        /// <returns></returns>
+        public static float GetDistanceBetweenLimitedLineAndPosition(float x, float y, float x1, float y1, float x2, float y2)
+        {
+            var a = x2 - x1;
+            var b = y2 - y1;
+            var a2 = a * a;
+            var b2 = b * b;
+            var r2 = a2 + b2;
+            var tt = -(a * (x1 - x) + b * (y1 - y));
+            if (tt < 0)
+            {
+                return (x1 - x) * (x1 - x) + (y1 - y) * (y1 - y);
+            }
+            if (tt > r2)
+            {
+                return (x2 - x) * (x2 - x) + (y2 - y) * (y2 - y);
+            }
+            var f1 = a * (y1 - y) - b * (x1 - x);
+            return (f1 * f1) / r2;
         }
     }
 

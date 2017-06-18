@@ -400,8 +400,8 @@ namespace StoryCanvas.Shared.Models.Story
                 X = 130,
                 Y = 210,
             });
-            this._personEditorModel.PersonMapGroup.Maps.Add(map);
-            this._personEditorModel.PersonMapGroup.SelectedMap = map;
+            this._personEditorModel.MapGroup.Maps.Add(map);
+            this._personEditorModel.MapGroup.SelectedMap = map;
 
             this.StoryConfig.Title = "サンプル小説";
 			this.StoryConfig.Comment = "これはサンプルです。";

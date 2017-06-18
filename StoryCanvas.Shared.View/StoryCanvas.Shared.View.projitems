@@ -14,7 +14,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\DrawEachPersonRelationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\EntityEditorCanvasBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\IDrawRelationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\IEntityCanvasContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\IEntityEditorCanvasContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\IEntityRelationEditorCanvasContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\PersonMapCanvas.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Paint\Editor\SimpleEntityMapCanvasContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Paint\MathUtil.cs" />

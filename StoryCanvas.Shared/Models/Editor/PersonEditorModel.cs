@@ -1,5 +1,6 @@
 ﻿using StoryCanvas.Shared.Models.Editor.Map;
 using StoryCanvas.Shared.Models.Entities;
+using StoryCanvas.Shared.Models.EntityRelate;
 using StoryCanvas.Shared.Models.Story;
 using StoryCanvas.Shared.View.Paint;
 using System;
@@ -13,22 +14,18 @@ namespace StoryCanvas.Shared.Models.Editor
     /// 人物編集画面のエディタモデル
     /// </summary>
     [DataContract]
-    public class PersonEditorModel : EntityEditorModelBase<PersonEntity>
+    public class PersonEditorModel : EntityEditorWithEachRelationModelBase<PersonEntity>
     {
-        [DataMember]
-        private SimpleEntityMapGroup<PersonEntity> _personMapGroup = new SimpleEntityMapGroup<PersonEntity>();
-        public SimpleEntityMapGroup<PersonEntity> PersonMapGroup => this._personMapGroup;
-
-        public PersonMapCanvas PersonMapCanvas { get; }
-
-        public PersonEditorModel(StoryModel story) : base(story)
+        public PersonEditorModel(StoryModel story) : base(story, new PersonMapCanvas(story.PersonPersonRelation))
         {
-            this.PersonMapCanvas = new PersonMapCanvas(story.PersonPersonRelation);
-
-            this.PersonMapGroup.SelectedMapChanged += (sender, e) =>
+            this.Canvas.SelectedEntityChanged += (sender, e) =>
             {
-                this.PersonMapCanvas.Map = this.PersonMapGroup.SelectedMap;
-                this.PersonMapCanvas.RequestRedraw(true);
+                this.SelectedEntity = e.NewValue;
+            };
+
+            this.Canvas.SelectedRelationChanged += (sender, e) =>
+            {
+                this.SelectedRelation = e.NewValue;
             };
         }
     }

@@ -6,37 +6,43 @@ using SkiaSharp;
 using StoryCanvas.Shared.Models.Editor.Map;
 using System.Linq;
 using StoryCanvas.Shared.Models.EntityRelate;
+using StoryCanvas.Shared.Models.Common;
 
 namespace StoryCanvas.Shared.View.Paint.Editor
 {
     /// <summary>
     /// エンティティをまとめたシンプルなマップを描画するロジック
     /// </summary>
-    class SimpleEntityMapCanvasContainer<T> : IEntityEditorCanvasContainer<T>
-        where T : Entity
+    class SimpleEntityMapCanvasContainer<E> : IEntityEditorCanvasContainer<E>, IEachEntityRelationEditorCanvasContainer<E>
+        where E : Entity
     {
-        public SimpleEntityMap<T> Map { get; set; } = new SimpleEntityMap<T>();
-        public MapElement DraggingElement { get; set; }
-        public EntityEditorCanvasBase<T> Canvas { get; set; }
+        public SimpleEntityMap<E> Map { get; set; } = new SimpleEntityMap<E>();
+        public MapEntityElement<E> DraggingElement { get; set; }
+        public EntityEditorCanvasBase<E> Canvas { get; set; }
         public bool CanDragMap { get; private set; } = true;
-        public EachEntityRelationModel<T> EachRelations { get; set; }
+        public EachEntityRelationModel<E> EachRelations { get; set; }
         public IDrawRelationHelper DrawRelationHelper { get; set; }
 
-        public MapElement SelectedElement
+        public MapEntityElement<E> SelectedElement
         {
             get => this._selectedElement;
             set
             {
                 if (this._selectedElement != value)
                 {
+                    var old = this._selectedElement;
                     this._selectedElement = value;
-                    this.SelectedEntityChanged?.Invoke(this, EventArgs.Empty);
+                    this.SelectedEntityChanged?.Invoke(this, new ValueChangedEventArgs<MapEntityElement<E>>
+                    {
+                        OldValue = old,
+                        NewValue = value,
+                    });
                 }
             }
         }
-        private MapElement _selectedElement;
+        private MapEntityElement<E> _selectedElement;
         
-        public EntityRelateBase<T, T> SelectedRelation
+        public EntityRelateBase<E, E> SelectedRelation
         {
             get => this._selectedRelation.Relation;
             set
@@ -53,19 +59,24 @@ namespace StoryCanvas.Shared.View.Paint.Editor
                 }
             }
         }
-        private (EntityRelateBase<T, T> Relation, MapElement A, MapElement B) _selectedRelation
+        private (EntityRelateBase<E, E> Relation, MapElement A, MapElement B) _selectedRelation
         {
             get => this.__selectedRelation;
             set
             {
                 if (this.__selectedRelation.Relation != value.Relation)
                 {
+                    var old = this.__selectedRelation;
                     this.__selectedRelation = value;
-                    this.SelectedRelationChanged?.Invoke(this, EventArgs.Empty);
+                    this.SelectedRelationChanged?.Invoke(this, new ValueChangedEventArgs<EntityRelateBase<E, E>>
+                    {
+                        OldValue = old.Relation,
+                        NewValue = value.Relation,
+                    });
                 }
             }
         }
-        private (EntityRelateBase<T, T> Relation, MapElement A, MapElement B) __selectedRelation;
+        private (EntityRelateBase<E, E> Relation, MapElement A, MapElement B) __selectedRelation;
 
         public void DrawUpdate(SKCanvas canvas, SKPaint paint)
         {
@@ -141,7 +152,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         public void OnTapStart(double x, double y)
         {
             // 現在選択中の要素をタップしようとしているか判定
-            if (this.SelectedElement is MapEntityElement<PersonEntity> el)
+            if (this.SelectedElement is MapEntityElement<E> el)
             {
                 var element = this.Canvas.GetEntityFromPosition(this.Map.Elements, x, y);
                 if (element?.Entity.Id == el?.Entity.Id)
@@ -247,9 +258,15 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             this.Canvas.Width = maxX - minX + 250;
             this.Canvas.Height = maxY - minY + 250;
         }
+        
+        /// <summary>
+        /// エンティティの選択を変更した時に発行
+        /// </summary>
+        public event ValueChangedEventHandler<MapEntityElement<E>> SelectedEntityChanged;
 
-        public event EventHandler SelectedEntityChanged;
-
-        public event EventHandler SelectedRelationChanged;
+        /// <summary>
+        /// 関連付けの選択を変更した時に発行
+        /// </summary>
+        public event ValueChangedEventHandler<EntityRelateBase<E, E>> SelectedRelationChanged;
     }
 }
