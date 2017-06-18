@@ -1,6 +1,7 @@
 ﻿using SkiaSharp;
 using StoryCanvas.Shared.Models.Editor.Map;
 using StoryCanvas.Shared.Models.Entities;
+using StoryCanvas.Shared.Models.EntityRelate;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -101,20 +102,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         {
             base.DrawFloatingElements(canvas, paint);
 
-            if (this.SelectedElement != null)
-            {
-                paint.IsStroke = true;
-                paint.StrokeWidth = 4;
-                paint.Color = SKColors.Blue;
-
-                canvas.DrawRect(new SKRect(this.SelectedElement.X - 8,
-                                           this.SelectedElement.Y - 8,
-                                           this.SelectedElement.X + this.SelectedElement.ViewWidth + 8,
-                                           this.SelectedElement.Y + this.SelectedElement.ViewHeight + 8
-                                           ), paint);
-
-                paint.IsStroke = false;
-            }
+            this.Container.DrawFloatingElements(canvas, paint);
         }
 
         /// <summary>
@@ -131,6 +119,26 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             x -= this.X;
             y -= this.Y;
             return elements.LastOrDefault(e => e.X < x && x < e.X + e.ViewWidth && e.Y < y && y < e.Y + e.ViewHeight);
+        }
+
+        public (EntityRelateBase<E, E> Relation, MapEntityElement<E> A, MapEntityElement<E> B)
+            GetEntityRelationFromPosition<E>(IEnumerable<MapEntityElement<E>> elements, IEnumerable<EntityRelateBase<E, E>> relations, double x, double y)
+            where E : Entity
+        {
+            x -= this.X;
+            y -= this.Y;
+            foreach (var data in relations.Join(elements, r => r.Entity1.Id, e => e.Entity.Id, (r, e) => new { Element = e, Relation = r, })
+                                          .Join(elements, r => r.Relation.Entity2.Id, e => e.Entity.Id, (r, e) => new { Element1 = r.Element, Element2 = e, Relation = r.Relation, })
+                                          .Reverse())
+            {
+                var d2 = CanvasUtil.GetDistanceBetweenLineAndPosition(data.Element1, data.Element2, (float)x - 50, (float)y - 50);
+                if (d2 < 30 * 30)
+                {
+                    return (data.Relation, data.Element1, data.Element2);
+                }
+            }
+
+            return (null, null, null);
         }
 
         /// <summary>

@@ -41,6 +41,13 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         void DrawUpdate(SKCanvas canvas, SKPaint paint);
 
         /// <summary>
+        /// エンティティの選択枠など、更新頻度の高いものを描画する
+        /// </summary>
+        /// <param name="canvas">キャンバス</param>
+        /// <param name="paint">ペイント</param>
+        void DrawFloatingElements(SKCanvas canvas, SKPaint paint);
+
+        /// <summary>
         /// タップが開始された時に呼び出される
         /// </summary>
         /// <param name="x">座標X</param>

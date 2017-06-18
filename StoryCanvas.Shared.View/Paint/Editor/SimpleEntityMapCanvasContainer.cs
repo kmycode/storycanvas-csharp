@@ -32,10 +32,40 @@ namespace StoryCanvas.Shared.View.Paint.Editor
                     this._selectedElement = value;
                     this.SelectedEntityChanged?.Invoke(this, EventArgs.Empty);
                 }
-                this.CanDragMap = this.SelectedElement == null;
             }
         }
         private MapElement _selectedElement;
+        
+        public EntityRelateBase<T, T> SelectedRelation
+        {
+            get => this._selectedRelation.Relation;
+            set
+            {
+                if (this._selectedRelation.Relation != value)
+                {
+                    if (value == null) this._selectedRelation = (null, null, null);
+                    else
+                    {
+                        var r1 = this.Map.Elements.SingleOrDefault(e => e.Entity.Id == value.Entity1.Id);
+                        var r2 = this.Map.Elements.SingleOrDefault(e => e.Entity.Id == value.Entity2.Id);
+                        this._selectedRelation = (value, r1, r2);
+                    }
+                }
+            }
+        }
+        private (EntityRelateBase<T, T> Relation, MapElement A, MapElement B) _selectedRelation
+        {
+            get => this.__selectedRelation;
+            set
+            {
+                if (this.__selectedRelation.Relation != value.Relation)
+                {
+                    this.__selectedRelation = value;
+                    this.SelectedRelationChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+        private (EntityRelateBase<T, T> Relation, MapElement A, MapElement B) __selectedRelation;
 
         public void DrawUpdate(SKCanvas canvas, SKPaint paint)
         {
@@ -75,6 +105,39 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             }
         }
 
+        /// <summary>
+        /// 選択されたエンティティの枠とか描画する
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="paint"></param>
+        public void DrawFloatingElements(SKCanvas canvas, SKPaint paint)
+        {
+            // 選択されたエンティティの枠
+            if (this.SelectedElement != null)
+            {
+                paint.IsStroke = true;
+                paint.StrokeWidth = 4;
+                paint.Color = SKColors.Blue;
+
+                canvas.DrawRect(new SKRect(this.SelectedElement.X - 8,
+                                           this.SelectedElement.Y - 8,
+                                           this.SelectedElement.X + this.SelectedElement.ViewWidth + 8,
+                                           this.SelectedElement.Y + this.SelectedElement.ViewHeight + 8
+                                           ), paint);
+
+                paint.IsStroke = false;
+            }
+
+            // 選択された関連付け
+            if (this._selectedRelation.Relation != null)
+            {
+                paint.StrokeWidth = 6;
+                paint.Color = SKColors.Blue;
+
+                canvas.DrawLine(this._selectedRelation.A.X + 50, this._selectedRelation.A.Y + 50, this._selectedRelation.B.X + 50, this._selectedRelation.B.Y + 50, paint);
+            }
+        }
+
         public void OnTapStart(double x, double y)
         {
             // 現在選択中の要素をタップしようとしているか判定
@@ -84,6 +147,11 @@ namespace StoryCanvas.Shared.View.Paint.Editor
                 if (element?.Entity.Id == el?.Entity.Id)
                 {
                     this.DraggingElement = element;
+                    this.CanDragMap = false;
+                }
+                else
+                {
+                    this.DraggingElement = null;
                 }
             }
         }
@@ -94,15 +162,29 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             if (this.DraggingElement != null)
             {
                 this.Canvas.RequestRedraw(true);
-                this.DraggingElement = null;
+
+                if (this.DraggingElement != null)
+                {
+                    this.CanDragMap = true;
+                    this.DraggingElement = null;
+                }
             }
         }
 
         public void OnTapped(double x, double y)
         {
             // 選択された要素を検出する
-            var element = this.Canvas.GetEntityFromPosition(this.Map.Elements, x, y);
-            this.SelectedElement = element;
+            this.SelectedElement = this.Canvas.GetEntityFromPosition(this.Map.Elements, x, y);
+
+            if (this.SelectedElement != null)
+            {
+                this.SelectedRelation = null;
+            }
+            else
+            {
+                // 選択された関連付けを検出する
+                this._selectedRelation = this.Canvas.GetEntityRelationFromPosition(this.Map.Elements, this.EachRelations.Relations, x, y);
+            }
 
             // 再描画を要求
             this.Canvas.RequestRedraw();
@@ -167,5 +249,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         }
 
         public event EventHandler SelectedEntityChanged;
+
+        public event EventHandler SelectedRelationChanged;
     }
 }
