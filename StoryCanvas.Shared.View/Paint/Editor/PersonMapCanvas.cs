@@ -22,5 +22,9 @@ namespace StoryCanvas.Shared.View.Paint
         })
         {
         }
+
+        public PersonMapCanvas(PersonMapCanvas other) : this(((SimpleEntityMapCanvasContainer<PersonEntity>)other.Container).EachRelations)
+        {
+        }
     }
 }

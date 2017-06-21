@@ -152,7 +152,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StorageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StorylineDesignerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StoryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewTools\BehaviorHelper\ProgressModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewTools\BehaviorHelpers\SelectEntityHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewTools\ControlModels\TreeListViewControlModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewTools\IDataContextHolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewTools\Messenger.cs" />

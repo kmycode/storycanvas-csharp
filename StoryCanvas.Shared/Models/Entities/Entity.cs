@@ -427,4 +427,17 @@ namespace StoryCanvas.Shared.Models.Entities
 
 		#endregion
 	}
+
+    public enum EntityType
+    {
+        Person,
+        Group,
+        Place,
+        Scene,
+        Chapter,
+        Sex,
+        Parameter,
+        Memo,
+        Word,
+    }
 }

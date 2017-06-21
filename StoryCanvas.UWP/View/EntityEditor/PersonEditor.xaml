@@ -11,6 +11,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
     xmlns:b="using:StoryCanvas.UWP.Behaviors"
+    xmlns:frame="using:StoryCanvas.UWP.View.Frame"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -112,6 +113,20 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    
+                    <!-- 関連付け追加ボタン -->
+                    <Button Width="48" Height="48" Padding="0" Background="Transparent"
+                            Command="{Binding AddPersonPersonRelationCommand}">
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" Width="48"/>
+
+                        <Button.Flyout>
+                            <Flyout/>
+                        </Button.Flyout>
+
+                        <i:Interaction.Behaviors>
+                            <b:EntitySelectionBehavior Helper="{Binding PersonSelector}" EntityType="Person"/>
+                        </i:Interaction.Behaviors>
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

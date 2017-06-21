@@ -16,7 +16,6 @@ using StoryCanvas.Shared.Messages.Network;
 using StoryCanvas.Shared.Messages.IO;
 using StoryCanvas.Shared.Models.IO;
 using StoryCanvas.Shared.Models;
-using StoryCanvas.Shared.ViewTools.BehaviorHelper;
 using StoryCanvas.Shared.Messages.Page;
 
 namespace StoryCanvas.Shared.ViewModels

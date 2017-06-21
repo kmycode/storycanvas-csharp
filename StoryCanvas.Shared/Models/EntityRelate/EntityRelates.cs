@@ -562,7 +562,7 @@ namespace StoryCanvas.Shared.Models.EntityRelate
 		{
 			get
 			{
-				return this._note;
+				return this._note ?? "";
 			}
 			set
 			{

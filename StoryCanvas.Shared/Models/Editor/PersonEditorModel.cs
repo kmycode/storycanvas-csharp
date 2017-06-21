@@ -21,7 +21,7 @@ namespace StoryCanvas.Shared.Models.Editor
         {
         }
 
-        public PersonEditorModel(PersonEditorModel other) : base(other)
+        public PersonEditorModel(PersonEditorModel other) : base(other, new PersonMapCanvas((PersonMapCanvas)other.Canvas))
         {
         }
     }

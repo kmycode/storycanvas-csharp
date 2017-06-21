@@ -192,6 +192,11 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         public EntityEditorCanvasWithSimpleMapBase(IEntityEditorCanvasContainer<T> container) : base(container)
         {
         }
+
+        protected EntityEditorCanvasWithSimpleMapBase(EntityEditorCanvasWithSimpleMapBase<T> other) : this(other.Container)
+        {
+            this.Map = other.Map;
+        }
     }
 
     static class EntityEditorCanvasUtil

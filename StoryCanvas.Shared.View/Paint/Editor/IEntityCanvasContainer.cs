@@ -18,6 +18,11 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         bool CanDragMap { get; }
 
         /// <summary>
+        /// 要素をドラッグ可能であるか
+        /// </summary>
+        bool CanDragElement { get; set; }
+
+        /// <summary>
         /// 描画対象のキャンバス
         /// </summary>
         EntityEditorCanvasBase<E> Canvas { get; set; }

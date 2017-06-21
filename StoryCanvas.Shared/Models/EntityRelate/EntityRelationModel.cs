@@ -96,7 +96,7 @@ namespace StoryCanvas.Shared.Models.EntityRelate
 
         public bool IsRelated(E1 e1, E2 e2)
         {
-            return this.Relations.Any(obj => obj.Entity1.Id == e1.Id && obj.Entity2.Id == e2.Id);
+            return e1 == e2 || this.Relations.Any(obj => obj.Entity1.Id == e1.Id && obj.Entity2.Id == e2.Id);
         }
 
         public IEnumerable<E2> FindNotRelated(E1 target, IEnumerable<E2> set)
@@ -135,8 +135,9 @@ namespace StoryCanvas.Shared.Models.EntityRelate
         
         public bool IsRelated(E obj1, E obj2)
         {
-            return this.Relations.Any(obj => (obj.Entity1.Id == obj1.Id && obj.Entity2.Id == obj2.Id) ||
-                                             (obj.Entity1.Id == obj2.Id && obj.Entity2.Id == obj1.Id));
+            return obj1 == obj2 ||
+                this.Relations.Any(obj => (obj.Entity1.Id == obj1.Id && obj.Entity2.Id == obj2.Id) ||
+                                          (obj.Entity1.Id == obj2.Id && obj.Entity2.Id == obj1.Id));
         }
         
         public IEnumerable<E> FindNotRelated(E target, IEnumerable<E> set)

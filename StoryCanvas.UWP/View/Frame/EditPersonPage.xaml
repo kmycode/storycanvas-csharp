@@ -69,10 +69,11 @@
         </Border>
 
         <!-- 編集部分 -->
-        <Grid Grid.Column="1" Grid.Row="1"
-              Width="400" Background="#ececec"
-              Visibility="{Binding Editor.IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
-            <ee:PersonEditor Entity="{Binding Editor.SelectedEntity}"/>
+        <Grid Grid.Column="1" Grid.Row="1" Background="#ececec"
+              Visibility="{Binding IsSelectOnlyMode,Converter={StaticResource Boolean2NegativeVisibilityConv}}">
+            <Border Width="400" Visibility="{Binding IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
+                <ee:PersonEditor Entity="{Binding SelectedEntity}"/>
+            </Border>
         </Grid>
     </Grid>
 </Page>

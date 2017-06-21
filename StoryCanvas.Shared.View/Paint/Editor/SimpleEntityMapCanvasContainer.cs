@@ -20,6 +20,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         public MapEntityElement<E> DraggingElement { get; set; }
         public EntityEditorCanvasBase<E> Canvas { get; set; }
         public bool CanDragMap { get; private set; } = true;
+        public bool CanDragElement { get; set; } = true;
         public EachEntityRelationModel<E> EachRelations { get; set; }
         public IDrawRelationHelper DrawRelationHelper { get; set; }
 
@@ -204,7 +205,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         public void OnDragging(double dx, double dy)
         {
             // ドラッグ中の要素があれば座標変更
-            if (this.DraggingElement != null)
+            if (this.DraggingElement != null && this.CanDragElement)
             {
                 this.DraggingElement.X -= (int)dx;
                 this.DraggingElement.Y -= (int)dy;
@@ -214,6 +215,12 @@ namespace StoryCanvas.Shared.View.Paint.Editor
 
         public void ResizeMap()
         {
+            if (!this.Map.Elements.Any())
+            {
+                this.Canvas.Width = this.Canvas.Height = 1;
+                return;
+            }
+
             var minX = this.Map.Elements.Min(e => e.X);
             var maxX = this.Map.Elements.Max(e => e.X + e.ViewWidth);
             var minY = this.Map.Elements.Min(e => e.Y);

@@ -127,8 +127,7 @@ namespace StoryCanvas.Shared.Models.Editor
 
             this.MapGroup.SelectedMapChanged += (sender, e) =>
             {
-                this.Canvas.Map = this.MapGroup.SelectedMap;
-                this.Canvas.RequestRedraw(true);
+                this.UpdateMapSelection();
             };
 
             this.Canvas.SelectedEntityChanged += (sender, e) =>
@@ -151,9 +150,16 @@ namespace StoryCanvas.Shared.Models.Editor
             };
         }
 
-        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other) : this(other.Story, other.Canvas, other.entities)
+        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other, EntityEditorCanvasWithSimpleMapBase<T> canvas) : this(other.Story, canvas, other.entities)
         {
             this._mapGroup = other._mapGroup;
+            this.UpdateMapSelection();
+        }
+
+        private void UpdateMapSelection()
+        {
+            this.Canvas.Map = this.MapGroup.SelectedMap;
+            this.Canvas.RequestRedraw(true);
         }
     }
 
@@ -195,7 +201,7 @@ namespace StoryCanvas.Shared.Models.Editor
             this.Initialize();
         }
 
-        protected EntityEditorWithEachRelationModelBase(EntityEditorWithEachRelationModelBase<T> other) : base(other)
+        protected EntityEditorWithEachRelationModelBase(EntityEditorWithEachRelationModelBase<T> other, EntityEditorCanvasWithSimpleMapBase<T> canvas) : base(other, canvas)
         {
             this.Initialize();
         }

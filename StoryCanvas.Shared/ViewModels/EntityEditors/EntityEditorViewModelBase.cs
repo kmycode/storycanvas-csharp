@@ -15,6 +15,23 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditors
         where T : Entity
     {
         public EntityEditorModelBase<T> Editor { get; }
+
+        /// <summary>
+        /// 選択オンリー（編集はできない）
+        /// </summary>
+        public bool IsSelectOnlyMode
+        {
+            get => this._isSelectOnlyMode;
+            set
+            {
+                if (this._isSelectOnlyMode != value)
+                {
+                    this._isSelectOnlyMode = value;
+                    this.OnPropertyChanged();
+                }
+            }
+        }
+        private bool _isSelectOnlyMode;
         
         /// <summary>
         /// 現在選択されている要素
@@ -23,6 +40,11 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditors
         {
             get => this.Editor.SelectedEntity;
         }
+
+        /// <summary>
+        /// 現在要素が選択されているか
+        /// </summary>
+        public bool IsEntitySelected => this.Editor.IsEntitySelected;
 
         protected EntityEditorViewModelBase(EntityEditorModelBase<T> model)
         {
