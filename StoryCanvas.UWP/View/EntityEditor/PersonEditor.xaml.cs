@@ -1,4 +1,5 @@
 ﻿using StoryCanvas.Shared.Models.Entities;
+using StoryCanvas.Shared.ViewModels.EntityEditControls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,12 +32,16 @@ namespace StoryCanvas.UWP.View.EntityEditor
         public static readonly DependencyProperty EntityProperty =
             DependencyProperty.Register(
                 nameof(Entity),
-                typeof(Entity),
+                typeof(PersonEntity),
                 typeof(PersonEditor),
-                new PropertyMetadata(null, null));
-        public Entity Entity
+                new PropertyMetadata(null, (sender, e) =>
+                {
+                    var view = (PersonEditor)sender;
+                    ((PersonEditControlViewModel)view.MainPanel.DataContext).Entity = (PersonEntity)e.NewValue;
+                }));
+        public PersonEntity Entity
         {
-            get => (Entity)GetValue(EntityProperty);
+            get => (PersonEntity)GetValue(EntityProperty);
             set => SetValue(EntityProperty, value);
         }
     }

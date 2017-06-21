@@ -403,6 +403,11 @@ namespace StoryCanvas.Shared.Models.EntitySet
             {
                 this.Tree = tree;
                 this.Current = tree.Root;
+                this.indices.Push(new ParentIndex
+                {
+                    Entity = this.Current,
+                    ChildIndex = 0,
+                });
             }
 
             public void Dispose()

@@ -672,4 +672,7 @@
   <data name="AutoSaveDisabledBecauseWaitingUserAction" xml:space="preserve">
     <value>Auto save is disabled because waiting for user action.</value>
   </data>
+  <data name="DeleteRelationMessage" xml:space="preserve">
+    <value>Do you delete this relation?</value>
+  </data>
 </root>

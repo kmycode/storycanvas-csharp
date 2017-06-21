@@ -123,6 +123,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Story\StoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Story\TimelineModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Types\ViewEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\ArrayExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AutofacUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\HttpUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ImageUtil.cs" />
@@ -143,6 +144,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Entities\StorylineEntityViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Entities\SceneEntityViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Entities\WordEntityViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EntityEditControls\EntityEditControlViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EntityEditControls\PersonEditControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EntityEditors\EntityEditorViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EntityEditors\PersonEditorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NetworkViewModel.cs" />

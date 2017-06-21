@@ -663,4 +663,7 @@
   <data name="AutoSaveDisabledBecauseWaitingUserAction" xml:space="preserve">
     <value>ユーザの操作を待機中のため、オートセーブは無効です</value>
   </data>
+  <data name="DeleteRelationMessage" xml:space="preserve">
+    <value>この関連付けを削除しますか？</value>
+  </data>
 </root>

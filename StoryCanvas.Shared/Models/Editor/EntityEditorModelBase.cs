@@ -1,4 +1,5 @@
-﻿using StoryCanvas.Shared.Models.Editor.Map;
+﻿using StoryCanvas.Shared.Models.Common;
+using StoryCanvas.Shared.Models.Editor.Map;
 using StoryCanvas.Shared.Models.Entities;
 using StoryCanvas.Shared.Models.EntityRelate;
 using StoryCanvas.Shared.Models.Story;
@@ -6,6 +7,7 @@ using StoryCanvas.Shared.View.Paint.Editor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
@@ -29,8 +31,14 @@ namespace StoryCanvas.Shared.Models.Editor
             {
                 if (this._selectedEntity?.Id != value?.Id)
                 {
+                    var old = this._selectedEntity;
                     this._selectedEntity = value;
                     this.OnPropertyChanged();
+                    this.EntitySelectionChanged?.Invoke(this, new ValueChangedEventArgs<T>
+                    {
+                        OldValue = old,
+                        NewValue = value,
+                    });
                 }
             }
         }
@@ -67,6 +75,11 @@ namespace StoryCanvas.Shared.Models.Editor
                 this.IsEntitySelected = this.SelectedEntity != null;
             };
         }
+        
+        /// <summary>
+        /// エンティティの選択が変更された時に発行
+        /// </summary>
+        public ValueChangedEventHandler<T> EntitySelectionChanged;
 
         #region INotifyPropertyChanged
 
@@ -87,28 +100,71 @@ namespace StoryCanvas.Shared.Models.Editor
         /// マップデータ
         /// </summary>
         [DataMember]
-        private SimpleEntityMapGroup<T> _mapGroup = new SimpleEntityMapGroup<T>();
-        public SimpleEntityMapGroup<T> MapGroup => this._mapGroup;
+        private SimpleEntityMapGroup<T> _mapGroup;
+        public SimpleEntityMapGroup<T> MapGroup
+        {
+            get
+            {
+                if (this._mapGroup == null)
+                {
+                    this._mapGroup = new SimpleEntityMapGroup<T>();
+                }
+                return this._mapGroup;
+            }
+        }
 
         /// <summary>
         /// キャンバス
         /// </summary>
         public EntityEditorCanvasWithSimpleMapBase<T> Canvas { get; }
 
-        protected EntityEditorWithSingleCanvasModelBase(StoryModel story, EntityEditorCanvasWithSimpleMapBase<T> canvas) : base(story)
+        private IEnumerable<T> entities;
+
+        protected EntityEditorWithSingleCanvasModelBase(StoryModel story, EntityEditorCanvasWithSimpleMapBase<T> canvas, IEnumerable<T> entities) : base(story)
         {
             this.Canvas = canvas;
+            this.entities = entities;
 
             this.MapGroup.SelectedMapChanged += (sender, e) =>
             {
                 this.Canvas.Map = this.MapGroup.SelectedMap;
                 this.Canvas.RequestRedraw(true);
             };
+
+            this.Canvas.SelectedEntityChanged += (sender, e) =>
+            {
+                this.SelectedEntity = e.NewValue;
+            };
+
+            this.Canvas.DrawUpdating += (sender, e) =>
+            {
+                // 現在削除された要素を追跡
+                var removedEntities = this.Canvas.Map.Elements.Select(el => el.Entity).Except(entities).ToArray();
+                foreach (var entity in removedEntities)
+                {
+                    var element = this.Canvas.Map.Elements.SingleOrDefault(el => el.Entity == entity);
+                    if (element != null)
+                    {
+                        this.Canvas.Map.Elements.Remove(element);
+                    }
+                }
+            };
+        }
+
+        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other) : this(other.Story, other.Canvas, other.entities)
+        {
+            this._mapGroup = other._mapGroup;
         }
     }
 
+    public interface IRelationSelectable<E1, E2>
+        where E1 : Entity where E2 : Entity
+    {
+        EntityRelateBase<E1, E2> SelectedRelation { get; set; }
+    }
+
     [DataContract]
-    public abstract class EntityEditorWithEachRelationModelBase<T> : EntityEditorWithSingleCanvasModelBase<T>
+    public abstract class EntityEditorWithEachRelationModelBase<T> : EntityEditorWithSingleCanvasModelBase<T>, IRelationSelectable<T, T>
         where T : Entity
     {
         /// <summary>
@@ -117,19 +173,44 @@ namespace StoryCanvas.Shared.Models.Editor
         public EntityRelateBase<T, T> SelectedRelation
         {
             get => this._selectedRelation;
-            protected set
+            set
             {
                 if (this._selectedRelation?.Id != value?.Id)
                 {
+                    var old = this._selectedRelation;
                     this._selectedRelation = value;
                     this.OnPropertyChanged();
+                    this.RelationSelectionChanged?.Invoke(this, new ValueChangedEventArgs<EntityRelateBase<T, T>>
+                    {
+                        OldValue = old,
+                        NewValue = value,
+                    });
                 }
             }
         }
         private EntityRelateBase<T, T> _selectedRelation;
 
-        protected EntityEditorWithEachRelationModelBase(StoryModel story, EntityEditorCanvasWithSimpleMapBase<T> canvas) : base(story, canvas)
+        protected EntityEditorWithEachRelationModelBase(StoryModel story, EntityEditorCanvasWithSimpleMapBase<T> canvas, IEnumerable<T> entities) : base(story, canvas, entities)
         {
+            this.Initialize();
         }
+
+        protected EntityEditorWithEachRelationModelBase(EntityEditorWithEachRelationModelBase<T> other) : base(other)
+        {
+            this.Initialize();
+        }
+
+        private void Initialize()
+        {
+            this.Canvas.SelectedRelationChanged += (sender, e) =>
+            {
+                this.SelectedRelation = e.NewValue;
+            };
+        }
+
+        /// <summary>
+        /// 関連付けの選択が変更された時に発行
+        /// </summary>
+        public event ValueChangedEventHandler<EntityRelateBase<T, T>> RelationSelectionChanged;
     }
 }

@@ -15,7 +15,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 	public delegate void EntityInsertedEventHandler<E>(int index, E entity) where E : IEntity;
 
 	[DataContract]
-	public class EntityListModel<E> : EntitySetModel<E>, IEnumerable<E>, IList<E>, IList, INotifyCollectionChanged where E : IEntity
+	public class EntityListModel<E> : EntitySetModel<E>, IEnumerable<E>, ICollection<E>, IList<E>, IList, INotifyCollectionChanged where E : IEntity
 	{
 		/// <summary>
 		/// 初期化

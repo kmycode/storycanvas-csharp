@@ -9,6 +9,7 @@ using StoryCanvas.Shared.Models.EntitySet;
 using StoryCanvas.Shared.Models.EntityRelate;
 using static StoryCanvas.Shared.ViewTools.ControlModels.TreeListViewControlModel;
 using StoryCanvas.Shared.Common;
+using System.Collections.ObjectModel;
 
 namespace StoryCanvas.Shared.Models.Entities
 {
@@ -156,24 +157,14 @@ namespace StoryCanvas.Shared.Models.Entities
 		/// <summary>
 		/// 関連付けられた人物
 		/// </summary>
-		public IEnumerable<PersonPersonEntityRelate> RelatedPeople
+		public ObservableCollection<PersonPersonEntityRelate> RelatedPeople
 		{
 			get
 			{
-				return this.StoryModel.FindRelatedPeople(this).OrderBy((relate) => relate.NotFocusedEntity.Order);
+                return this._relatedPeople = this._relatedPeople ?? new ObservableCollection<PersonPersonEntityRelate>();
 			}
 		}
-
-		/// <summary>
-		/// 関連付けられていない人物
-		/// </summary>
-		public IEnumerable<PersonEntity> NotRelatedPeople
-		{
-			get
-			{
-				return this.StoryModel.FindNotRelatedPeople(this);
-			}
-		}
+        private ObservableCollection<PersonPersonEntityRelate> _relatedPeople;
 
 		/// <summary>
 		/// 関連付けられた集団
@@ -294,6 +285,18 @@ namespace StoryCanvas.Shared.Models.Entities
 					this.DeathDay == null;
 			}
 		}
+
+        /// <summary>
+        /// 関連付け内容を更新する
+        /// </summary>
+        public void UpdateRelations()
+        {
+            this.RelatedPeople.Clear();
+            this.RelatedPeople.AddRange(this.StoryModel.PersonPersonRelation
+                                                       .FindRelated(this)
+                                                       .Cast<PersonPersonEntityRelate>()
+                                                       .OrderBy(relate => relate.NotFocusedEntity.Order));
+        }
 
 		/// <summary>
 		/// 検索

@@ -36,12 +36,12 @@
 
         <!-- 操作するバー -->
         <StackPanel Grid.ColumnSpan="2" Height="48" Background="#dfdfdf" Orientation="Horizontal">
-            <ToggleButton Style="{StaticResource EditBarToggleButtonStyle}">
+            <RadioButton Style="{StaticResource ToggleRadioButtonStyle}" GroupName="EditPageGroup" IsChecked="True">
                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8FD;" Width="48"/>
-            </ToggleButton>
-            <ToggleButton x:Name="CanvasToggle" Style="{StaticResource EditBarToggleButtonStyle}">
+            </RadioButton>
+            <RadioButton x:Name="CanvasToggle" Style="{StaticResource ToggleRadioButtonStyle}" GroupName="EditPageGroup">
                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80A;" Width="48"/>
-            </ToggleButton>
+            </RadioButton>
             <ComboBox Width="300" VerticalAlignment="Stretch"
                       ItemsSource="{Binding Editor.MapGroup.Maps}"
                       SelectedItem="{Binding Editor.MapGroup.SelectedMap,Mode=TwoWay}"

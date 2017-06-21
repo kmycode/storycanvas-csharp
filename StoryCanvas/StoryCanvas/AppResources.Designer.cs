@@ -431,6 +431,15 @@ namespace StoryCanvas {
         }
         
         /// <summary>
+        ///   Do you delete this relation? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DeleteRelationMessage {
+            get {
+                return ResourceManager.GetString("DeleteRelationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Edit に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Edit {

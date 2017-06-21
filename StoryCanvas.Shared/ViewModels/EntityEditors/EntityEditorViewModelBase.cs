@@ -39,41 +39,11 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditors
         /// </summary>
         public EntityRelateBase<T, T> SelectedRelation
         {
-            get => this._selectedRelation;
-            set
-            {
-                if (this._selectedRelation != value)
-                {
-                    this._selectedRelation = value;
-                    this.OnPropertyChanged();
-                }
-            }
+            get => (this.Editor as IRelationSelectable<T, T>)?.SelectedRelation;
         }
-        private EntityRelateBase<T, T> _selectedRelation;
-
-        /// <summary>
-        /// 関連付けが選択されているか
-        /// </summary>
-        public bool IsRelationSelected
-        {
-            get => this._isRelationSelected;
-            private set
-            {
-                if (this._isRelationSelected != value)
-                {
-                    this._isRelationSelected = value;
-                    this.OnPropertyChanged();
-                }
-            }
-        }
-        private bool _isRelationSelected;
 
         protected EntityEditorWithEachRelationViewModelBase(EntityEditorModelBase<T> model) : base(model)
         {
-            this.Editor.PropertyChanged += (sender, e) =>
-            {
-                this.IsRelationSelected = this.SelectedRelation != null;
-            };
         }
     }
 }

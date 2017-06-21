@@ -133,6 +133,15 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             return elements.LastOrDefault(e => e.X < x && x < e.X + e.ViewWidth && e.Y < y && y < e.Y + e.ViewHeight);
         }
 
+        /// <summary>
+        /// 指定座標上に存在する関連付けを探して検出する
+        /// </summary>
+        /// <typeparam name="E">エンティティの型</typeparam>
+        /// <param name="elements">エンティティの入った複数の要素</param>
+        /// <param name="relations">関連付けの入った複数の要素</param>
+        /// <param name="x">調べる座標X</param>
+        /// <param name="y">調べる座標Y</param>
+        /// <returns>検出された関連付け。なければNULL</returns>
         public (EntityRelateBase<E, E> Relation, MapEntityElement<E> A, MapEntityElement<E> B)
             GetEntityRelationFromPosition<E>(IEnumerable<MapEntityElement<E>> elements, IEnumerable<EntityRelateBase<E, E>> relations, double x, double y)
             where E : Entity

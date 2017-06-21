@@ -77,6 +77,7 @@ namespace StoryCanvas.Shared.View.Paint
                         using (var tf = CanvasUtil.LoadFont())
                         {
                             paint.Typeface = tf;
+                            this.DrawUpdating?.Invoke(this, EventArgs.Empty);
                             this.DrawUpdate(buffer.Canvas, paint);
                         }
                     }
@@ -202,5 +203,10 @@ namespace StoryCanvas.Shared.View.Paint
         /// 再描画が要求された時に発行
         /// </summary>
         public event EventHandler RedrawRequested;
+
+        /// <summary>
+        /// 描画を更新する前に発行
+        /// </summary>
+        public event EventHandler DrawUpdating;
     }
 }

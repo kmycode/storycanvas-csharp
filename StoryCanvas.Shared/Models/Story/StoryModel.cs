@@ -59,27 +59,6 @@ namespace StoryCanvas.Shared.Models.Story
 		{
 			this.Initialize(default(StreamingContext));
 			this.Initialize2(default(StreamingContext));
-
-			// コレクションをマルチスレッドでサポート
-			/*
-#if WPF
-			BindingOperations.EnableCollectionSynchronization(this.People, new object());
-			BindingOperations.EnableCollectionSynchronization(this.Scenes, new object());
-			BindingOperations.EnableCollectionSynchronization(this.Chapters, new object());
-			BindingOperations.EnableCollectionSynchronization(this.Sexes, new object());
-			BindingOperations.EnableCollectionSynchronization(this.Parameters, new object());
-			BindingOperations.EnableCollectionSynchronization(this.Memoes, new object());
-			BindingOperations.EnableCollectionSynchronization(this.PersonParameterRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.PersonPersonRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.PersonSceneRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.PlaceSceneRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.SceneChapterRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.SexPersonRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.WordPersonRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.WordSceneRelates, new object());
-			BindingOperations.EnableCollectionSynchronization(this.GroupPersonRelates, new object());
-#endif
-*/
 		}
 
 		[OnDeserializing]
@@ -375,6 +354,29 @@ namespace StoryCanvas.Shared.Models.Story
 				Color = new ColorResource { R = 0x00, G = 0x80, B = 0x00 },
 			});
 			this.PersonSceneRelates.Add(new PersonSceneEntityRelate(this.People[1], this.Scenes[3]));
+            this.Groups.Add(new GroupEntity
+            {
+                Name = "学生",
+                Children =
+                {
+                    new GroupEntity
+                    {
+                        Name = "１年生",
+                    },
+                    new GroupEntity
+                    {
+                        Name = "２年生",
+                    },
+                    new GroupEntity
+                    {
+                        Name = "３年生",
+                    },
+                },
+            });
+            this.Groups.Add(new GroupEntity
+            {
+                Name = "先生",
+            });
 
             // 人物のマップ
             this._personEditorModel = new PersonEditorModel(this);
@@ -1274,7 +1276,7 @@ namespace StoryCanvas.Shared.Models.Story
                 {
                     this._personEditorModel = new PersonEditorModel(this);
                 }
-                return this._personEditorModel;
+                return new PersonEditorModel(this._personEditorModel);
             }
         }
 

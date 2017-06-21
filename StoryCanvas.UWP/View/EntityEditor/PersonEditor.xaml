@@ -3,10 +3,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StoryCanvas.UWP.View.EntityEditor"
+    xmlns:vm="using:StoryCanvas.Shared.ViewModels.EntityEditControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cc="using:StoryCanvas.UWP.View.Control"
     xmlns:cvu="using:StoryCanvas.UWP.Converters"
+    xmlns:i="using:Microsoft.Xaml.Interactivity" 
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:b="using:StoryCanvas.UWP.Behaviors"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -15,33 +19,101 @@
     <UserControl.Resources>
         <cvu:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConv"/>
         <cvu:Boolean2NegativeVisibilityConverter x:Key="Boolean2NegativeVisibilityConv"/>
+        <cvu:ColorResource2BrushConverter x:Key="ColorResource2BrushConv"/>
     </UserControl.Resources>
 
-    <StackPanel DataContext="{Binding Entity,ElementName=PersonEditorSelf}" Padding="16">
-        <TextBlock FontSize="28" Text="{Binding Name}" Margin="0,0,0,48" TextWrapping="Wrap"/>
+    <StackPanel x:Name="MainPanel">
 
-        <cc:EditRow RowName="{CustomResource FirstName}" Visibility="{Binding IsWesternerName,Converter={StaticResource Boolean2VisibilityConv}}">
-            <cc:EditRow.EditColumn>
-                <TextBox Text="{Binding FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </cc:EditRow.EditColumn>
-        </cc:EditRow>
+        <StackPanel.DataContext>
+            <vm:PersonEditControlViewModel/>
+        </StackPanel.DataContext>
 
-        <cc:EditRow RowName="{CustomResource LastName}">
-            <cc:EditRow.EditColumn>
-                <TextBox Text="{Binding LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </cc:EditRow.EditColumn>
-        </cc:EditRow>
+        <!-- エンティティの名前 -->
+        <TextBlock FontSize="28" Text="{Binding Entity.Name}" Margin="16,16,16,24" TextWrapping="Wrap"/>
+        
+        <!-- 編集モード選択 -->
+        <StackPanel Orientation="Horizontal" Height="48" Margin="0,0,0,12" Padding="16,0,16,0">
+            <RadioButton x:Name="EditRadio" Style="{StaticResource ToggleRadioButtonStyle}" GroupName="EditEntityGroup" IsChecked="True">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE104;" Width="48"/>
+            </RadioButton>
+            <RadioButton x:Name="RelationRadio" Style="{StaticResource ToggleRadioButtonStyle}" GroupName="EditEntityGroup">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE73F;" Width="48"/>
+            </RadioButton>
+        </StackPanel>
 
-        <cc:EditRow RowName="{CustomResource FirstName}" Visibility="{Binding IsWesternerName,Converter={StaticResource Boolean2NegativeVisibilityConv}}">
-            <cc:EditRow.EditColumn>
-                <TextBox Text="{Binding FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </cc:EditRow.EditColumn>
-        </cc:EditRow>
+        <ScrollViewer Padding="16,0,16,16">
+            <StackPanel>
+                <!-- プリセットの編集項目 -->
+                <StackPanel Visibility="{Binding IsChecked,ElementName=EditRadio,Converter={StaticResource Boolean2VisibilityConv}}">
+                    <cc:EditRow RowName="{CustomResource FirstName}" Visibility="{Binding Entity.IsWesternerName,Converter={StaticResource Boolean2VisibilityConv}}">
+                        <cc:EditRow.EditColumn>
+                            <TextBox Text="{Binding Entity.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
 
-        <cc:EditRow RowName="{CustomResource IsWesternerName}">
-            <cc:EditRow.EditColumn>
-                <ToggleSwitch IsOn="{Binding IsWesternerName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-            </cc:EditRow.EditColumn>
-        </cc:EditRow>
+                    <cc:EditRow RowName="{CustomResource LastName}">
+                        <cc:EditRow.EditColumn>
+                            <TextBox Text="{Binding Entity.LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+
+                    <cc:EditRow RowName="{CustomResource FirstName}" Visibility="{Binding Entity.IsWesternerName,Converter={StaticResource Boolean2NegativeVisibilityConv}}">
+                        <cc:EditRow.EditColumn>
+                            <TextBox Text="{Binding Entity.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+
+                    <cc:EditRow RowName="{CustomResource IsWesternerName}">
+                        <cc:EditRow.EditColumn>
+                            <ToggleSwitch IsOn="{Binding Entity.IsWesternerName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+                </StackPanel>
+
+                <!-- 関連付け -->
+                <StackPanel Visibility="{Binding IsChecked,ElementName=RelationRadio,Converter={StaticResource Boolean2VisibilityConv}}">
+                    <ItemsControl ItemsSource="{Binding Entity.RelatedPeople}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Border Background="{Binding NotFocusedEntity.Color,Converter={StaticResource ColorResource2BrushConv}}">
+                                            <cc:StreamImage Stream="{Binding NotFocusedEntity.DisplayIcon.ImageStream}"
+                                                            Width="48" Height="48"/>
+                                        </Border>
+                                        <TextBlock Grid.Column="1" Text="{Binding NotFocusedEntity.Name}"
+                                                   VerticalAlignment="Center" FontSize="20"/>
+                                        <Button Grid.Column="2" Width="36" Padding="2" Background="Transparent">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Width="32"/>
+                                            <i:Interaction.Behaviors>
+                                                <b:PromptBehavior Command="{Binding DataContext.RemovePersonPersonRelationCommand,ElementName=MainPanel}"
+                                                                  CommandParameter="{Binding}"
+                                                                  Message="{CustomResource DeleteRelationMessage}"/>
+                                            </i:Interaction.Behaviors>
+                                        </Button>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{CustomResource CallingName}" VerticalAlignment="Center"/>
+                                        <TextBox Grid.Column="1" Text="{Binding FocusedPersonCallNotFocused,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                    </Grid>
+                                    <TextBlock Text="{CustomResource Note}"/>
+                                    <TextBox AcceptsReturn="True" TextWrapping="Wrap" MinHeight="76" Text="{Binding Note,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </StackPanel>
 </UserControl>

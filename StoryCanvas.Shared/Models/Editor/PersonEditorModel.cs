@@ -5,6 +5,7 @@ using StoryCanvas.Shared.Models.Story;
 using StoryCanvas.Shared.View.Paint;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -16,17 +17,12 @@ namespace StoryCanvas.Shared.Models.Editor
     [DataContract]
     public class PersonEditorModel : EntityEditorWithEachRelationModelBase<PersonEntity>
     {
-        public PersonEditorModel(StoryModel story) : base(story, new PersonMapCanvas(story.PersonPersonRelation))
+        public PersonEditorModel(StoryModel story) : base(story, new PersonMapCanvas(story.PersonPersonRelation), story.People)
         {
-            this.Canvas.SelectedEntityChanged += (sender, e) =>
-            {
-                this.SelectedEntity = e.NewValue;
-            };
+        }
 
-            this.Canvas.SelectedRelationChanged += (sender, e) =>
-            {
-                this.SelectedRelation = e.NewValue;
-            };
+        public PersonEditorModel(PersonEditorModel other) : base(other)
+        {
         }
     }
 }

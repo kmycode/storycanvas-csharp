@@ -15,6 +15,10 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditors
     {
         public PersonEditorViewModel() : base(StoryModel.Current.PersonEditorModel)
         {
+            this.Editor.EntitySelectionChanged += (sender, e) =>
+            {
+                this.SelectedEntity?.UpdateRelations();
+            };
         }
     }
 }

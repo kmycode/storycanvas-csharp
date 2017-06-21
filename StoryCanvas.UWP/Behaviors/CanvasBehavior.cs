@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xaml.Interactivity;
 using SkiaSharp;
 using StoryCanvas.Shared.View.Paint;
+using StoryCanvas.UWP.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -169,28 +170,16 @@ namespace StoryCanvas.UWP.Behaviors
 
                 // 描画結果を画面に反映
                 var stream = surface.Snapshot().Encode().AsStream();
-                var data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                var bmp = new BitmapImage();
-                using (var rstream = new InMemoryRandomAccessStream())
-                {
-                    Task.Run(async () =>
-                    {
-                        await rstream.WriteAsync(data.AsBuffer());
-                    }).Wait();
-                    rstream.Seek(0);
-                    bmp.SetSource(rstream);
-                }
 
                 if (this.AssociatedObject.Child is Image img)
                 {
-                    img.Source = bmp;
+                    img.Source = stream.ToImageSource();
                 }
                 else
                 {
                     this.AssociatedObject.Child = new Image
                     {
-                        Source = bmp,
+                        Source = stream.ToImageSource(),
                         Stretch = Stretch.None,
                         HorizontalAlignment = HorizontalAlignment.Left,
                     };

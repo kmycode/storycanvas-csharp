@@ -97,7 +97,9 @@
     </Compile>
     <Compile Include="Behaviors\CanvasBehavior.cs" />
     <Compile Include="Behaviors\MainModeFrameBehavior.cs" />
+    <Compile Include="Behaviors\PromptBehavior.cs" />
     <Compile Include="Converters\Boolean2VisibilityConverter.cs" />
+    <Compile Include="Converters\ColorResource2BrushConverter.cs" />
     <Compile Include="Converters\EnumEquals2VisibilityConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -107,12 +109,16 @@
     <Compile Include="View\Control\EditRow.xaml.cs">
       <DependentUpon>EditRow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Control\StreamImage.xaml.cs">
+      <DependentUpon>StreamImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EntityEditor\PersonEditor.xaml.cs">
       <DependentUpon>PersonEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Frame\EditPersonPage.xaml.cs">
       <DependentUpon>EditPersonPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -172,7 +178,16 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Styles\RadioButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="View\Control\EditRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Control\StreamImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

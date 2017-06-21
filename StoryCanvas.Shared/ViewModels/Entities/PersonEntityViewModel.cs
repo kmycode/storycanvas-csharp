@@ -270,17 +270,6 @@ namespace StoryCanvas.Shared.ViewModels.Entities
 		}
 
 		/// <summary>
-		/// 関連付けられていない人物のリスト
-		/// </summary>
-		public IEnumerable<PersonEntity> NotRelatedPeople
-		{
-			get
-			{
-				return this.Entity.NotRelatedPeople;
-			}
-		}
-
-		/// <summary>
 		/// 人物との関連付けを追加
 		/// </summary>
 		private RelayCommand _addPersonRelationCommand;
@@ -345,7 +334,7 @@ namespace StoryCanvas.Shared.ViewModels.Entities
 							AddCommand = this.AddPersonRelationCommand,
 							RemoveCommand = this.RemovePersonRelationCommand,
 							RelatedEntityItemsGetter = () => this.RelatedPeople,
-							NotRelatedEntitiesGetter = () => this.NotRelatedPeople,
+							NotRelatedEntitiesGetter = () => throw new NotSupportedException(),
 							RelatedEntityItemSelection = new EntitySelectionModelWrapper<IRelationEntity, PersonPersonEntityRelate>(this._relatedPersonSelection),
 							EntityForRelateSelection = new EntitySelectionModelWrapper<Entity, PersonEntity>(this._forRelatePersonSelection),
 						}));
