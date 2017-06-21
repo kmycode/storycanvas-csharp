@@ -197,6 +197,24 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         {
             this.Map = other.Map;
         }
+
+        /// <summary>
+        /// マップにエンティティを追加する
+        /// </summary>
+        /// <param name="entity">追加するエンティティ</param>
+        public void AddEntity(T entity)
+        {
+            if (this.Map != null && !this.Map.Elements.Any(el => el.Entity == entity))
+            {
+                this.Map.Elements.Add(new MapEntityElement<T>
+                {
+                    Entity = entity,
+                    X = (int)this.X < 0 ? 0 : (int)this.X,
+                    Y = (int)this.Y < 0 ? 0 : (int)this.Y,
+                });
+                this.InvalidateSurface();
+            }
+        }
     }
 
     static class EntityEditorCanvasUtil

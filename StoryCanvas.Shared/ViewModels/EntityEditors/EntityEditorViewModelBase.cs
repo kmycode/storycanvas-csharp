@@ -39,6 +39,7 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditors
         public T SelectedEntity
         {
             get => this.Editor.SelectedEntity;
+            set => this.Editor.SelectedEntity = value;
         }
 
         /// <summary>

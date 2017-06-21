@@ -402,6 +402,7 @@ namespace StoryCanvas.Shared.Models.Story
                 X = 130,
                 Y = 210,
             });
+            map.Elements.RemoveAt(2);
             this._personEditorModel.MapGroup.Maps.Add(map);
             this._personEditorModel.MapGroup.SelectedMap = map;
 

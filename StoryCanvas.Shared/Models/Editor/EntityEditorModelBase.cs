@@ -27,7 +27,7 @@ namespace StoryCanvas.Shared.Models.Editor
         public T SelectedEntity
         {
             get => this._selectedEntity;
-            protected set
+            set
             {
                 if (this._selectedEntity?.Id != value?.Id)
                 {
@@ -118,12 +118,12 @@ namespace StoryCanvas.Shared.Models.Editor
         /// </summary>
         public EntityEditorCanvasWithSimpleMapBase<T> Canvas { get; }
 
-        private IEnumerable<T> entities;
+        public IEnumerable<T> Entities { get; }
 
         protected EntityEditorWithSingleCanvasModelBase(StoryModel story, EntityEditorCanvasWithSimpleMapBase<T> canvas, IEnumerable<T> entities) : base(story)
         {
             this.Canvas = canvas;
-            this.entities = entities;
+            this.Entities = entities;
 
             this.MapGroup.SelectedMapChanged += (sender, e) =>
             {
@@ -150,7 +150,7 @@ namespace StoryCanvas.Shared.Models.Editor
             };
         }
 
-        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other, EntityEditorCanvasWithSimpleMapBase<T> canvas) : this(other.Story, canvas, other.entities)
+        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other, EntityEditorCanvasWithSimpleMapBase<T> canvas) : this(other.Story, canvas, other.Entities)
         {
             this._mapGroup = other._mapGroup;
             this.UpdateMapSelection();

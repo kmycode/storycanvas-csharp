@@ -57,16 +57,35 @@
         </StackPanel>
         
         <!-- 一覧 -->
-        <ListBox Grid.Row="1" ItemsSource="{Binding Story.People}"
+        <ListBox Grid.Row="1" ItemsSource="{Binding Editor.Entities}"
+                 SelectedItem="{Binding SelectedEntity,Mode=TwoWay}"
                  Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2NegativeVisibilityConv}}"/>
 
         <!-- キャンバス -->
-        <Border Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
-            <i:Interaction.Behaviors>
-                <b:CanvasBehavior Canvas="{Binding Editor.Canvas}"/>
-            </i:Interaction.Behaviors>
-        </Border>
+        <Grid Grid.Row="1"
+              Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2VisibilityConv}}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <i:Interaction.Behaviors>
+                    <b:CanvasBehavior Canvas="{Binding Editor.Canvas}"/>
+                </i:Interaction.Behaviors>
+            </Border>
+            
+            <!-- キャンバス下のコマンドバー -->
+            <StackPanel Grid.Row="1" Height="48" Orientation="Horizontal" Background="#dfdfdf"
+                        Visibility="{Binding IsSelectOnlyMode,Converter={StaticResource Boolean2NegativeVisibilityConv}}">
+                <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding AddExistsEntityCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" Width="48"/>
+
+                    <i:Interaction.Behaviors>
+                        <b:EntitySelectionBehavior Helper="{Binding AddExistsEntitySelector}" EntityType="Person"/>
+                    </i:Interaction.Behaviors>
+                </Button>
+            </StackPanel>
+        </Grid>
 
         <!-- 編集部分 -->
         <Grid Grid.Column="1" Grid.Row="1" Background="#ececec"
