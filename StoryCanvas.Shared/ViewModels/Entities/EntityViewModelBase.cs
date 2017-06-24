@@ -196,21 +196,6 @@ namespace StoryCanvas.Shared.ViewModels.Entities
 		}
 
 		/// <summary>
-		/// エンティティの順番
-		/// </summary>
-		public long Order
-		{
-			get
-			{
-				return this.Entity.Order;
-			}
-			set
-			{
-				this.Entity.Order = value;
-			}
-		}
-
-		/// <summary>
 		/// ノート
 		/// </summary>
 		public string Note

@@ -36,11 +36,18 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// </summary>
 		public event EntitySetChangedEventHandler<E> EntitySetChanged;
 
-		/// <summary>
-		/// エンティティを追加
-		/// </summary>
-		/// <param name="entity">追加するエンティティ</param>
-		public abstract void Add(E entity);
+        /// <summary>
+        /// エンティティを追加
+        /// </summary>
+        /// <param name="entity">追加するエンティティ</param>
+        public void Add(E entity) => this.Add(entity, default(E));
+
+        /// <summary>
+        /// エンティティを追加
+        /// </summary>
+        /// <param name="entity">追加するエンティティ</param>
+        /// <param name="willNext">１つ次のエンティティ。nullなら一番最後に追加</param>
+        public abstract void Add(E entity, E willNext);
 
 		/// <summary>
 		/// エンティティが追加された時のイベント
@@ -115,49 +122,6 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// エンティティの数を取得する
 		/// </summary>
 		public abstract int Count { get; }
-
-		/// <summary>
-		/// エンティティの順番を1つずつ足し算してずらす（ひき算するメソッドは、orderの仕様上意味が無いので作らない）
-		/// ただし、指定したエンティティ（startEntity）がリストに登録されていない場合、そのエンティティに対しては処理を行わない
-		/// </summary>
-		/// <param name="list">処理を行う対象のリスト</param>
-		/// <param name="startEntity">指定するエンティティ。リスト内になくても構わないが、その時はこのエンティティに対しては処理は行われない。orderの値がこのエンティティのもの以上であるエンティティに対して処理される</param>
-		[Obsolete("順番を+1するだけなので、複数のリストが存在するときなど、場合によっては同じ順番のエンティティが複数できる原因になるかも")]
-		public static void ShiftOrder(ObservableCollection<E> list, E startEntity)
-		{
-			long baseOrder = startEntity.Order;
-			var items = from item in list
-						where item.Order >= baseOrder
-						select item;
-			foreach (E item in items)
-			{
-				item.Order++;
-			}
-		}
-
-		/// <summary>
-		/// エンティティの順番を1つずつずらす。次のエンティティの順番番号を採用し、次のエンティティはそのまた次のエンティティの、の繰り返し。
-		/// 最後のエンティティは、別途指定した順番番号を採用する
-		/// </summary>
-		/// <param name="list">処理を行う対象のリスト</param>
-		/// <param name="startEntity">順番をずらす最初のエンティティ。リスト内になくても構わないが、そのときはこのエンティティに対しても処理が行われるので注意</param>
-		/// <param name="lastOrder">最後のエンティティに適用する順番番号。最後のエンティティの現在の順番より大きい必要がある</param>
-		public static void ShiftOrder(ObservableCollection<E> list, E startEntity, long lastOrder)
-		{
-			E prevItem = startEntity;
-			long baseOrder = startEntity.Order;
-			var items = from item in list
-						where item.Order >= baseOrder
-						select item;
-			foreach (E item in items)
-			{
-				prevItem.Order = item.Order;
-				prevItem = item;
-			}
-
-			// 最後の要素に対して実行
-			prevItem.Order = lastOrder;
-		}
 
 		#region IEnumerable
 

@@ -15,7 +15,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 	public delegate void EntityInsertedEventHandler<E>(int index, E entity) where E : IEntity;
 
 	[DataContract]
-	public class EntityListModel<E> : EntitySetModel<E>, IEnumerable<E>, ICollection<E>, IList<E>, IList, INotifyCollectionChanged where E : IEntity
+	public class EntityListModel<E> : EntitySetModel<E>, IEnumerable<E>, ICollection<E>, INotifyCollectionChanged where E : IEntity
 	{
 		/// <summary>
 		/// 初期化
@@ -57,15 +57,14 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// </summary>
 		[DataMember]
 		private ObservableCollection<E> _entities;
-		protected ObservableCollection<E> Entities
-		{
-			get
-			{
-				return this._entities;
-			}
-		}
+        protected ObservableCollection<E> Entities => this._entities;
 
-		#region IList
+        /// <summary>
+        /// エンティティリスト（XAMLで使う専用。UWPではINotifyCollectionChangedの実装だけでは画面上に変更が反映されず、ObservableCollectionのまま使う必要がある）
+        /// </summary>
+        public object Observable => this._entities;
+
+		#region IEnumerable
 
 		public override IEnumerator<E> GetEnumerator()
 		{
@@ -77,55 +76,6 @@ namespace StoryCanvas.Shared.Models.EntitySet
 			return ((IEnumerable<E>)this.Entities).GetEnumerator();
 		}
 
-		public void RemoveAt(int index)
-		{
-			((IList<E>)this.Entities).RemoveAt(index);
-		}
-
-		public void CopyTo(E[] array, int arrayIndex)
-		{
-			((IList<E>)this.Entities).CopyTo(array, arrayIndex);
-		}
-
-		bool ICollection<E>.Remove(E item)
-		{
-			return ((IList<E>)this.Entities).Remove(item);
-		}
-
-		public bool IsReadOnly
-		{
-			get
-			{
-				return ((IList<E>)this.Entities).IsReadOnly;
-			}
-		}
-
-		E IList<E>.this[int index]
-		{
-			get
-			{
-				return ((IList<E>)this.Entities)[index];
-			}
-
-			set
-			{
-				((IList<E>)this.Entities)[index] = value;
-			}
-		}
-
-		public E this[int index]
-		{
-			get
-			{
-				return ((IList<E>)this.Entities)[index];
-			}
-
-			set
-			{
-				((IList<E>)this.Entities)[index] = value;
-			}
-		}
-
 		#endregion
 
 		#region INotifyCollectionChanged
@@ -135,62 +85,29 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		#endregion
 
 		/// <summary>
-		/// エンティティを、順番通りの位置に追加
-		/// 例えば、Order=(1,3,5)のリストにOrder=4のエンティティを追加する時、
-		/// 結果はOrder=(1,3,4,5)になる
-		/// </summary>
-		/// <param name="entity">追加するエンティティ</param>
-		private void InsertByOrder(E entity)
-		{
-			// そもそも同じ順番のエンティティが存在しないか
-			foreach (E item in this.Entities)
-			{
-				if (entity.Order == item.Order)
-				{
-					entity.Order = Entity.GetNewEntityID();
-					break;
-				}
-			}
-
-			// 挿入位置直後のエンティティを特定
-			int index = 0;
-			foreach (E item in this.Entities)
-			{
-				if (item.Order > entity.Order)
-				{
-					break;
-				}
-				index++;
-			}
-
-			// 挿入
-			this.Entities.Insert(index, entity);
-		}
-
-		/// <summary>
 		/// エンティティを追加
 		/// </summary>
 		/// <param name="entity">追加するエンティティ</param>
-		public override void Add(E entity)
-		{
-			this.Add_Private(entity);
-		}
-		private void Add_Private(E entity)
-		{
-			this.InsertByOrder(entity);
-		}
-
-		/// <summary>
-		/// 指定した配列の内容をすべて追加する
-		/// </summary>
-		/// <param name="collection">追加する配列</param>
-		public void AddRange(ICollection<E> collection)
-		{
-			foreach (E item in collection)
-			{
-				this.Add_Private(item);
-			}
-		}
+        /// <param name="willNext">次となるエンティティ</param>
+		public override void Add(E entity, E willNext)
+        {
+            if (willNext != null)
+            {
+                var index = this.Entities.IndexOf(willNext);
+                if (index < 0)
+                {
+                    this.Entities.Add(entity);
+                }
+                else
+                {
+                    this.Entities.Insert(index - 1, entity);
+                }
+            }
+            else
+            {
+                this.Entities.Add(entity);
+            }
+        }
 
 		/// <summary>
 		/// エンティティを所定箇所に挿入
@@ -199,33 +116,17 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// <param name="entity">挿入するエンティティ</param>
 		public void Insert(int index, E entity)
 		{
-			this.Insert_Private(index, entity);
+			this.Entities.Insert(index, entity);
 		}
 		public void Insert(E afterEntity, E entity)
 		{
 			int index = afterEntity != null ? this.IndexOf(afterEntity) : this.Count;
-			this.Insert_Private(index >= 0 ? index : this.Count, entity);
+			this.Entities.Insert(index >= 0 ? index : this.Count, entity);
 		}
 		public void InsertAndDown(E prevEntity, E entity)
 		{
 			this.Insert(prevEntity, entity);
 			this.Down(entity);
-		}
-		private void Insert_Private(int index, E entity)
-		{
-			if (this.Entities.Count <= index)
-			{
-				this.Add(entity);
-				return;
-			}
-
-			E target = this.Entities[index];
-			long entityOrder = target.Order;
-			long lastOrder = target.Order > this.Entities.Last().Order ? target.Order : Entity.GetNewEntityID();
-			this.ShiftOrder(target, lastOrder);
-
-			entity.Order = entityOrder;
-			this.InsertByOrder(entity);
 		}
 
 		/// <summary>
@@ -281,10 +182,9 @@ namespace StoryCanvas.Shared.Models.EntitySet
 
 			if (target != null)
 			{
-				// エンティティを並べ替え
-				entity.ReplaceOrder(target);
-				this.Remove_Private(target);
-				this.Add_Private(target);
+                // エンティティを並べ替え
+                this.Entities.Remove(entity);
+				this.Add(entity, target);
 			}
 		}
 
@@ -299,34 +199,20 @@ namespace StoryCanvas.Shared.Models.EntitySet
 
 			if (target != null)
 			{
-				// エンティティを並べ替え
-				entity.ReplaceOrder(target);
-				this.Remove_Private(target);
-				this.Add_Private(target);
-			}
-		}
+                target = this.Next(entity);
+                this.Entities.Remove(entity);
 
-		/// <summary>
-		/// エンティティの順番を1つずつ足し算してずらす（ひき算するメソッドは、orderの仕様上意味が無いので作らない）
-		/// ただし、指定したエンティティ（startEntity）がリストに登録されていない場合、そのエンティティに対しては処理を行わない
-		/// </summary>
-		/// <param name="startEntity">指定するエンティティ。orderの値がこのエンティティのもの以上であるエンティティに対して処理される</param>
-		[Obsolete]
-		public virtual void ShiftOrder(E startEntity)
-		{
-			EntitySetModel<E>.ShiftOrder(this.Entities, startEntity);
-		}
-
-		/// <summary>
-		/// エンティティの順番を1つずつずらす。次のエンティティの順番番号を採用し、次のエンティティはそのまた次のエンティティの、の繰り返し。
-		/// 最後のエンティティは、別途指定した順番番号を採用する
-		/// </summary>
-		/// <param name="list">処理を行う対象のリスト</param>
-		/// <param name="startEntity">順番をずらす最初のエンティティ。リスト内になくても構わないが、そのときはこのエンティティに対しても処理が行われるので注意</param>
-		/// <param name="lastOrder">最後のエンティティに適用する順番番号。最後のエンティティの現在の順番より大きい必要がある</param>
-		public virtual void ShiftOrder(E startEntity, long lastOrder)
-		{
-			EntitySetModel<E>.ShiftOrder(this.Entities, startEntity, lastOrder);
+                if (target != null)
+                {
+                    // エンティティを並べ替え
+                    this.Add(entity, target);
+                }
+                else
+                {
+                    // エンティティを最後に移動
+                    this.Add(entity);
+                }
+            }
 		}
 
 		/// <summary>
@@ -376,12 +262,24 @@ namespace StoryCanvas.Shared.Models.EntitySet
 			return default(E);
 		}
 
-		#region ラップ
+        #region ラップ
 
-		/// <summary>
-		/// エンティティの数を取得
-		/// </summary>
-		public override int Count
+        public E this[int index]
+        {
+            get
+            {
+                return this.Entities[index];
+            }
+            set
+            {
+                this.Entities[index] = value;
+            }
+        }
+
+        /// <summary>
+        /// エンティティの数を取得
+        /// </summary>
+        public override int Count
 		{
 			get
 			{
@@ -389,12 +287,14 @@ namespace StoryCanvas.Shared.Models.EntitySet
 			}
 		}
 
-		/// <summary>
-		/// エンティティを検索
-		/// </summary>
-		/// <param name="entity">検索するエンティティ</param>
-		/// <returns>インデクス番号</returns>
-		public int IndexOf(E entity)
+        public bool IsReadOnly => ((ICollection<E>)this._entities).IsReadOnly;
+
+        /// <summary>
+        /// エンティティを検索
+        /// </summary>
+        /// <param name="entity">検索するエンティティ</param>
+        /// <returns>インデクス番号</returns>
+        public int IndexOf(E entity)
 		{
 			return this.Entities.IndexOf(entity);
 		}
@@ -458,90 +358,16 @@ namespace StoryCanvas.Shared.Models.EntitySet
 			this.CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 		}
 
-		#endregion
+        public void CopyTo(E[] array, int arrayIndex)
+        {
+            ((ICollection<E>)this._entities).CopyTo(array, arrayIndex);
+        }
 
-		#region IList
+        bool ICollection<E>.Remove(E item)
+        {
+            return ((ICollection<E>)this._entities).Remove(item);
+        }
 
-		public bool IsFixedSize
-		{
-			get
-			{
-				return ((IList)this.Entities).IsFixedSize;
-			}
-		}
-
-		public bool IsSynchronized
-		{
-			get
-			{
-				return ((IList)this.Entities).IsSynchronized;
-			}
-		}
-
-		public object SyncRoot
-		{
-			get
-			{
-				return ((IList)this.Entities).SyncRoot;
-			}
-		}
-
-		object IList.this[int index]
-		{
-			get
-			{
-				return ((IList)this.Entities)[index];
-			}
-
-			set
-			{
-				((IList)this.Entities)[index] = value;
-			}
-		}
-
-		public int Add(object value)
-		{
-			if (value is E)
-			{
-				this.InsertByOrder((E)value);
-			}
-			return -1;
-			//return ((IList)this.Entities).Add(value);
-		}
-
-		public bool Contains(object value)
-		{
-			return ((IList)this.Entities).Contains(value);
-		}
-
-		public int IndexOf(object value)
-		{
-			return ((IList)this.Entities).IndexOf(value);
-		}
-
-		public void Insert(int index, object value)
-		{
-			if (value is E)
-			{
-				this.Insert(index, (E)value);
-			}
-			//((IList)this.Entities).Insert(index, value);
-		}
-
-		public void Remove(object value)
-		{
-			if (value is E)
-			{
-				this.Remove_EntityListModel((E)value);
-			}
-			//((IList)this.Entities).Remove(value);
-		}
-
-		public void CopyTo(Array array, int index)
-		{
-			((IList)this.Entities).CopyTo(array, index);
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }

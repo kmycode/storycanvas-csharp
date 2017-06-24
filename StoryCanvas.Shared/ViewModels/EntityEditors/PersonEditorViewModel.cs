@@ -22,7 +22,7 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditors
         /// </summary>
         public SelectEntityHelper<PersonEntity> AddExistsEntitySelector { get; } = new SelectEntityHelper<PersonEntity>();
 
-        public PersonEditorViewModel() : base(StoryModel.Current.PersonEditorModel)
+        public PersonEditorViewModel() : base(StoryModel.Current.PersonEditorModel, StoryModel.Current.People)
         {
             this.Editor.EntitySelectionChanged += (sender, e) =>
             {

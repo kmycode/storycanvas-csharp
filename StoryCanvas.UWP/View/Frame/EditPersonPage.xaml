@@ -36,7 +36,7 @@
 
         <!-- 操作するバー -->
         <StackPanel Grid.ColumnSpan="2" Height="48" Background="#dfdfdf" Orientation="Horizontal">
-            <RadioButton Style="{StaticResource ToggleRadioButtonStyle}" GroupName="EditPageGroup" IsChecked="True">
+            <RadioButton x:Name="ListToggle" Style="{StaticResource ToggleRadioButtonStyle}" GroupName="EditPageGroup" IsChecked="True">
                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8FD;" Width="48"/>
             </RadioButton>
             <RadioButton x:Name="CanvasToggle" Style="{StaticResource ToggleRadioButtonStyle}" GroupName="EditPageGroup">
@@ -57,9 +57,37 @@
         </StackPanel>
         
         <!-- 一覧 -->
-        <ListBox Grid.Row="1" ItemsSource="{Binding Editor.Entities}"
-                 SelectedItem="{Binding SelectedEntity,Mode=TwoWay}"
-                 Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2NegativeVisibilityConv}}"/>
+        <Grid Grid.Row="1"
+              Visibility="{Binding IsChecked,ElementName=ListToggle,Converter={StaticResource Boolean2VisibilityConv}}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <ListBox ItemsSource="{Binding Editor.Entities.Observable}"
+                     SelectedItem="{Binding SelectedEntity,Mode=TwoWay}"
+                     Visibility="{Binding IsChecked,ElementName=CanvasToggle,Converter={StaticResource Boolean2NegativeVisibilityConv}}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Height="24">
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- 一覧下のコマンドバー -->
+            <StackPanel Grid.Row="1" Height="48" Orientation="Horizontal" Background="#dfdfdf"
+                        Visibility="{Binding IsSelectOnlyMode,Converter={StaticResource Boolean2NegativeVisibilityConv}}">
+                <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding AddCommand}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" Width="48"/>
+                </Button>
+                <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding RemoveCommand}"
+                        Visibility="{Binding IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE738;" Width="48"/>
+                </Button>
+            </StackPanel>
+        </Grid>
 
         <!-- キャンバス -->
         <Grid Grid.Row="1"
@@ -78,7 +106,7 @@
             <StackPanel Grid.Row="1" Height="48" Orientation="Horizontal" Background="#dfdfdf"
                         Visibility="{Binding IsSelectOnlyMode,Converter={StaticResource Boolean2NegativeVisibilityConv}}">
                 <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding AddExistsEntityCommand}">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" Width="48"/>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8B5;" Width="48"/>
 
                     <i:Interaction.Behaviors>
                         <b:EntitySelectionBehavior Helper="{Binding AddExistsEntitySelector}" EntityType="Person"/>

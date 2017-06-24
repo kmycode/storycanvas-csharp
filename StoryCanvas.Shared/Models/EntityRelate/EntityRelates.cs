@@ -515,13 +515,6 @@ namespace StoryCanvas.Shared.Models.EntityRelate
 			}
 		}
 
-		public void ReplaceOrder(IEntity other)
-		{
-			long tmp = this.Order;
-			this.Order = other.Order;
-			other.Order = tmp;
-		}
-
 		[DataMember]
 		private EntityReferenceModel<E1> _entity1 = new EntityReferenceModel<E1>();
 		public E1 Entity1

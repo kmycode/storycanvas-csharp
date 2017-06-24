@@ -137,9 +137,7 @@ namespace StoryCanvas.Shared.ViewModels.Editors
 				if (this.SelectedChapter != null)
 				{
 					var relates = this.StoryModel.SceneChapterRelation.FindRelated(this.SelectedChapter);
-					return from item in relates
-						   orderby item.Entity1.Order
-						   select new SceneRelatedItem(item.Entity1);
+					return relates.Select(r => new SceneRelatedItem(r.Entity1));
 				}
 				return null;
 			}

@@ -40,7 +40,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		{
 			get
 			{
-				return StoryModel.Current.PersonSceneRelation.FindRelated(this.Scene).OrderBy((relate) => relate.Entity1.Order);
+                return StoryModel.Current.PersonSceneRelation.FindRelated(this.Scene);
 			}
 		}
 
@@ -51,7 +51,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		{
 			get
 			{
-				return StoryModel.Current.PlaceSceneRelation.FindRelated(this.Scene).OrderBy((relate) => relate.Entity1.Order);
+                return StoryModel.Current.PlaceSceneRelation.FindRelated(this.Scene);
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		{
 			get
 			{
-				return StoryModel.Current.SceneChapterRelation.FindRelated(this.Scene).OrderBy((relate) => relate.Entity2.Order);
+                return StoryModel.Current.SceneChapterRelation.FindRelated(this.Scene);
 			}
 		}
 

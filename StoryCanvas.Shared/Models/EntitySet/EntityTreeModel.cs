@@ -62,10 +62,17 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// エンティティをルートに追加
 		/// </summary>
 		/// <param name="entity">追加するエンティティ</param>
-		public override void Add(E entity)
+		public override void Add(E entity, E willNext)
 		{
-			this.Add(entity, this.Root);
-		}
+            if (willNext == null)
+            {
+                this.Add(entity, this.Root);
+            }
+            else
+            {
+                this.Insert(willNext, entity, (E)willNext.Parent ?? this.Root);
+            }
+        }
 
 		/// <summary>
 		/// ルートで、指定したエンティティの前に、新しいエンティティを挿入
@@ -92,7 +99,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// </summary>
 		/// <param name="entity">追加するエンティティ</param>
 		/// <param name="parent">追加するエンティティの新しい親</param>
-		public void Add(E entity, E parent)
+		public void AddAsChild(E entity, E parent)
 		{
 			if (parent == null)
 			{
@@ -227,19 +234,8 @@ namespace StoryCanvas.Shared.Models.EntitySet
 				return false;
 			}
 
-			// ひとつ順番が上のものを探す
-			E target = (E)entity.Parent.Children.Back(entity);
-
-			// 置換
-			if (target != null)
-			{
-				// EntityListModelがエンティティのOrderを見てくれるので、ここからはRemoveとAddをするだけでいい
-				entity.ReplaceOrder(target);
-				entity.Parent.Children.Remove(target);
-				entity.Parent.Children.Add(target);
-				return true;
-			}
-			return false;
+            entity.Parent.Children.Up(entity);
+			return true;
 		}
 
 		/// <summary>
@@ -253,12 +249,9 @@ namespace StoryCanvas.Shared.Models.EntitySet
 				return false;
 			}
 
-			// ひとつ順番が下のものを探す
-			E target = (E)entity.Parent.Children.Next(entity);
-
-			// 置換
-			return this.Up(target);
-		}
+            entity.Parent.Children.Down(entity);
+            return true;
+        }
 
 		/// <summary>
 		/// 指定エンティティをリストの右へ移動。ひとつ兄上のエンティティの子にする
@@ -279,7 +272,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 			}
 
 			// ひとつ前のエンティティを取得して処理
-			E newParent = (E)entity.Parent.Children[index - 1];
+			E newParent = (E)entity.Parent.Children.ElementAt(index - 1);
 			newParent.Children.Add(entity);
 			return true;
 		}

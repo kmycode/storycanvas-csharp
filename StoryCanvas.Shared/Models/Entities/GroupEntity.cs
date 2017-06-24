@@ -38,7 +38,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.GroupPersonRelation.FindRelated(this).OrderBy((relate) => relate.Entity2.Order);
+				return this.StoryModel.GroupPersonRelation.FindRelated(this);
 			}
 		}
 

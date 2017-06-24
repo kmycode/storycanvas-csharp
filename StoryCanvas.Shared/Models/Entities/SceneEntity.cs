@@ -158,7 +158,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.PersonSceneRelation.FindRelated(this).OrderBy((relate) => relate.Entity1.Order);
+                return this.StoryModel.PersonSceneRelation.FindRelated(this);
 			}
 		}
 
@@ -180,7 +180,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.PlaceSceneRelation.FindRelated(this).OrderBy((relate) => relate.Entity1.Order);
+                return this.StoryModel.PlaceSceneRelation.FindRelated(this);
 			}
 		}
 
@@ -213,7 +213,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.SceneChapterRelation.FindRelated(this).OrderBy((relate) => relate.Entity2.Order);
+                return this.StoryModel.SceneChapterRelation.FindRelated(this);
 			}
 		}
 
@@ -235,7 +235,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.WordSceneRelation.FindRelated(this).OrderBy((relate) => relate.Entity1.Order);
+                return this.StoryModel.WordSceneRelation.FindRelated(this);
 			}
 		}
 

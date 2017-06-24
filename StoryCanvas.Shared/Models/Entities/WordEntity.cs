@@ -18,7 +18,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.WordPersonRelation.FindRelated(this).OrderBy((relate) => relate.Entity2.Order);
+                return this.StoryModel.WordPersonRelation.FindRelated(this);
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.WordSceneRelation.FindRelated(this).OrderBy((relate) => relate.Entity2.Order);
+                return this.StoryModel.WordSceneRelation.FindRelated(this);
 			}
 		}
 

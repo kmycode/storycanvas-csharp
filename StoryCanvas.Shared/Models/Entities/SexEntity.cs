@@ -29,11 +29,12 @@ namespace StoryCanvas.Shared.Models.Entities
 		}
 		public static SexEntity NewMale()
 		{
-			var entity = new SexEntity();
-			entity.Name = StringResourceResolver.Resolve("Male");
-			entity.Color = ColorResource.Blue;
-			entity.Order = 0;
-			return entity;
+            var entity = new SexEntity()
+            {
+                Name = StringResourceResolver.Resolve("Male"),
+                Color = ColorResource.Blue,
+            };
+            return entity;
 		}
 
 		/// <summary>
@@ -53,11 +54,12 @@ namespace StoryCanvas.Shared.Models.Entities
 		}
 		public static SexEntity NewFemale()
 		{
-			var entity = new SexEntity();
-			entity.Name = StringResourceResolver.Resolve("Female");
-			entity.Color = ColorResource.Red;
-			entity.Order = 1;
-			return entity;
+            var entity = new SexEntity()
+            {
+                Name = StringResourceResolver.Resolve("Female"),
+                Color = ColorResource.Red,
+            };
+            return entity;
 		}
 
 		/// <summary>

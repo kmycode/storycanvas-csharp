@@ -51,7 +51,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			get
 			{
-				return this.StoryModel.SceneChapterRelation.FindRelated(this).OrderBy((relate) => relate.Entity1.Order);
+				return this.StoryModel.SceneChapterRelation.FindRelated(this);
 			}
 		}
 
@@ -74,7 +74,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		public string GetScenesText(bool isNewline = true)
 		{
 			string result = "";
-			var sceneItems = from item in this.RelatedScenes orderby item.Entity1.Order select item;
+			var sceneItems = this.RelatedScenes;
 			foreach (var item in sceneItems)
 			{
 				result += item.Entity1.Text;

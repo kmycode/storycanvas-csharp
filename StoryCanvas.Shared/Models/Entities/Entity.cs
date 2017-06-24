@@ -15,7 +15,7 @@ namespace StoryCanvas.Shared.Models.Entities
 	public delegate void UpdateEntityOrderEventHandler(Entity entity);
 
 	[DataContract]
-	public abstract class Entity : IComparable<Entity>, INotifyPropertyChanged, IEntity
+	public abstract class Entity : INotifyPropertyChanged, IEntity
 	{
 		public static long EntityCount
 		{
@@ -134,33 +134,6 @@ namespace StoryCanvas.Shared.Models.Entities
 				this.OnPropertyChanged();
 			}
 		}
-
-		/// <summary>
-		/// エンティティの順番
-		/// </summary>
-		[DataMember]
-		private long _order;
-		public long Order
-		{
-			get
-			{
-				return this._order;
-			}
-			set
-			{
-				if (this._order != value)
-				{
-					this._order = value;
-					this.OrderChanged(this);
-					this.OnPropertyChanged();
-				}
-			}
-		}
-
-		/// <summary>
-		/// エンティティの順番が変更された時に発行
-		/// </summary>
-		public event UpdateEntityOrderEventHandler OrderChanged;
 
 		/// <summary>
 		/// エンティティの色
@@ -285,17 +258,6 @@ namespace StoryCanvas.Shared.Models.Entities
 		}
 
 		/// <summary>
-		/// 指定したエンティティの順番を入れ替え
-		/// </summary>
-		/// <param name="other">入れ替え対象</param>
-		public void ReplaceOrder(IEntity other)
-		{
-			long tmp = this.Order;
-			this.Order = other.Order;
-			other.Order = tmp;
-		}
-
-		/// <summary>
 		/// 検索して、結果をIsHitに格納する
 		/// </summary>
 		/// <param name="query">検索クエリ</param>
@@ -372,12 +334,9 @@ namespace StoryCanvas.Shared.Models.Entities
 		{
 			this._storyModel = new WeakReference<StoryModel>(null);
 
-			this.OrderChanged = delegate { };
-
 			this.StoryModel = Entity.CurrentStory;
 			long id = Entity.GetNewEntityID();			// ここに書くと、データをロードするたびに、既存要素の数だけIDを新規発行してしまう
 			this.Id = id;								// もちろんそれらのIDは後で上書きされるので使われることはない
-			this.Order = id;							// しかしここまで正しく動作しているので変えるのが怖いので置いておく
 			StoryModel.CurrentStoryChanged += Entity.SetupStory;
 		}
 
@@ -393,17 +352,7 @@ namespace StoryCanvas.Shared.Models.Entities
 		#endregion
 
 		#region 共通メソッド
-
-		/// <summary>
-		/// エンティティ同士を比較
-		/// </summary>
-		/// <param name="other">比較対象</param>
-		/// <returns>比較結果</returns>
-		public int CompareTo(Entity other)
-		{
-			return this.Order.CompareTo(other.Order);
-		}
-
+        
 		/// <summary>
 		/// エンティティの文字列を返す
 		/// </summary>
