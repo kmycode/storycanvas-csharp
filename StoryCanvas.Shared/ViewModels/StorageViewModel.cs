@@ -27,6 +27,12 @@ namespace StoryCanvas.Shared.ViewModels
             set => StorageUtil.CurrentStorage = value;
         }
 
+        public string SlotComment
+        {
+            get => StoryModel.Current.StoryConfig.Comment;
+            set => StoryModel.Current.StoryConfig.Comment = value;
+        }
+
 		public StorageViewModel()
 		{
             StorageUtil.CurrentStorageChanged += (sender, e) =>
@@ -76,6 +82,7 @@ namespace StoryCanvas.Shared.ViewModels
 				return this._loadCommand = this._loadCommand ?? new RelayCommand<ISlot>((slot) =>
                 {
                     StoryModel.Current.Load(slot);
+                    this.OnPropertyChanged(nameof(SlotComment));
                 });
 			}
 		}

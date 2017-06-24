@@ -45,6 +45,7 @@ namespace StoryCanvas.Shared.Models.IO
 
         public async Task SaveAsync(T obj)
         {
+            this.Slot.LastModified = DateTime.Now;
             await this.Slot.File.SaveAsync(obj);
         }
 

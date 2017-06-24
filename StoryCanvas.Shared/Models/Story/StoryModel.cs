@@ -1286,6 +1286,8 @@ namespace StoryCanvas.Shared.Models.Story
         {
             try
             {
+                slot.Name = this.StoryConfig.Title;
+                slot.Comment = this.StoryConfig.Comment;
                 this.storySaveService.SaveAsync(this, slot).ConfigureAwait(false);
             }
             catch

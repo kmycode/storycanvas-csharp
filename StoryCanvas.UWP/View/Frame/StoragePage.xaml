@@ -39,7 +39,7 @@
                 <StackPanel>
                     <TextBlock Text="{CustomResource IsOverwriteSlotMessage}"/>
                     <TextBlock Text="{CustomResource Comment}"/>
-                    <TextBox Text="{Binding Storage.SelectedWorkspace.SelectedSlot.Comment,Mode=TwoWay}"/>
+                    <TextBox Text="{Binding SlotComment,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </ContentDialog>
         </Grid>
