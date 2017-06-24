@@ -98,6 +98,46 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditors
             }
         }
         private RelayCommand _removeCommand;
+
+        /// <summary>
+        /// エンティティを上に移動するコマンド
+        /// </summary>
+        public RelayCommand UpCommand
+        {
+            get
+            {
+                return this._upCommand = this._upCommand ?? new RelayCommand((obj) =>
+                {
+                    if (this.SelectedEntity != null)
+                    {
+                        var afterSelection = this.SelectedEntity;
+                        this.entitySet.Up(this.SelectedEntity);
+                        this.SelectedEntity = afterSelection;
+                    }
+                });
+            }
+        }
+        private RelayCommand _upCommand;
+
+        /// <summary>
+        /// エンティティを下に移動するコマンド
+        /// </summary>
+        public RelayCommand DownCommand
+        {
+            get
+            {
+                return this._downCommand = this._downCommand ?? new RelayCommand((obj) =>
+                {
+                    if (this.SelectedEntity != null)
+                    {
+                        var afterSelection = this.SelectedEntity;
+                        this.entitySet.Down(this.SelectedEntity);
+                        this.SelectedEntity = afterSelection;
+                    }
+                });
+            }
+        }
+        private RelayCommand _downCommand;
     }
 
     public class EntityEditorWithEachRelationViewModelBase<E> : EntityEditorViewModelBase<E>

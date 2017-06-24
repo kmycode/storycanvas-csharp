@@ -86,6 +86,14 @@
                         Visibility="{Binding IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE738;" Width="48"/>
                 </Button>
+                <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding UpCommand}"
+                        Visibility="{Binding IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74A;" Width="48"/>
+                </Button>
+                <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding DownCommand}"
+                        Visibility="{Binding IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74B;" Width="48"/>
+                </Button>
             </StackPanel>
         </Grid>
 

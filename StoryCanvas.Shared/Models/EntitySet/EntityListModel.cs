@@ -100,7 +100,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
                 }
                 else
                 {
-                    this.Entities.Insert(index - 1, entity);
+                    this.Entities.Insert(index, entity);
                 }
             }
             else
@@ -175,7 +175,7 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// 指定エンティティをリストの上へ移動
 		/// </summary>
 		/// <param name="entity">指定エンティティ</param>
-		public void Up(E entity)
+		public override void Up(E entity)
 		{
 			// ひとつ順番が上のものを探す
 			E target = this.Back(entity);
@@ -192,14 +192,14 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// 指定エンティティをリストの下へ移動
 		/// </summary>
 		/// <param name="entity">指定エンティティ</param>
-		public void Down(E entity)
+		public override void Down(E entity)
 		{
 			// ひとつ順番が下のものを探す
 			E target = this.Next(entity);
 
 			if (target != null)
 			{
-                target = this.Next(entity);
+                target = this.Next(target);
                 this.Entities.Remove(entity);
 
                 if (target != null)
@@ -215,12 +215,20 @@ namespace StoryCanvas.Shared.Models.EntitySet
             }
 		}
 
-		/// <summary>
-		/// 指定のエンティティの1つ前のorderのエンティティを取得
-		/// </summary>
-		/// <param name="entity">エンティティ</param>
-		/// <returns>1つ前のorderのエンティティ</returns>
-		public E Back(E entity)
+        public override void Left(E entity)
+        {
+        }
+
+        public override void Right(E entity)
+        {
+        }
+
+        /// <summary>
+        /// 指定のエンティティの1つ前のorderのエンティティを取得
+        /// </summary>
+        /// <param name="entity">エンティティ</param>
+        /// <returns>1つ前のorderのエンティティ</returns>
+        public E Back(E entity)
 		{
 			int index = this.Entities.IndexOf(entity) - 1;
 			if (index < 0)
@@ -366,6 +374,11 @@ namespace StoryCanvas.Shared.Models.EntitySet
         bool ICollection<E>.Remove(E item)
         {
             return ((ICollection<E>)this._entities).Remove(item);
+        }
+
+        public void Clear()
+        {
+            ((ICollection<E>)this._entities).Clear();
         }
 
         #endregion

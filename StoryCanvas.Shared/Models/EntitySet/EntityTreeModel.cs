@@ -227,65 +227,62 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// 指定エンティティをリストの上へ移動
 		/// </summary>
 		/// <param name="entity">指定エンティティ</param>
-		public bool Up(E entity)
+		public override void Up(E entity)
 		{
 			if (entity?.Parent == null)
 			{
-				return false;
+				return;
 			}
 
             entity.Parent.Children.Up(entity);
-			return true;
 		}
 
 		/// <summary>
 		/// 指定エンティティをリストの下へ移動
 		/// </summary>
 		/// <param name="entity">指定エンティティ</param>
-		public bool Down(E entity)
+		public override void Down(E entity)
 		{
 			if (entity?.Parent == null)
 			{
-				return false;
+                return;
 			}
 
             entity.Parent.Children.Down(entity);
-            return true;
         }
 
 		/// <summary>
 		/// 指定エンティティをリストの右へ移動。ひとつ兄上のエンティティの子にする
 		/// </summary>
 		/// <param name="entity">指定エンティティ</param>
-		public bool Right(E entity)
+		public override void Right(E entity)
 		{
 			if (entity?.Parent == null)
 			{
-				return false;
+                return;
 			}
 
 			// エンティティのインデクス番号を取得
 			int index = entity.Parent.Children.IndexOf(entity);
 			if (index < 1)
 			{
-				return false;
+                return;
 			}
 
 			// ひとつ前のエンティティを取得して処理
 			E newParent = (E)entity.Parent.Children.ElementAt(index - 1);
 			newParent.Children.Add(entity);
-			return true;
 		}
 
 		/// <summary>
 		/// 指定エンティティをリストの左へ移動。祖父のエンティティの子にする
 		/// </summary>
 		/// <param name="entity">指定エンティティ</param>
-		public bool Left(E entity)
+		public override void Left(E entity)
 		{
 			if (entity?.Parent?.Parent == null)
 			{
-				return false;
+				return;
 			}
 
 			// 親エンティティのインデクス番号を取得
@@ -293,7 +290,6 @@ namespace StoryCanvas.Shared.Models.EntitySet
 
 			// 挿入
 			this.Insert(index + 1, entity, (E)entity.Parent.Parent);
-			return true;
 		}
 
 		/// <summary>

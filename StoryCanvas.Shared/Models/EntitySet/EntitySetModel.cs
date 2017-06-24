@@ -69,9 +69,6 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// <param name="entity">削除するエンティティ</param>
 		public abstract void Remove(E entity);
 
-		[Obsolete("Deleteメソッドは、Removeメソッドに名前が変更になりました", true)]
-		public void Delete(E entity) { }
-
 		/// <summary>
 		/// これからエンティティが削除される時のイベント
 		/// </summary>
@@ -105,8 +102,29 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		/// </summary>
 		public abstract void RemoveAll();
 
-		[Obsolete("Clearメソッドは、RemoveAllメソッドに名前が変更になりました", true)]
-		public void Clear() { }
+        /// <summary>
+        /// エンティティを上へ移動
+        /// </summary>
+        /// <param name="entity">移動するエンティティ</param>
+        public abstract void Up(E entity);
+
+        /// <summary>
+        /// エンティティを下へ移動
+        /// </summary>
+        /// <param name="entity">移動するエンティティ</param>
+        public abstract void Down(E entity);
+
+        /// <summary>
+        /// エンティティを左へ移動
+        /// </summary>
+        /// <param name="entity">移動するエンティティ</param>
+        public abstract void Left(E entity);
+
+        /// <summary>
+        /// エンティティを右へ移動
+        /// </summary>
+        /// <param name="entity">移動するエンティティ</param>
+        public abstract void Right(E entity);
 
         /// <summary>
         /// 指定したIDのエンティティを取得する
@@ -114,9 +132,6 @@ namespace StoryCanvas.Shared.Models.EntitySet
         /// <param name="id">エンティティのID</param>
         /// <returns>エンティティ。見つからなければnull</returns>
         public abstract E FindId(long id);
-
-		[Obsolete("Getメソッドは、FindIdメソッドに名前が変更になりました", true)]
-		public E Get(long id) { return default(E); }
 
 		/// <summary>
 		/// エンティティの数を取得する
