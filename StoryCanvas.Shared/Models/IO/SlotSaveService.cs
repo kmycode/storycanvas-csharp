@@ -49,6 +49,14 @@ namespace StoryCanvas.Shared.Models.IO
             await this.Slot.File.SaveAsync(obj);
         }
 
+        public async Task AutoSaveAsync(T obj)
+        {
+            if (this.Slot != null)
+            {
+                await this.SaveAsync(obj);
+            }
+        }
+
         public async Task<T> LoadAsync(ISlot slot)
         {
             this.Slot = slot;

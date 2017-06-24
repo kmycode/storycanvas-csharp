@@ -666,4 +666,7 @@
   <data name="DeleteRelationMessage" xml:space="preserve">
     <value>この関連付けを削除しますか？</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
 </root>

@@ -675,4 +675,7 @@
   <data name="DeleteRelationMessage" xml:space="preserve">
     <value>Do you delete this relation?</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

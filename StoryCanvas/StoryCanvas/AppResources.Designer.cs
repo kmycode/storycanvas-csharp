@@ -494,6 +494,15 @@ namespace StoryCanvas {
         }
         
         /// <summary>
+        ///   Error に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Existing Slot に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ExistingSlot {

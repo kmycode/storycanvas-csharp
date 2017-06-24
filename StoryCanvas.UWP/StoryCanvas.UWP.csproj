@@ -98,6 +98,7 @@
     <Compile Include="Behaviors\CanvasBehavior.cs" />
     <Compile Include="Behaviors\ContentDialogBehavior.cs" />
     <Compile Include="Behaviors\EntitySelectionBehavior.cs" />
+    <Compile Include="Behaviors\ErrorMessageBehavior.cs" />
     <Compile Include="Behaviors\MainModeFrameBehavior.cs" />
     <Compile Include="Behaviors\PromptBehavior.cs" />
     <Compile Include="Converters\Boolean2VisibilityConverter.cs" />

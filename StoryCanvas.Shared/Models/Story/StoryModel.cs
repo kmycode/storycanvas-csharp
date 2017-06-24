@@ -28,6 +28,7 @@ using StoryCanvas.Shared.Models.IO;
 using StoryCanvas.Shared.Models.Network;
 using System.Collections.ObjectModel;
 using StoryCanvas.Shared.Models.Editor;
+using StoryCanvas.Shared.ViewTools.BehaviorHelpers;
 
 #if XAMARIN_FORMS
 using StoryCanvas.Messages.IO;
@@ -467,6 +468,18 @@ namespace StoryCanvas.Shared.Models.Story
 				this.OnPropertyChanged();
 			}
 		}
+
+        /// <summary>
+        /// エラーメッセージを表示するヘルパ
+        /// </summary>
+        public ErrorMessageHelper ErrorHelper
+        {
+            get
+            {
+                return this._errorHelper = this._errorHelper ?? new ErrorMessageHelper();
+            }
+        }
+        private ErrorMessageHelper _errorHelper;
 
 		#region INotifyPropertyChanged
 
@@ -1284,15 +1297,15 @@ namespace StoryCanvas.Shared.Models.Story
 
         public void Save(ISlot slot)
         {
-            try
+            slot.Name = this.StoryConfig.Title;
+            slot.Comment = this.StoryConfig.Comment;
+
+            var task = this.storySaveService.SaveAsync(this, slot);
+            task.ConfigureAwait(false);
+
+            if (task.Exception != null)
             {
-                slot.Name = this.StoryConfig.Title;
-                slot.Comment = this.StoryConfig.Comment;
-                this.storySaveService.SaveAsync(this, slot).ConfigureAwait(false);
-            }
-            catch
-            {
-                throw new NotImplementedException();
+                this.ErrorHelper.OnError(AppResources.UndefinedErrorMessage);
             }
         }
 
@@ -1306,7 +1319,7 @@ namespace StoryCanvas.Shared.Models.Story
             }
             catch
             {
-                throw new NotImplementedException();
+                this.ErrorHelper.OnError(AppResources.UndefinedErrorMessage);
             }
         }
 
@@ -1320,21 +1333,25 @@ namespace StoryCanvas.Shared.Models.Story
 		/// <summary>
 		/// ストーリーがこれから新規作成される時に呼び出されるイベント
 		/// </summary>
+        [Obsolete]
 		public event NewStoryCreatedEventHandler NewStoryCreating = delegate { };
 
 		/// <summary>
 		/// ストーリーが新規作成された時に呼び出されるイベント
 		/// </summary>
+        [Obsolete]
 		public event NewStoryCreatedEventHandler NewStoryCreated = delegate { };
 
 		/// <summary>
 		/// ストーリーの自動保存が要求された時に呼び出されるイベント
 		/// </summary>
+        [Obsolete]
 		public event AutoSaveRequestedEventHandler AutoSaveRequested = delegate { };
 
 		/// <summary>
 		/// 新規作成
 		/// </summary>
+        [Obsolete]
 		public void CreateNew()
 		{
 			lock (lockObject)
@@ -1353,10 +1370,20 @@ namespace StoryCanvas.Shared.Models.Story
 			}
 		}
 
+        /// <summary>
+        /// 新規作成
+        /// </summary>
+        public void Create()
+        {
+            this.Reset();
+            this.LoadStreamCompleted();
+        }
+
 		/// <summary>
 		/// ファイルを開く（本体）
 		/// </summary>
 		/// <param name="filePath">保存先のファイル名</param>
+        [Obsolete]
 		private void OpenFile(string filePath)
 		{
 			lock (lockObject)
@@ -1389,6 +1416,7 @@ namespace StoryCanvas.Shared.Models.Story
 #endif
 			}
 		}
+        [Obsolete]
 		public void LoadSlot(StorageSlotBase slot)
 		{
 			lock (lockObject)
@@ -1419,11 +1447,13 @@ namespace StoryCanvas.Shared.Models.Story
 		/// <summary>
 		/// スロットのロードが終わったことを通知
 		/// </summary>
+        [Obsolete]
 		public event EventHandler LoadSlotCompleted;
 
 		/// <summary>
 		/// スロットのセーブが終わったことを通知
 		/// </summary>
+        [Obsolete]
 		public event EventHandler SaveSlotCompleted;
 
 		private void ChangeStoryModel(StoryModel model)
@@ -1440,6 +1470,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// </summary>
 		/// <param name="filePath">保存先のファイル名</param>
 		/// <param name="isMessage">保存時にメッセージを出すか</param>
+        [Obsolete]
 		private void SaveFile(string filePath, bool isMessage = true)
 		{
 			lock (lockObject)
@@ -1479,6 +1510,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// <param name="slot">保存先スロット</param>
 		/// <param name="isMessage">保存時にメッセージを表示するか？</param>
 		/// <returns></returns>
+        [Obsolete]
 		public bool SaveSlot(StorageSlotBase slot, bool isMessage = true)
 		{
 			bool result = true;
@@ -1517,11 +1549,13 @@ namespace StoryCanvas.Shared.Models.Story
 		/// <summary>
 		/// 保存先のパス
 		/// </summary>
+        [Obsolete]
 		private string FilePath = null;
 
 		/// <summary>
 		/// 上書き保存
 		/// </summary>
+        [Obsolete]
 		public void SaveFile()
 		{
 #if WPF
@@ -1541,6 +1575,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// <summary>
 		/// 名前をつけて保存
 		/// </summary>
+        [Obsolete]
 		public void SaveAsFile()
 		{
 			var message = new SaveFilePickerMessage();
@@ -1556,6 +1591,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// <summary>
 		/// ファイルを開く
 		/// </summary>
+        [Obsolete]
 		public void OpenFile()
 		{
 #if WPF
@@ -1585,7 +1621,7 @@ namespace StoryCanvas.Shared.Models.Story
 					await Task.Delay(60 * 1000);
 					if (this.StoryConfig.IsAutoSave)
 					{
-						this.AutoSaveRequested(this, new EventArgs());
+                        await this.storySaveService.AutoSaveAsync(this);
 					}
 				}
 			});
@@ -1596,7 +1632,7 @@ namespace StoryCanvas.Shared.Models.Story
 		/// </summary>
 		public void Quit()
 		{
-			this.AutoSaveRequested(this, new EventArgs());
+            this.storySaveService.AutoSaveAsync(this).ConfigureAwait(false);
 		}
 
 		#endregion

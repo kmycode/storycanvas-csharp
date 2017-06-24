@@ -11,6 +11,7 @@ using StoryCanvas.Shared.Models.IO;
 using StoryCanvas.Shared.Models.Story;
 using StoryCanvas.Shared.Utils;
 using StoryCanvas.Shared.ViewTools;
+using StoryCanvas.Shared.ViewTools.BehaviorHelpers;
 
 namespace StoryCanvas.Shared.ViewModels
 {
@@ -32,6 +33,8 @@ namespace StoryCanvas.Shared.ViewModels
             get => StoryModel.Current.StoryConfig.Comment;
             set => StoryModel.Current.StoryConfig.Comment = value;
         }
+
+        public ErrorMessageHelper ErrorHelper => StoryModel.Current.ErrorHelper;
 
 		public StorageViewModel()
 		{
