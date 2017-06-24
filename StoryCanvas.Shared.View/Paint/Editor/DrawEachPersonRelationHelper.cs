@@ -33,28 +33,28 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             paint.TextSize = 14;
             paint.Color = SKColors.Black;
 
-            var text = r.Note.Length <= 20 ? r.Note : r.Note.Substring(0, 19) + "…";
-            var textBoxWidth = (text.Length + 1) * paint.TextSize;
+            var note = r.Note1.Length <= 20 ? r.Note1 : r.Note1.Substring(0, 19) + "…";
+            note = note.Replace("\n", "").Replace("\r", "");
+            var otherNote = r.Note2.Length <= 20 ? r.Note2 : r.Note2.Substring(0, 19) + "…";
+            otherNote = otherNote.Replace("\n", "").Replace("\r", "");
 
             // 関係を書くための座標を調べる
             var centerX = (element1.X + element2.X) / 2 + 50;
             var centerY = (element1.Y + element2.Y) / 2 + 50;
-            var leftTopX = centerX - textBoxWidth / 2;
             var leftTopY = centerY - 8;
-            if (leftTopX < 0) leftTopX = 0;
             if (leftTopY < 0) leftTopY = 0;
 
             // 関係を書く
-            if (!string.IsNullOrEmpty(r.Note))
+            if (!string.IsNullOrEmpty(r.Note1))
             {
-                this.DrawRelateNote(canvas, paint, r.Note, ((Entity)r.FocusedEntity).Color.ToSKColor(), centerX, leftTopY);
+                this.DrawRelateNote(canvas, paint, note, ((Entity)r.Entity1).Color.ToSKColor(), centerX, leftTopY);
             }
             leftTopY += (int)paint.TextSize + 4;
 
             // 関係その２
-            if (!string.IsNullOrEmpty(r.OtherNote))
+            if (!string.IsNullOrEmpty(r.Note2))
             {
-                this.DrawRelateNote(canvas, paint, r.OtherNote, ((Entity)r.NotFocusedEntity).Color.ToSKColor(), centerX, leftTopY);
+                this.DrawRelateNote(canvas, paint, otherNote, ((Entity)r.Entity2).Color.ToSKColor(), centerX, leftTopY);
             }
         }
 

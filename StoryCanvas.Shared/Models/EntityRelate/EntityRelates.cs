@@ -701,7 +701,7 @@ namespace StoryCanvas.Shared.Models.EntityRelate
             {
                 if (this.IsSameEntity(this.FocusedEntity, this.Entity1))
                 {
-                    return this._otherNote;
+                    return this._otherNote ?? "";
                 }
                 else if (this.IsSameEntity(this.FocusedEntity, this.Entity2))
                 {
@@ -723,6 +723,9 @@ namespace StoryCanvas.Shared.Models.EntityRelate
                 this.OnPropertyChanged("Note");
             }
         }
+
+        public string Note1 => base.Note ?? "";
+        public string Note2 => this._otherNote ?? "";
 
         private bool IsSameEntity(IEntity e1, IEntity e2)
 		{
