@@ -82,9 +82,12 @@
                 <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding AddCommand}">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE710;" Width="48"/>
                 </Button>
-                <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding RemoveCommand}"
+                <Button Background="Transparent" Width="48" Height="48" Padding="0"
                         Visibility="{Binding IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE738;" Width="48"/>
+                    <i:Interaction.Behaviors>
+                        <b:PromptBehavior Command="{Binding RemoveCommand}" Message="{CustomResource DeleteEntityMessage}"/>
+                    </i:Interaction.Behaviors>
                 </Button>
                 <Button Background="Transparent" Width="48" Height="48" Padding="0" Command="{Binding UpCommand}"
                         Visibility="{Binding IsEntitySelected,Converter={StaticResource Boolean2VisibilityConv}}">
