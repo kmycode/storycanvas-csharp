@@ -46,6 +46,9 @@ namespace StoryCanvas.UWP.Behaviors
                 case MainMode.EditPerson:
                     this.AssociatedObject.Navigate(typeof(EditPersonPage));
                     break;
+                case MainMode.StoragePage:
+                    this.AssociatedObject.Navigate(typeof(StoragePage));
+                    break;
             }
         }
 

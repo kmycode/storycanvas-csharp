@@ -2,6 +2,7 @@
 using StoryCanvas.Shared.Models.Editor.Map;
 using StoryCanvas.Shared.Models.Entities;
 using StoryCanvas.Shared.Models.EntityRelate;
+using StoryCanvas.Shared.Models.EntitySet;
 using StoryCanvas.Shared.Models.Story;
 using StoryCanvas.Shared.View.Paint.Editor;
 using System;
@@ -74,6 +75,10 @@ namespace StoryCanvas.Shared.Models.Editor
             {
                 this.IsEntitySelected = this.SelectedEntity != null;
             };
+        }
+
+        public virtual void CopyTo(EntityEditorModelBase<T> to)
+        {
         }
         
         /// <summary>
@@ -160,6 +165,22 @@ namespace StoryCanvas.Shared.Models.Editor
         {
             this.Canvas.Map = this.MapGroup.SelectedMap;
             this.Canvas.RequestRedraw(true);
+        }
+
+        public override void CopyTo(EntityEditorModelBase<T> to)
+        {
+            base.CopyTo(to);
+
+            if (to is EntityEditorWithSingleCanvasModelBase<T> too)
+            {
+                too.MapGroup.Maps.Clear();
+                too.MapGroup.Maps.AddRange(this.MapGroup.Maps);
+            }
+        }
+
+        public void LoadEntities(EntitySetModel<T> entities)
+        {
+            this.MapGroup.LoadEntities(entities);
         }
     }
 

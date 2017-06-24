@@ -101,12 +101,12 @@ namespace StoryCanvas.Shared.Models.EntitySet
 		[Obsolete("Clearメソッドは、RemoveAllメソッドに名前が変更になりました", true)]
 		public void Clear() { }
 
-		/// <summary>
-		/// 指定したIDのエンティティを取得する
-		/// </summary>
-		/// <param name="id">エンティティのID</param>
-		/// <returns>エンティティ。見つからなければnull</returns>
-		public abstract E FindId(long id);
+        /// <summary>
+        /// 指定したIDのエンティティを取得する
+        /// </summary>
+        /// <param name="id">エンティティのID</param>
+        /// <returns>エンティティ。見つからなければnull</returns>
+        public abstract E FindId(long id);
 
 		[Obsolete("Getメソッドは、FindIdメソッドに名前が変更になりました", true)]
 		public E Get(long id) { return default(E); }

@@ -10,18 +10,21 @@ namespace StoryCanvas.Shared.Models.IO
 {
     public class StorageWorkspace : StorageWorkspaceBase
 	{
-		/// <summary>
-		/// フォルダ
-		/// </summary>
-		protected IFolder Folder;
+        /// <summary>
+        /// フォルダ
+        /// </summary>
+        [Obsolete]
+        protected IFolder Folder;
 
-		public StorageWorkspace(int workspaceNumber, bool isReadOnly = false)
+        [Obsolete]
+        public StorageWorkspace(int workspaceNumber, bool isReadOnly = false)
 			: base(workspaceNumber, isReadOnly)
 		{
 			this.Initialize();
 		}
 
-		protected override void CreateWorkspaceFolder()
+        [Obsolete]
+        protected override void CreateWorkspaceFolder()
 		{
 			Func<Task> cmd = async () =>
 			{
@@ -42,7 +45,8 @@ namespace StoryCanvas.Shared.Models.IO
 			Task.Run(cmd).Wait();
 		}
 
-		protected override System.IO.Stream OpenIndexFile()
+        [Obsolete]
+        protected override System.IO.Stream OpenIndexFile()
 		{
 			System.IO.Stream stream = null;
 
@@ -57,12 +61,14 @@ namespace StoryCanvas.Shared.Models.IO
 			return stream;
 		}
 
-		protected override StorageSlotBase NewStorageSlot(int slotNum, string name, string comment, bool isReadOnly)
+        [Obsolete]
+        protected override StorageSlotBase NewStorageSlot(int slotNum, string name, string comment, bool isReadOnly)
 		{
 			return new StorageSlot(this.Folder, slotNum, name, comment, isReadOnly);
 		}
 
-		protected override void UpdateIndexFile()
+        [Obsolete]
+        protected override void UpdateIndexFile()
 		{
 			Func<Task> cmd = async () =>
 			{
@@ -112,6 +118,9 @@ namespace StoryCanvas.Shared.Models.IO
 
 			[DataMember]
 			public string SlotComment { get; set; }
+
+            [DataMember]
+            public DateTime LastModified { get; set; }
 		}
 	}
 }

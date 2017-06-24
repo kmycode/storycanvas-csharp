@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\CanvasBehavior.cs" />
+    <Compile Include="Behaviors\ContentDialogBehavior.cs" />
     <Compile Include="Behaviors\EntitySelectionBehavior.cs" />
     <Compile Include="Behaviors\MainModeFrameBehavior.cs" />
     <Compile Include="Behaviors\PromptBehavior.cs" />
@@ -118,6 +119,9 @@
     </Compile>
     <Compile Include="View\Frame\EditPersonPage.xaml.cs">
       <DependentUpon>EditPersonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frame\StoragePage.xaml.cs">
+      <DependentUpon>StoragePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ViewUtil.cs" />
   </ItemGroup>
@@ -200,6 +204,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Frame\StoragePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoryCanvas\StoryCanvas\StoryCanvas.csproj">
@@ -207,9 +215,7 @@
       <Name>StoryCanvas</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Paint\Editor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\StoryCanvas.Shared\StoryCanvas.Shared.projitems" Label="Shared" />
   <Import Project="..\Libraries\Libraries.projitems" Label="Shared" />
   <Import Project="..\StoryCanvas.Shared.View\StoryCanvas.Shared.View.projitems" Label="Shared" />

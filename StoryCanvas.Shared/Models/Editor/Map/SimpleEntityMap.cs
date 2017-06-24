@@ -1,4 +1,5 @@
 ﻿using StoryCanvas.Shared.Models.Entities;
+using StoryCanvas.Shared.Models.EntitySet;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,7 +14,7 @@ namespace StoryCanvas.Shared.Models.Editor.Map
     /// 編集画面のマップ１枚分
     /// </summary>
     [DataContract]
-    public class SimpleEntityMap<T> : INotifyPropertyChanged where T : Entity
+    public class SimpleEntityMap<E> : INotifyPropertyChanged where E : Entity
     {
         /// <summary>
         /// マップの名前
@@ -37,8 +38,16 @@ namespace StoryCanvas.Shared.Models.Editor.Map
         /// 画面に表示する要素群
         /// </summary>
         [DataMember]
-        private Collection<MapEntityElement<T>> _elements = new Collection<MapEntityElement<T>>();
-        public Collection<MapEntityElement<T>> Elements => this._elements;
+        private Collection<MapEntityElement<E>> _elements = new Collection<MapEntityElement<E>>();
+        public Collection<MapEntityElement<E>> Elements => this._elements;
+
+        public void LoadEntities(EntitySetModel<E> entities)
+        {
+            foreach (var el in this.Elements)
+            {
+                el._entity.FindEntity(entities);
+            }
+        }
         
         #region INotifyPropertyChanged
 

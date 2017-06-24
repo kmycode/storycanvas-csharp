@@ -7,6 +7,7 @@ using StoryCanvas.Shared.Common;
 
 namespace StoryCanvas.Shared.Models.IO
 {
+    [Obsolete]
     public abstract class StorageWorkspaceBase
 	{
 		private bool _isSlotsReadOnly;

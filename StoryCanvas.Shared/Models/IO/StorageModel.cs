@@ -24,6 +24,7 @@ namespace StoryCanvas.Shared.Models.IO
 		NetworkError,						// ネットワークエラー（一定時間経過後に再試行する）
 	}
 
+    [Obsolete]
     public class StorageModel : StorageModelBase
 	{
 		// シングルトン
@@ -83,86 +84,6 @@ namespace StoryCanvas.Shared.Models.IO
 		public override void Login()
 		{
 			this.HasLogined = true;
-			//throw new NotImplementedException();
-
-			/*
-			Func<Task> cmd = async () =>
-			{
-				var client = new DropNetRT.DropNetClient("6m0xdh0cknuc9jr", "tkv5uv2m51nbzjl");
-				var reqToken = await client.GetRequestToken();
-				Messenger.Default.Send(this, new Messages.Network.OpenUrlMessage(client.BuildAuthorizeUrl(reqToken)));
-
-				Task.Delay(5000).Wait();
-				client.UserLogin = await client.GetAccessToken();
-				using (var s = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("こんにちは")))
-					await client.Upload("/", "test.txt", s);
-			};
-			Task.Run(cmd).Wait();
-			*/
-			/*
-			Action cmd = () =>
-			{
-				var options = new OneDriveRestAPI.Options
-				{
-					ClientId = "ba74befd-5c70-49ad-8c87-caf7accc342f",
-					//ClientSecret = "49Jucm3FOJkrD6y5z1guhJr",
-					CallbackUrl = "https://login.live.com/oauth20_desktop.srf",
-
-					AutoRefreshTokens = true,
-					PrettyJson = false,
-					ReadRequestsPerSecond = 2,
-					WriteRequestsPerSecond = 2
-				};
-				var client = new OneDriveRestAPI.Client(options);
-				var authRequestUrl = client.GetAuthorizationRequestUrl(new[] {
-					OneDriveRestAPI.Model.Scope.Basic,
-					OneDriveRestAPI.Model.Scope.Signin,
-					OneDriveRestAPI.Model.Scope.SkyDrive,
-					OneDriveRestAPI.Model.Scope.SkyDriveUpdate,
-				});
-
-				//Messenger.Default.Send(this, new Messages.Network.OpenUrlMessage(authRequestUrl));
-				var browser = StoryCanvas.Shared.Utils.AutofacUtil.AuthBrowserProvider.OpenBrowser();
-				browser.GoToUrl(authRequestUrl);
-				browser.UrlChanged += async (sender, e) =>
-				{
-					var parameters = Utils.HttpUtil.GetUrlParameters(e.Url);
-					if (parameters.ContainsKey("code"))
-					{
-						var token = await client.GetAccessTokenAsync(parameters["code"]);
-						var options2 = new OneDriveRestAPI.Options
-						{
-							ClientId = "ba74befd-5c70-49ad-8c87-caf7accc342f",
-							ClientSecret = "49Jucm3FOJkrD6y5z1guhJr",
-							CallbackUrl = "https://login.live.com/oauth20_desktop.srf",
-							AccessToken = token.Access_Token,
-							RefreshToken = token.Refresh_Token,
-						};
-						var client2 = new OneDriveRestAPI.Client(options2);
-						var rootFolder = await client2.GetFolderAsync();
-						var contents = await client2.GetContentsAsync(rootFolder.Id);
-						bool existFlag = false;
-						OneDriveRestAPI.Model.File folder = null;
-						foreach (var c in contents)
-						{
-							if (c.Name == "StoryCanvasCloud")
-							{
-								existFlag = true;
-								folder = c;
-							}
-						}
-						if (!existFlag)
-						{
-							folder = await client2.CreateFolderAsync(rootFolder.Id, "StoryCanvasCloud", "StoryCanvas datas");
-						}
-						await client2.UploadAsync(folder.Id, new System.IO.MemoryStream(Encoding.UTF8.GetBytes("こんにちは")), "test.txt", OneDriveRestAPI.Model.OverwriteOption.Overwrite);
-
-						System.Windows.MessageBox.Show("完了");
-					}
-				};
-			};
-			cmd.Invoke();
-			*/
 		}
 
 		public override string ToString()

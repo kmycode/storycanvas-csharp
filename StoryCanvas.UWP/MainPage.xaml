@@ -152,6 +152,14 @@
                                 <TextBlock Text="{CustomResource Timeline}"/>
                             </StackPanel>
                         </ToggleButton>
+                        <ToggleButton Style="{StaticResource HumburgerMenuStyle}"
+                                    IsChecked="{Binding MainMode,Mode=TwoWay,Converter={StaticResource MainMode2BooleanConv},ConverterParameter=StoragePage}"
+                                    Command="{Binding MainModeSelectCommand}" CommandParameter="StoragePage">
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC50;" Width="44" Margin="0,0,4,0"/>
+                                <TextBlock Text="{CustomResource Storage}"/>
+                            </StackPanel>
+                        </ToggleButton>
                     </StackPanel>
                 </ScrollViewer>
             </SplitView.Pane>

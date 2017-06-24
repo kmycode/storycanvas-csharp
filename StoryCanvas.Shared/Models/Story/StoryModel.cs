@@ -380,10 +380,7 @@ namespace StoryCanvas.Shared.Models.Story
 
             // 人物のマップ
             this._personEditorModel = new PersonEditorModel(this);
-            var map = new Editor.Map.SimpleEntityMap<PersonEntity>()
-            {
-                Name = "Debug map",
-            };
+            var map = this._personEditorModel.MapGroup.SelectedMap;
             map.Elements.Add(new Editor.Map.MapEntityElement<PersonEntity>
             {
                 Entity = this.People[0],
@@ -403,8 +400,6 @@ namespace StoryCanvas.Shared.Models.Story
                 Y = 210,
             });
             map.Elements.RemoveAt(2);
-            this._personEditorModel.MapGroup.Maps.Add(map);
-            this._personEditorModel.MapGroup.SelectedMap = map;
 
             this.StoryConfig.Title = "サンプル小説";
 			this.StoryConfig.Comment = "これはサンプルです。";
@@ -1285,6 +1280,34 @@ namespace StoryCanvas.Shared.Models.Story
 
         #region ファイル
 
+        private SlotSaveService<StoryModel> storySaveService = new SlotSaveService<StoryModel>();
+
+        public void Save(ISlot slot)
+        {
+            try
+            {
+                this.storySaveService.SaveAsync(this, slot).ConfigureAwait(false);
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Load(ISlot slot)
+        {
+            try
+            {
+                var story = Task.Run(async () => await this.storySaveService.LoadAsync(slot)).Result;
+
+                this.ChangeStoryModel(story);
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         private SerializationModel Serialization = new SerializationModel();
 
 		/// <summary>
@@ -1728,6 +1751,9 @@ namespace StoryCanvas.Shared.Models.Story
 			this.ResetList(this.WordSceneRelates, o.WordSceneRelates);
 			this.EntityCount = o.EntityCount;
 			this.PersonParameterSelectCellCount = o.PersonParameterSelectCellCount;
+
+            o._personEditorModel.CopyTo(this._personEditorModel);
+            this._personEditorModel.LoadEntities(this.People);
 
 			this.StoryConfig = o.StoryConfig;
 		}

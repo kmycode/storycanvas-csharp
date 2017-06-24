@@ -14,6 +14,7 @@ using StoryCanvas.Shared.ViewTools;
 
 namespace StoryCanvas.Shared.Models.IO
 {
+    [Obsolete]
     public abstract class StorageModelBase : INotifyPropertyChanged
 	{
 		private static readonly object lockObject = new object();
