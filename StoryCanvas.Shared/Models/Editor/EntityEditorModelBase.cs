@@ -105,14 +105,14 @@ namespace StoryCanvas.Shared.Models.Editor
         /// マップデータ
         /// </summary>
         [DataMember]
-        private SimpleEntityMapGroup<T> _mapGroup;
-        public SimpleEntityMapGroup<T> MapGroup
+        private SingleEntityMapGroup<T> _mapGroup;
+        public SingleEntityMapGroup<T> MapGroup
         {
             get
             {
                 if (this._mapGroup == null)
                 {
-                    this._mapGroup = new SimpleEntityMapGroup<T>();
+                    this._mapGroup = new SingleEntityMapGroup<T>();
                 }
                 return this._mapGroup;
             }
@@ -121,11 +121,11 @@ namespace StoryCanvas.Shared.Models.Editor
         /// <summary>
         /// キャンバス
         /// </summary>
-        public EntityEditorCanvasWithSimpleMapBase<T> Canvas { get; }
+        public EntityEditorCanvasWithSingleEntityMapBase<T> Canvas { get; }
 
         public IEnumerable<T> Entities { get; }
 
-        protected EntityEditorWithSingleCanvasModelBase(StoryModel story, EntityEditorCanvasWithSimpleMapBase<T> canvas, IEnumerable<T> entities) : base(story)
+        protected EntityEditorWithSingleCanvasModelBase(StoryModel story, EntityEditorCanvasWithSingleEntityMapBase<T> canvas, IEnumerable<T> entities) : base(story)
         {
             this.Canvas = canvas;
             this.Entities = entities;
@@ -155,7 +155,7 @@ namespace StoryCanvas.Shared.Models.Editor
             };
         }
 
-        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other, EntityEditorCanvasWithSimpleMapBase<T> canvas) : this(other.Story, canvas, other.Entities)
+        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other, EntityEditorCanvasWithSingleEntityMapBase<T> canvas) : this(other.Story, canvas, other.Entities)
         {
             this._mapGroup = other._mapGroup;
             this.UpdateMapSelection();
@@ -217,12 +217,12 @@ namespace StoryCanvas.Shared.Models.Editor
         }
         private EntityRelateBase<T, T> _selectedRelation;
 
-        protected EntityEditorWithEachRelationModelBase(StoryModel story, EntityEditorCanvasWithSimpleMapBase<T> canvas, IEnumerable<T> entities) : base(story, canvas, entities)
+        protected EntityEditorWithEachRelationModelBase(StoryModel story, EntityEditorCanvasWithSingleEntityMapBase<T> canvas, IEnumerable<T> entities) : base(story, canvas, entities)
         {
             this.Initialize();
         }
 
-        protected EntityEditorWithEachRelationModelBase(EntityEditorWithEachRelationModelBase<T> other, EntityEditorCanvasWithSimpleMapBase<T> canvas) : base(other, canvas)
+        protected EntityEditorWithEachRelationModelBase(EntityEditorWithEachRelationModelBase<T> other, EntityEditorCanvasWithSingleEntityMapBase<T> canvas) : base(other, canvas)
         {
             this.Initialize();
         }

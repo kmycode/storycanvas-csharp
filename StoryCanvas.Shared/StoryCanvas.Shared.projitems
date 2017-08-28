@@ -66,11 +66,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryCalendar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryDate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryTime.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\SimpleEntityMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\SingleEntityMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\EntityEditorModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\MapElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\MapEntityElement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\SimpleEntityMapGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\SingleEntityMapGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\PersonEditorModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\MemoEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Entities\ChapterEntity.cs" />

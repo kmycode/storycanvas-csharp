@@ -180,20 +180,20 @@ namespace StoryCanvas.Shared.View.Paint.Editor
         public event ValueChangedEventHandler<EntityRelateBase<T, T>> SelectedRelationChanged;
     }
 
-    public class EntityEditorCanvasWithSimpleMapBase<T> : EntityEditorCanvasBase<T>
+    public class EntityEditorCanvasWithSingleEntityMapBase<T> : EntityEditorCanvasBase<T>
         where T : Entity
     {
-        public SimpleEntityMap<T> Map
+        public SingleEntityMap<T> Map
         {
-            get => ((SimpleEntityMapCanvasContainer<T>)this.Container).Map;
-            set => ((SimpleEntityMapCanvasContainer<T>)this.Container).Map = value;
+            get => ((SingleEntityMapCanvasContainer<T>)this.Container).Map;
+            set => ((SingleEntityMapCanvasContainer<T>)this.Container).Map = value;
         }
 
-        public EntityEditorCanvasWithSimpleMapBase(IEntityEditorCanvasContainer<T> container) : base(container)
+        public EntityEditorCanvasWithSingleEntityMapBase(IEntityEditorCanvasContainer<T> container) : base(container)
         {
         }
 
-        protected EntityEditorCanvasWithSimpleMapBase(EntityEditorCanvasWithSimpleMapBase<T> other) : this(other.Container)
+        protected EntityEditorCanvasWithSingleEntityMapBase(EntityEditorCanvasWithSingleEntityMapBase<T> other) : this(other.Container)
         {
             this.Map = other.Map;
         }

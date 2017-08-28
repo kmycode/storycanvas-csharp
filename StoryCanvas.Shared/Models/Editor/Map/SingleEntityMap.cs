@@ -11,10 +11,10 @@ using System.Text;
 namespace StoryCanvas.Shared.Models.Editor.Map
 {
     /// <summary>
-    /// 編集画面のマップ１枚分
+    /// 編集画面のマップ１枚分。入れられる要素は１種類のみ
     /// </summary>
     [DataContract]
-    public class SimpleEntityMap<E> : INotifyPropertyChanged where E : Entity
+    public class SingleEntityMap<E> : INotifyPropertyChanged where E : Entity
     {
         /// <summary>
         /// マップの名前

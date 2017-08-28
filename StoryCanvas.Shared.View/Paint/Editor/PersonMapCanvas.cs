@@ -13,9 +13,9 @@ namespace StoryCanvas.Shared.View.Paint
     /// <summary>
     /// 人物マップのキャンバス
     /// </summary>
-    public class PersonMapCanvas : EntityEditorCanvasWithSimpleMapBase<PersonEntity>
+    public class PersonMapCanvas : EntityEditorCanvasWithSingleEntityMapBase<PersonEntity>
     {
-        public PersonMapCanvas(EachEntityRelationModel<PersonEntity> relations) : base(new SimpleEntityMapCanvasContainer<PersonEntity>
+        public PersonMapCanvas(EachEntityRelationModel<PersonEntity> relations) : base(new SingleEntityMapCanvasContainer<PersonEntity>
         {
             EachRelations = relations,
             DrawRelationHelper = new DrawEachPersonRelationHelper(),
@@ -23,7 +23,7 @@ namespace StoryCanvas.Shared.View.Paint
         {
         }
 
-        public PersonMapCanvas(PersonMapCanvas other) : this(((SimpleEntityMapCanvasContainer<PersonEntity>)other.Container).EachRelations)
+        public PersonMapCanvas(PersonMapCanvas other) : this(((SingleEntityMapCanvasContainer<PersonEntity>)other.Container).EachRelations)
         {
         }
     }

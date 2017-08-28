@@ -11,28 +11,28 @@ using System.Text;
 namespace StoryCanvas.Shared.Models.Editor.Map
 {
     /// <summary>
-    /// 編集画面のマップ１グループ
+    /// 編集画面のマップ１グループ。入れられる要素は１種類のみ
     /// </summary>
     [DataContract]
-    public class SimpleEntityMapGroup<E> where E : Entity
+    public class SingleEntityMapGroup<E> where E : Entity
     {
         /// <summary>
         /// マップ群
         /// </summary>
         [DataMember]
-        private ObservableCollection<SimpleEntityMap<E>> _maps = new ObservableCollection<SimpleEntityMap<E>>
+        private ObservableCollection<SingleEntityMap<E>> _maps = new ObservableCollection<SingleEntityMap<E>>
         {
-            new SimpleEntityMap<E>
+            new SingleEntityMap<E>
             {
                 Name = AppResources.TitleEmpty,
             },
         };
-        public ObservableCollection<SimpleEntityMap<E>> Maps => this._maps;
+        public ObservableCollection<SingleEntityMap<E>> Maps => this._maps;
 
         /// <summary>
         /// 現在選択されているマップ
         /// </summary>
-        public SimpleEntityMap<E> SelectedMap
+        public SingleEntityMap<E> SelectedMap
         {
             get => this._selectedMap;
             set
@@ -44,9 +44,9 @@ namespace StoryCanvas.Shared.Models.Editor.Map
                 }
             }
         }
-        private SimpleEntityMap<E> _selectedMap;
+        private SingleEntityMap<E> _selectedMap;
 
-        public SimpleEntityMapGroup()
+        public SingleEntityMapGroup()
         {
             this.Maps.CollectionChanged += (sender, e) =>
             {

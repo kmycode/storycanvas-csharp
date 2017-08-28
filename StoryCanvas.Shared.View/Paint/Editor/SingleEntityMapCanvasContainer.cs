@@ -11,12 +11,12 @@ using StoryCanvas.Shared.Models.Common;
 namespace StoryCanvas.Shared.View.Paint.Editor
 {
     /// <summary>
-    /// エンティティをまとめたシンプルなマップを描画するロジック
+    /// １種類のエンティティをまとめたマップを描画するロジック
     /// </summary>
-    class SimpleEntityMapCanvasContainer<E> : IEntityEditorCanvasContainer<E>, IEachEntityRelationEditorCanvasContainer<E>
+    class SingleEntityMapCanvasContainer<E> : IEntityEditorCanvasContainer<E>, IEachEntityRelationEditorCanvasContainer<E>
         where E : Entity
     {
-        public SimpleEntityMap<E> Map { get; set; } = new SimpleEntityMap<E>();
+        public SingleEntityMap<E> Map { get; set; } = new SingleEntityMap<E>();
         public MapEntityElement<E> DraggingElement { get; set; }
         public EntityEditorCanvasBase<E> Canvas { get; set; }
         public bool CanDragMap { get; private set; } = true;
