@@ -21,14 +21,11 @@ namespace StoryCanvas.Shared.Common
 #if WPF
 			return (string)typeof(StoryCanvas.WPF.Properties.Resources).GetProperty(key).GetValue(null);
 #elif WINDOWS_UWP
-            foreach (var fi in typeof(StoryCanvas.AppResources).GetRuntimeProperties())
-            {
-                if (fi.Name == key)
-                {
-                    return (string)fi.GetValue(null);
-                }
-            }
-            throw new ArgumentException("適切なリソースが見つかりません :" + key);
+            return (string)typeof(AppResources)
+                        .GetRuntimeProperties()
+                        .SingleOrDefault(fi => fi.Name == key)?
+                        .GetValue(null)
+                        ?? throw new ArgumentException("適切なリソースが見つかりません :" + key);
             //return loader.GetString(key);
 #elif XAMARIN_FORMS
 			foreach (var fi in typeof(StoryCanvas.AppResources).GetRuntimeProperties())
