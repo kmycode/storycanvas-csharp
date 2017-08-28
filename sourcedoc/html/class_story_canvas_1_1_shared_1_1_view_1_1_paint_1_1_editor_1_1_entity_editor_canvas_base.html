@@ -1,0 +1,728 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StoryCanvas: StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt; クラステンプレート</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">StoryCanvas
+   &#160;<span id="projectnumber">2.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_story_canvas.html">StoryCanvas</a></li><li class="navelem"><a class="el" href="namespace_story_canvas_1_1_shared.html">Shared</a></li><li class="navelem"><a class="el" href="namespace_story_canvas_1_1_shared_1_1_view.html">View</a></li><li class="navelem"><a class="el" href="namespace_story_canvas_1_1_shared_1_1_view_1_1_paint.html">Paint</a></li><li class="navelem"><a class="el" href="namespace_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor.html">Editor</a></li><li class="navelem"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">EntityEditorCanvasBase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-attribs">公開変数類</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="#properties">プロパティ</a> &#124;
+<a href="#events">イベント</a> &#124;
+<a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt; クラステンプレート</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>エンティティエディタのキャンバスの基底クラス  
+ <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#details">[詳解]</a></p>
+<div class="dynheader">
+StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt; の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.png" usemap="#StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase_3C_20T_20_3E_map" alt=""/>
+  <map id="StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase_3C_20T_20_3E_map" name="StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase_3C_20T_20_3E_map">
+<area href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html" title="画面に2D描画を行うベースクラス。このクラスはViewから直接呼び出すことを想定している ..." alt="StoryCanvas.Shared.View.Paint.CanvasBase" shape="rect" coords="0,0,516,24"/>
+<area href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_with_single_entity_map_base.html" alt="StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasWithSingleEntityMapBase&lt; T &gt;" shape="rect" coords="0,112,516,136"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab798b3490325e77e097294ae1ee688f7"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#ab798b3490325e77e097294ae1ee688f7">OnTapStart</a> (double x, double y)</td></tr>
+<tr class="memdesc:ab798b3490325e77e097294ae1ee688f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">タップが開始された時に発生  <a href="#ab798b3490325e77e097294ae1ee688f7">[詳解]</a><br /></td></tr>
+<tr class="separator:ab798b3490325e77e097294ae1ee688f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30a315a263cac4be992ab07765400c0b"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a30a315a263cac4be992ab07765400c0b">OnTapEnd</a> (double x, double y)</td></tr>
+<tr class="memdesc:a30a315a263cac4be992ab07765400c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">タップが終了した時に発生  <a href="#a30a315a263cac4be992ab07765400c0b">[詳解]</a><br /></td></tr>
+<tr class="separator:a30a315a263cac4be992ab07765400c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d4351398893c8a76d940da9629d657b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_entity_element.html">MapEntityElement</a>&lt; E &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a7d4351398893c8a76d940da9629d657b">GetEntityFromPosition&lt; E &gt;</a> (IEnumerable&lt; <a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_entity_element.html">MapEntityElement</a>&lt; E &gt;&gt; elements, double x, double y)</td></tr>
+<tr class="memdesc:a7d4351398893c8a76d940da9629d657b"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定座標上に存在する要素を探して検出する  <a href="#a7d4351398893c8a76d940da9629d657b">[詳解]</a><br /></td></tr>
+<tr class="separator:a7d4351398893c8a76d940da9629d657b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html">StoryCanvas.Shared.View.Paint.CanvasBase</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:ad67b1050d67eb663d0423994be7a5053 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ad67b1050d67eb663d0423994be7a5053">Draw</a> (SKSurface surface, SKColorType colorType)</td></tr>
+<tr class="memdesc:ad67b1050d67eb663d0423994be7a5053 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">画面への描画を行う  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ad67b1050d67eb663d0423994be7a5053">[詳解]</a><br /></td></tr>
+<tr class="separator:ad67b1050d67eb663d0423994be7a5053 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dfcf38a0516449f35cc6649e0013342 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a2dfcf38a0516449f35cc6649e0013342">InvalidateSurface</a> ()</td></tr>
+<tr class="memdesc:a2dfcf38a0516449f35cc6649e0013342 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画のキャッシュを無効にし、描画内容を更新する  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a2dfcf38a0516449f35cc6649e0013342">[詳解]</a><br /></td></tr>
+<tr class="separator:a2dfcf38a0516449f35cc6649e0013342 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5141a95513a8488e2e10786fa46f3a1 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ac5141a95513a8488e2e10786fa46f3a1">OnTapMove</a> (double x, double y)</td></tr>
+<tr class="memdesc:ac5141a95513a8488e2e10786fa46f3a1 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ドラッグ（押しながら移動）された時に発生  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ac5141a95513a8488e2e10786fa46f3a1">[詳解]</a><br /></td></tr>
+<tr class="separator:ac5141a95513a8488e2e10786fa46f3a1 inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6549325e9cd71ceb94537f7baa7220c inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#af6549325e9cd71ceb94537f7baa7220c">RequestRedraw</a> (bool isInvalidated=false)</td></tr>
+<tr class="memdesc:af6549325e9cd71ceb94537f7baa7220c inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">再描画を要求する  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#af6549325e9cd71ceb94537f7baa7220c">[詳解]</a><br /></td></tr>
+<tr class="separator:af6549325e9cd71ceb94537f7baa7220c inherit pub_methods_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+公開変数類</h2></td></tr>
+<tr class="memitem:ae9450855c929bcad7870ec448c4fc2df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_entity_relate_1_1_entity_relate_base.html">EntityRelateBase</a>&lt; E, E &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#ae9450855c929bcad7870ec448c4fc2df">Relation</a></td></tr>
+<tr class="memdesc:ae9450855c929bcad7870ec448c4fc2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定座標上に存在する関連付けを探して検出する  <a href="#ae9450855c929bcad7870ec448c4fc2df">[詳解]</a><br /></td></tr>
+<tr class="separator:ae9450855c929bcad7870ec448c4fc2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a0010bfda01be31ecfcc0b1d1cc247851"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a0010bfda01be31ecfcc0b1d1cc247851">EntityEditorCanvasBase</a> (<a class="el" href="interface_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_i_entity_editor_canvas_container.html">IEntityEditorCanvasContainer</a>&lt; T &gt; container)</td></tr>
+<tr class="separator:a0010bfda01be31ecfcc0b1d1cc247851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130708f04eec6e0da8609c98e05296d4"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a130708f04eec6e0da8609c98e05296d4">ResizeMap</a> ()</td></tr>
+<tr class="memdesc:a130708f04eec6e0da8609c98e05296d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">マップのリサイズを行う  <a href="#a130708f04eec6e0da8609c98e05296d4">[詳解]</a><br /></td></tr>
+<tr class="separator:a130708f04eec6e0da8609c98e05296d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9a27b82f39ef46e0788f2762aacc07"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#aff9a27b82f39ef46e0788f2762aacc07">OnDragging</a> (double dx, double dy)</td></tr>
+<tr class="memdesc:aff9a27b82f39ef46e0788f2762aacc07"><td class="mdescLeft">&#160;</td><td class="mdescRight">ドラッグ中である時に呼び出される  <a href="#aff9a27b82f39ef46e0788f2762aacc07">[詳解]</a><br /></td></tr>
+<tr class="separator:aff9a27b82f39ef46e0788f2762aacc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f4b68967d5b887faaf18914a4c9e040"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a1f4b68967d5b887faaf18914a4c9e040">OnTapped</a> (double x, double y)</td></tr>
+<tr class="separator:a1f4b68967d5b887faaf18914a4c9e040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeecc69bd4b397b86edab0473aedeaaf3"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#aeecc69bd4b397b86edab0473aedeaaf3">DrawUpdate</a> (SKCanvas canvas, SKPaint paint)</td></tr>
+<tr class="memdesc:aeecc69bd4b397b86edab0473aedeaaf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画内容を更新する。X、Yなどで指定された部分ではなく、全範囲を描画する  <a href="#aeecc69bd4b397b86edab0473aedeaaf3">[詳解]</a><br /></td></tr>
+<tr class="separator:aeecc69bd4b397b86edab0473aedeaaf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6773ee93be48d75555e0576f0171a654"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a6773ee93be48d75555e0576f0171a654">DrawFloatingElements</a> (SKCanvas canvas, SKPaint paint)</td></tr>
+<tr class="memdesc:a6773ee93be48d75555e0576f0171a654"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在選択中の要素を強調する  <a href="#a6773ee93be48d75555e0576f0171a654">[詳解]</a><br /></td></tr>
+<tr class="separator:a6773ee93be48d75555e0576f0171a654"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+プロパティ</h2></td></tr>
+<tr class="memitem:a2e26dff8351482a8ddeef122ffc0ddf7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_i_entity_editor_canvas_container.html">IEntityEditorCanvasContainer</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a2e26dff8351482a8ddeef122ffc0ddf7">Container</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2e26dff8351482a8ddeef122ffc0ddf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画ロジック  <a href="#a2e26dff8351482a8ddeef122ffc0ddf7">[詳解]</a><br /></td></tr>
+<tr class="separator:a2e26dff8351482a8ddeef122ffc0ddf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d29fd3e0d19f9b7a16bf821dd481d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_entity_element.html">MapEntityElement</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a29d29fd3e0d19f9b7a16bf821dd481d2">SelectedElement</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a29d29fd3e0d19f9b7a16bf821dd481d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">選択中のエンティティを含む要素  <a href="#a29d29fd3e0d19f9b7a16bf821dd481d2">[詳解]</a><br /></td></tr>
+<tr class="separator:a29d29fd3e0d19f9b7a16bf821dd481d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td colspan="2" onclick="javascript:toggleInherit('properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html">StoryCanvas.Shared.View.Paint.CanvasBase</a> に属する継承プロパティ</td></tr>
+<tr class="memitem:ac78370e2163a5275af100e6dc83860a3 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ac78370e2163a5275af100e6dc83860a3">CanDrag</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac78370e2163a5275af100e6dc83860a3 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">ドラッグ可能であるか（ドラッグによって画面全体が動くかどうか。サブクラスのドラッグ処理は制御できない）  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ac78370e2163a5275af100e6dc83860a3">[詳解]</a><br /></td></tr>
+<tr class="separator:ac78370e2163a5275af100e6dc83860a3 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a834be214efe3085a0af3be0d9b7253a5 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a834be214efe3085a0af3be0d9b7253a5">Argument</a> = true<code> [get, set]</code></td></tr>
+<tr class="memdesc:a834be214efe3085a0af3be0d9b7253a5 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画の時に使われる引数  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a834be214efe3085a0af3be0d9b7253a5">[詳解]</a><br /></td></tr>
+<tr class="separator:a834be214efe3085a0af3be0d9b7253a5 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc5d46ca9ae8ec37b54c33ef987d52a inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7cc5d46ca9ae8ec37b54c33ef987d52a">X</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7cc5d46ca9ae8ec37b54c33ef987d52a inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画を開始するX座標。画面スクロールで変動  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7cc5d46ca9ae8ec37b54c33ef987d52a">[詳解]</a><br /></td></tr>
+<tr class="separator:a7cc5d46ca9ae8ec37b54c33ef987d52a inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f388e2d9bfbaeaba96d9f7a9c864244 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a8f388e2d9bfbaeaba96d9f7a9c864244">Y</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a8f388e2d9bfbaeaba96d9f7a9c864244 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画を開始するY座標。画面スクロールで変動  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a8f388e2d9bfbaeaba96d9f7a9c864244">[詳解]</a><br /></td></tr>
+<tr class="separator:a8f388e2d9bfbaeaba96d9f7a9c864244 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52598b60f34b4407cdb8f8e966cb87f9 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a52598b60f34b4407cdb8f8e966cb87f9">Width</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a52598b60f34b4407cdb8f8e966cb87f9 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャンバスの横幅  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a52598b60f34b4407cdb8f8e966cb87f9">[詳解]</a><br /></td></tr>
+<tr class="separator:a52598b60f34b4407cdb8f8e966cb87f9 inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7405433481c1b99a631b7732e4f3231a inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7405433481c1b99a631b7732e4f3231a">Height</a> = 500<code> [get, set]</code></td></tr>
+<tr class="memdesc:a7405433481c1b99a631b7732e4f3231a inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャンバスの高さ  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7405433481c1b99a631b7732e4f3231a">[詳解]</a><br /></td></tr>
+<tr class="separator:a7405433481c1b99a631b7732e4f3231a inherit properties_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
+イベント</h2></td></tr>
+<tr class="memitem:a4add79bdd88547fb265462d527bc7c71"><td class="memItemLeft" align="right" valign="top">ValueChangedEventHandler&lt; <a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_element.html">MapElement</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a4add79bdd88547fb265462d527bc7c71">SelectedElementChanged</a></td></tr>
+<tr class="memdesc:a4add79bdd88547fb265462d527bc7c71"><td class="mdescLeft">&#160;</td><td class="mdescRight">要素の選択を変更したときに発行  <a href="#a4add79bdd88547fb265462d527bc7c71">[詳解]</a><br /></td></tr>
+<tr class="separator:a4add79bdd88547fb265462d527bc7c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7f4ec281916b97dc70c38cd7195fd2"><td class="memItemLeft" align="right" valign="top">ValueChangedEventHandler&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a3c7f4ec281916b97dc70c38cd7195fd2">SelectedEntityChanged</a></td></tr>
+<tr class="memdesc:a3c7f4ec281916b97dc70c38cd7195fd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンティティの選択を変更した時に発行  <a href="#a3c7f4ec281916b97dc70c38cd7195fd2">[詳解]</a><br /></td></tr>
+<tr class="separator:a3c7f4ec281916b97dc70c38cd7195fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cb7f373bdd41738d05d6d2fe6b9553a"><td class="memItemLeft" align="right" valign="top">ValueChangedEventHandler&lt; <a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_entity_relate_1_1_entity_relate_base.html">EntityRelateBase</a>&lt; T, T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a3cb7f373bdd41738d05d6d2fe6b9553a">SelectedRelationChanged</a></td></tr>
+<tr class="memdesc:a3cb7f373bdd41738d05d6d2fe6b9553a"><td class="mdescLeft">&#160;</td><td class="mdescRight">関連付けの選択を変更した時に発行  <a href="#a3cb7f373bdd41738d05d6d2fe6b9553a">[詳解]</a><br /></td></tr>
+<tr class="separator:a3cb7f373bdd41738d05d6d2fe6b9553a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td colspan="2" onclick="javascript:toggleInherit('events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html">StoryCanvas.Shared.View.Paint.CanvasBase</a> に属する継承イベント</td></tr>
+<tr class="memitem:aa18721a5924aab2bf8596993ed63e9e0 inherit events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#aa18721a5924aab2bf8596993ed63e9e0">RedrawRequested</a></td></tr>
+<tr class="memdesc:aa18721a5924aab2bf8596993ed63e9e0 inherit events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">再描画が要求された時に発行  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#aa18721a5924aab2bf8596993ed63e9e0">[詳解]</a><br /></td></tr>
+<tr class="separator:aa18721a5924aab2bf8596993ed63e9e0 inherit events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37dd49c81f7476e6b2ded3fcbb7fce9f inherit events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a37dd49c81f7476e6b2ded3fcbb7fce9f">DrawUpdating</a></td></tr>
+<tr class="memdesc:a37dd49c81f7476e6b2ded3fcbb7fce9f inherit events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画を更新する前に発行  <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a37dd49c81f7476e6b2ded3fcbb7fce9f">[詳解]</a><br /></td></tr>
+<tr class="separator:a37dd49c81f7476e6b2ded3fcbb7fce9f inherit events_class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>エンティティエディタのキャンバスの基底クラス </p>
+<div class="typeconstraint">
+<dl><dt><b>型制約</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>Entity</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="a0010bfda01be31ecfcc0b1d1cc247851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0010bfda01be31ecfcc0b1d1cc247851">&#9670;&nbsp;</a></span>EntityEditorCanvasBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.<a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">EntityEditorCanvasBase</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_i_entity_editor_canvas_container.html">IEntityEditorCanvasContainer</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>container</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">メソッド詳解</h2>
+<a id="a6773ee93be48d75555e0576f0171a654"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6773ee93be48d75555e0576f0171a654">&#9670;&nbsp;</a></span>DrawFloatingElements()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.DrawFloatingElements </td>
+          <td>(</td>
+          <td class="paramtype">SKCanvas&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SKPaint&#160;</td>
+          <td class="paramname"><em>paint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>現在選択中の要素を強調する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">canvas</td><td>キャンバス</td></tr>
+    <tr><td class="paramname">paint</td><td>ペイント</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a8be53e7035553414bc1a6711e1c587f0">StoryCanvas.Shared.View.Paint.CanvasBase</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="aeecc69bd4b397b86edab0473aedeaaf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeecc69bd4b397b86edab0473aedeaaf3">&#9670;&nbsp;</a></span>DrawUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.DrawUpdate </td>
+          <td>(</td>
+          <td class="paramtype">SKCanvas&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SKPaint&#160;</td>
+          <td class="paramname"><em>paint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描画内容を更新する。X、Yなどで指定された部分ではなく、全範囲を描画する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">canvas</td><td>キャンバス</td></tr>
+    <tr><td class="paramname">paint</td><td>ペイント</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#afcd7819eadd2dbe41da7a7e619ff5d88">StoryCanvas.Shared.View.Paint.CanvasBase</a>を実装しています。</p>
+
+</div>
+</div>
+<a id="a7d4351398893c8a76d940da9629d657b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d4351398893c8a76d940da9629d657b">&#9670;&nbsp;</a></span>GetEntityFromPosition< E >()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_entity_element.html">MapEntityElement</a>&lt;E&gt; <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.GetEntityFromPosition&lt; E &gt; </td>
+          <td>(</td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_entity_element.html">MapEntityElement</a>&lt; E &gt;&gt;&#160;</td>
+          <td class="paramname"><em>elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>指定座標上に存在する要素を探して検出する </p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">E</td><td>エンティティの型</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elements</td><td>エンティティの入った複数の要素</td></tr>
+    <tr><td class="paramname">x</td><td>調べる座標X</td></tr>
+    <tr><td class="paramname">y</td><td>調べる座標Y</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>検出された要素。なければNULL</dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>型制約</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>E</em></td><td>&#160;:</td><td valign="top"><em>Entity</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+</div>
+</div>
+<a id="aff9a27b82f39ef46e0788f2762aacc07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff9a27b82f39ef46e0788f2762aacc07">&#9670;&nbsp;</a></span>OnDragging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.OnDragging </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ドラッグ中である時に呼び出される </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>差分X</td></tr>
+    <tr><td class="paramname">dy</td><td>差分Y</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7e9946309205448b9d74a503b94a7ba4">StoryCanvas.Shared.View.Paint.CanvasBase</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="a30a315a263cac4be992ab07765400c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30a315a263cac4be992ab07765400c0b">&#9670;&nbsp;</a></span>OnTapEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.OnTapEnd </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>タップが終了した時に発生 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>画面上のX</td></tr>
+    <tr><td class="paramname">y</td><td>画面上のY</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a2a56c9708776b016339fe39552f2dbdd">StoryCanvas.Shared.View.Paint.CanvasBase</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="a1f4b68967d5b887faaf18914a4c9e040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f4b68967d5b887faaf18914a4c9e040">&#9670;&nbsp;</a></span>OnTapped()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.OnTapped </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab798b3490325e77e097294ae1ee688f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab798b3490325e77e097294ae1ee688f7">&#9670;&nbsp;</a></span>OnTapStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.OnTapStart </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>タップが開始された時に発生 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>画面上のX</td></tr>
+    <tr><td class="paramname">y</td><td>画面上のY</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a8a80cb2905fe6865624b97139a9cfc1a">StoryCanvas.Shared.View.Paint.CanvasBase</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="a130708f04eec6e0da8609c98e05296d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a130708f04eec6e0da8609c98e05296d4">&#9670;&nbsp;</a></span>ResizeMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.ResizeMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>マップのリサイズを行う </p>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a5c2c33fd323ecdad9e32f2c9767a65ad">StoryCanvas.Shared.View.Paint.CanvasBase</a>を再実装しています。</p>
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a id="ae9450855c929bcad7870ec448c4fc2df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9450855c929bcad7870ec448c4fc2df">&#9670;&nbsp;</a></span>Relation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_entity_relate_1_1_entity_relate_base.html">EntityRelateBase</a>&lt;E, E&gt; <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.Relation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>指定座標上に存在する関連付けを探して検出する </p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">E</td><td>エンティティの型</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elements</td><td>エンティティの入った複数の要素</td></tr>
+    <tr><td class="paramname">relations</td><td>関連付けの入った複数の要素</td></tr>
+    <tr><td class="paramname">x</td><td>調べる座標X</td></tr>
+    <tr><td class="paramname">y</td><td>調べる座標Y</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>検出された関連付け。なければNULL</dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">プロパティ詳解</h2>
+<a id="a2e26dff8351482a8ddeef122ffc0ddf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e26dff8351482a8ddeef122ffc0ddf7">&#9670;&nbsp;</a></span>Container</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_i_entity_editor_canvas_container.html">IEntityEditorCanvasContainer</a>&lt;T&gt; <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.Container</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描画ロジック </p>
+
+</div>
+</div>
+<a id="a29d29fd3e0d19f9b7a16bf821dd481d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d29fd3e0d19f9b7a16bf821dd481d2">&#9670;&nbsp;</a></span>SelectedElement</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_entity_element.html">MapEntityElement</a>&lt;T&gt; <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.SelectedElement</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>選択中のエンティティを含む要素 </p>
+
+</div>
+</div>
+<h2 class="groupheader">イベント詳解</h2>
+<a id="a4add79bdd88547fb265462d527bc7c71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4add79bdd88547fb265462d527bc7c71">&#9670;&nbsp;</a></span>SelectedElementChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ValueChangedEventHandler&lt;<a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_editor_1_1_map_1_1_map_element.html">MapElement</a>&gt; <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.SelectedElementChanged</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>要素の選択を変更したときに発行 </p>
+
+</div>
+</div>
+<a id="a3c7f4ec281916b97dc70c38cd7195fd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c7f4ec281916b97dc70c38cd7195fd2">&#9670;&nbsp;</a></span>SelectedEntityChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ValueChangedEventHandler&lt;T&gt; <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.SelectedEntityChanged</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>エンティティの選択を変更した時に発行 </p>
+
+</div>
+</div>
+<a id="a3cb7f373bdd41738d05d6d2fe6b9553a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cb7f373bdd41738d05d6d2fe6b9553a">&#9670;&nbsp;</a></span>SelectedRelationChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ValueChangedEventHandler&lt;<a class="el" href="class_story_canvas_1_1_shared_1_1_models_1_1_entity_relate_1_1_entity_relate_base.html">EntityRelateBase</a>&lt;T, T&gt; &gt; <a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase</a>&lt; T &gt;.SelectedRelationChanged</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>関連付けの選択を変更した時に発行 </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/KMY/Documents/Visual Studio 2017/Projects/StoryCanvas/StoryCanvas.Shared.View/Paint/Editor/<a class="el" href="_entity_editor_canvas_base_8cs.html">EntityEditorCanvasBase.cs</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StoryCanvas: OneDriveRestAPI.Util.TimeSpanSemaphore クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">StoryCanvas
+   &#160;<span id="projectnumber">2.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_one_drive_rest_a_p_i.html">OneDriveRestAPI</a></li><li class="navelem"><a class="el" href="namespace_one_drive_rest_a_p_i_1_1_util.html">Util</a></li><li class="navelem"><a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html">TimeSpanSemaphore</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">OneDriveRestAPI.Util.TimeSpanSemaphore クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Allows a limited number of acquisitions during a timespan  
+ <a href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#details">[詳解]</a></p>
+<div class="dynheader">
+OneDriveRestAPI.Util.TimeSpanSemaphore の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.png" usemap="#OneDriveRestAPI.Util.TimeSpanSemaphore_map" alt=""/>
+  <map id="OneDriveRestAPI.Util.TimeSpanSemaphore_map" name="OneDriveRestAPI.Util.TimeSpanSemaphore_map">
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a5cc7914d18f1e7b5c3330b55f176cf64"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#a5cc7914d18f1e7b5c3330b55f176cf64">TimeSpanSemaphore</a> (int maxCount, TimeSpan resetSpan)</td></tr>
+<tr class="separator:a5cc7914d18f1e7b5c3330b55f176cf64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a605bde5fbb08ab36de16b803fa180287"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#a605bde5fbb08ab36de16b803fa180287">Run</a> (Action action, CancellationToken cancelToken)</td></tr>
+<tr class="memdesc:a605bde5fbb08ab36de16b803fa180287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an action after entering the semaphore (if the CancellationToken is not canceled)  <a href="#a605bde5fbb08ab36de16b803fa180287">[詳解]</a><br /></td></tr>
+<tr class="separator:a605bde5fbb08ab36de16b803fa180287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ec9d0c228da50c1b376cb858a27e2cb"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#a4ec9d0c228da50c1b376cb858a27e2cb">RunAsync</a> (Func&lt; Task &gt; action, CancellationToken cancelToken)</td></tr>
+<tr class="memdesc:a4ec9d0c228da50c1b376cb858a27e2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an action after entering the semaphore (if the CancellationToken is not canceled)  <a href="#a4ec9d0c228da50c1b376cb858a27e2cb">[詳解]</a><br /></td></tr>
+<tr class="separator:a4ec9d0c228da50c1b376cb858a27e2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a33bf9fe2b95261e976f2bf7941b4f5"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#a8a33bf9fe2b95261e976f2bf7941b4f5">RunAsync&lt; T &gt;</a> (Func&lt; T, Task &gt; action, T arg, CancellationToken cancelToken)</td></tr>
+<tr class="memdesc:a8a33bf9fe2b95261e976f2bf7941b4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an action after entering the semaphore (if the CancellationToken is not canceled)  <a href="#a8a33bf9fe2b95261e976f2bf7941b4f5">[詳解]</a><br /></td></tr>
+<tr class="separator:a8a33bf9fe2b95261e976f2bf7941b4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d4044180c0e038782a71250b5cc4eac"><td class="memItemLeft" align="right" valign="top">async Task&lt; TR &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#a4d4044180c0e038782a71250b5cc4eac">RunAsync&lt; T, TR &gt;</a> (Func&lt; T, CancellationToken, Task&lt; TR &gt;&gt; action, T arg, CancellationToken cancelToken)</td></tr>
+<tr class="memdesc:a4d4044180c0e038782a71250b5cc4eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an action after entering the semaphore (if the CancellationToken is not canceled)  <a href="#a4d4044180c0e038782a71250b5cc4eac">[詳解]</a><br /></td></tr>
+<tr class="separator:a4d4044180c0e038782a71250b5cc4eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac781832b49367f3646c66aa396ea40d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#ac781832b49367f3646c66aa396ea40d6">Dispose</a> ()</td></tr>
+<tr class="memdesc:ac781832b49367f3646c66aa396ea40d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases all resources used by the current instance  <a href="#ac781832b49367f3646c66aa396ea40d6">[詳解]</a><br /></td></tr>
+<tr class="separator:ac781832b49367f3646c66aa396ea40d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>Allows a limited number of acquisitions during a timespan </p>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="a5cc7914d18f1e7b5c3330b55f176cf64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cc7914d18f1e7b5c3330b55f176cf64">&#9670;&nbsp;</a></span>TimeSpanSemaphore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OneDriveRestAPI.Util.TimeSpanSemaphore.TimeSpanSemaphore </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TimeSpan&#160;</td>
+          <td class="paramname"><em>resetSpan</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">メソッド詳解</h2>
+<a id="ac781832b49367f3646c66aa396ea40d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac781832b49367f3646c66aa396ea40d6">&#9670;&nbsp;</a></span>Dispose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OneDriveRestAPI.Util.TimeSpanSemaphore.Dispose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Releases all resources used by the current instance </p>
+
+</div>
+</div>
+<a id="a605bde5fbb08ab36de16b803fa180287"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a605bde5fbb08ab36de16b803fa180287">&#9670;&nbsp;</a></span>Run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OneDriveRestAPI.Util.TimeSpanSemaphore.Run </td>
+          <td>(</td>
+          <td class="paramtype">Action&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken&#160;</td>
+          <td class="paramname"><em>cancelToken</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs an action after entering the semaphore (if the CancellationToken is not canceled) </p>
+
+</div>
+</div>
+<a id="a4ec9d0c228da50c1b376cb858a27e2cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ec9d0c228da50c1b376cb858a27e2cb">&#9670;&nbsp;</a></span>RunAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task OneDriveRestAPI.Util.TimeSpanSemaphore.RunAsync </td>
+          <td>(</td>
+          <td class="paramtype">Func&lt; Task &gt;&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken&#160;</td>
+          <td class="paramname"><em>cancelToken</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs an action after entering the semaphore (if the CancellationToken is not canceled) </p>
+
+</div>
+</div>
+<a id="a8a33bf9fe2b95261e976f2bf7941b4f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a33bf9fe2b95261e976f2bf7941b4f5">&#9670;&nbsp;</a></span>RunAsync< T >()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task <a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#a4ec9d0c228da50c1b376cb858a27e2cb">OneDriveRestAPI.Util.TimeSpanSemaphore.RunAsync</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Func&lt; T, Task &gt;&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken&#160;</td>
+          <td class="paramname"><em>cancelToken</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs an action after entering the semaphore (if the CancellationToken is not canceled) </p>
+
+</div>
+</div>
+<a id="a4d4044180c0e038782a71250b5cc4eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d4044180c0e038782a71250b5cc4eac">&#9670;&nbsp;</a></span>RunAsync< T, TR >()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;TR&gt; <a class="el" href="class_one_drive_rest_a_p_i_1_1_util_1_1_time_span_semaphore.html#a4ec9d0c228da50c1b376cb858a27e2cb">OneDriveRestAPI.Util.TimeSpanSemaphore.RunAsync</a>&lt; T, TR &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Func&lt; T, CancellationToken, Task&lt; TR &gt;&gt;&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken&#160;</td>
+          <td class="paramname"><em>cancelToken</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs an action after entering the semaphore (if the CancellationToken is not canceled) </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/KMY/Documents/Visual Studio 2017/Projects/StoryCanvas/Libraries/OneDriveRestAPI/Util/<a class="el" href="_time_span_semaphore_8cs.html">TimeSpanSemaphore.cs</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

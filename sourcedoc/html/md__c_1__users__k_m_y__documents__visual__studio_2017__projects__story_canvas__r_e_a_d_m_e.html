@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StoryCanvas: storycanvas-csharp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">StoryCanvas
+   &#160;<span id="projectnumber">2.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">storycanvas-csharp </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Free story editor for Windows Desktop, Android and iOS</p>
+<h2>概要</h2>
+<p>StoryCanvasとは、Windows、Android、iOSで動作する、ストーリー編集ソフトです。互いの端末感でのデータやり取りも可能です。<br />
+ 公式サイト：https://storycanvas.kmycode.net/</p>
+<h2>開発言語</h2>
+<p>C# （フレームワーク：WPF / Xamarin.Forms）</p>
+<h2>開発環境</h2>
+<p>Microsoft(R) Visual Studio(R) 2017 Community</p>
+<h2>公開の経緯</h2>
+<p>作者は、他のアプリの制作や、他の趣味にも打ち込みたく、そのためにはStoryCanvasの迅速な開発を犠牲にしなければいけません。 しかし、ユーザから多数の要望が来ている状況で、これ以上個人で開発することに限界を感じました。 よって、ソースコードを公開し、開発に協力頂ける人を募集します。</p>
+<h2>コンパイル方法</h2>
+<p>StoryCanvasは、このリポジトリのソースそのままではコンパイルすることはできません。 OneDrive、DropboxのAPIキーを取得し、プログラムコード内に設定する必要があります。 なお、両者の機能を使用しない場合は、以下のソースをそのまま（<code>&lt;Your ---&gt;</code>のまま）コピペして使用することもできます。</p>
+<h3>OneDrive APIキー取得</h3>
+<p>OneDriveのClientId、ClientSecretを別途取得し、<code>Libraries/StoryCanvas.Native/Common/OneDriveStorageLicense.cs</code>を新たに作り、以下のソースを記述します。</p>
+<div class="fragment"><div class="line">using System;</div><div class="line">using System.Collections.Generic;</div><div class="line">using System.Text;</div><div class="line"></div><div class="line">namespace Libraries.StoryCanvas.Native.Common</div><div class="line">{</div><div class="line">    static class OneDriveStorageLicense</div><div class="line">    {</div><div class="line">        public const string ClientId = &quot;&lt;Your client id&gt;&quot;;</div><div class="line">        public const string ClientSecret = &quot;&lt;Your client secret&gt;&quot;;</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h3>Dropbox APIキー取得</h3>
+<p>DropboxのAPIキー、アプリシークレットを別途取得し、<code><a class="el" href="namespace_story_canvas_1_1_shared.html">StoryCanvas.Shared</a>/Common/DropboxLicense.cs</code>を新たに作り、以下のソースを記述します。</p>
+<div class="fragment"><div class="line">using System;</div><div class="line">using System.Collections.Generic;</div><div class="line">using System.Text;</div><div class="line"></div><div class="line">namespace StoryCanvas.Shared.Common</div><div class="line">{</div><div class="line">    static class DropboxLicense</div><div class="line">    {</div><div class="line">        public const string ApiKey = &quot;&lt;Your API key&gt;&quot;;</div><div class="line">        public const string AppSecret = &quot;&lt;Your app secret&gt;&quot;;</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><p>なお、DropboxのPermission typeは「App folder」、App folder nameは「StoryCanvasCloud」に設定しています。</p>
+<h2>貢献方法</h2>
+<p>どんな小さいことでも構いません。このリポジトリをフォークして、ソースコードを修正してプルリクエストを送ってください。 StoryCanvas開発方針から逸脱したものでなければ、基本的にどのような機能でも受け入れます。</p>
+<p><b>皆様のご協力を待っています。</b></p>
+<h2>ライセンスについて</h2>
+<p>StoryCanvasは、ソースコードを公開していますが、**オープンソースではありません。** 「StoryCanvasライセンス」という、独自のライセンスを作成・適用しており、再頒布に制限が課せられています。 詳しくは、https://github.com/kmycode/storycanvas-csharp/blob/master/LICENSE.md "LICENSE.md"を参照してください。 </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

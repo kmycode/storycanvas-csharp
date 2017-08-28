@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StoryCanvas: Obtain an App Identifier</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">StoryCanvas
+   &#160;<span id="projectnumber">2.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Obtain an App Identifier </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Please see the <a href="http://support.hockeyapp.net/kb/about-general-faq/how-to-create-a-new-app">How to create a new app</a> tutorial. This will provide you with a HockeyApp specific App Identifier to be used to initialize the SDK.</p>
+<h2>Add crash reporting</h2>
+<p>This will add crash reporting capabilities to your app.</p>
+<p>Open your AppDelegate.cs file, and add the following lines:</p>
+<div class="fragment"><div class="line">using HockeyApp.iOS;</div><div class="line"></div><div class="line">namespace YourNameSpace</div><div class="line">{</div><div class="line">    [Register(&quot;AppDelegate&quot;)]</div><div class="line">    public partial class AppDelegate : UIApplicationDelegate</div><div class="line">    {</div><div class="line">        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)</div><div class="line">        {</div><div class="line">            var manager = BITHockeyManager.SharedHockeyManager;</div><div class="line">            manager.Configure(&quot;Your_App_Id&quot;);</div><div class="line">            manager.StartManager();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></div><!-- fragment --><h2>User Metrics</h2>
+<p>HockeyApp automatically provides you with nice, intelligible, and informative metrics about how your app is used and by whom.</p>
+<ul>
+<li><b>Sessions</b>: A new session is tracked by the SDK whenever the containing app is restarted (this refers to a 'cold start', i.e. when the app has not already been in memory prior to being launched) or whenever it becomes active again after having been in the background for 20 seconds or more.</li>
+<li><b>Users</b>: The SDK anonymously tracks the users of your app by creating a random UUID.</li>
+</ul>
+<p>On iOS the random UUID securely stored in the keychain, so that it persist across reinstallations. On iOS, User Metrics is enabled by default. If you want to turn off User Metrics, follow this code:</p>
+<div class="fragment"><div class="line">// add the HockeyApp namespace</div><div class="line">using HockeyApp.iOS;</div><div class="line"></div><div class="line">// in your FinishedLaunching-method add:</div><div class="line">var manager = BITHockeyManager.SharedHockeyManager;</div><div class="line">manager.Configure(&quot;$Your_App_Id&quot;);</div><div class="line">manager.DisableMetricsManager = true;</div><div class="line">manager.StartManager();</div></div><!-- fragment --><p>It is important that you set <code>DisableMetricsManager</code> before you start the manager.</p>
+<h2>Custom Events</h2>
+<p>HockeyApp allows you to track custom events to understand user actions inside your app.</p>
+<ol type="1">
+<li>Make sure to add the correct namespace: <div class="fragment"><div class="line">using HockeyApp;</div><div class="line">using System.Collections.Generic;</div></div><!-- fragment --></li>
+<li>Track custom events like this: <div class="fragment"><div class="line">HockeyApp.MetricsManager.TrackEvent(&quot;Custom Event&quot;);</div></div><!-- fragment --> if you want to add custom properties or measurements, use this:</li>
+</ol>
+<div class="fragment"><div class="line">HockeyApp.MetricsManager.TrackEvent(</div><div class="line">  &quot;Custom Event&quot;,</div><div class="line">  new Dictionary&lt;string, string&gt; { { &quot;property&quot;, &quot;value&quot; } },</div><div class="line">  new Dictionary&lt;string, double&gt; { { &quot;time&quot;, 1.0 } }</div><div class="line">)</div></div><!-- fragment --><h2>Add Update Distribution</h2>
+<p>This will add the in-app update mechanism to your app.</p>
+<p>The feature handles version updates, presents update and version information in an App Store like user interface, collects usage information and provides additional authorization options when using Ad-Hoc provisioning profiles.</p>
+<p>This module automatically disables itself when running in an App Store build by default!</p>
+<p>This feature can be disabled manually as follows:</p>
+<div class="fragment"><div class="line">var manager = BITHockeyManagerSharedHockeyManager;</div><div class="line">manager.Configure(&quot;Your_App_Id&quot;);</div><div class="line">manager.SetDisableUpdateManager = true;</div><div class="line">manager.StartManager();</div></div><!-- fragment --><p>If you want to see beta analytics, use the beta distribution feature with in-app updates, restrict versions to specific users, or want to know who is actually testing your app, you need to follow the instructions on our guide <a href="https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios">Authenticating Users on iOS</a></p>
+<h2>Add in-app feedback</h2>
+<p>This will add the ability for your users to provide feedback from right inside your app.</p>
+<div class="fragment"><div class="line">var feedbackManager = BITHockeyManager.SharedHockeyManager.FeedbackManager;</div><div class="line"></div><div class="line">// Show current feedback</div><div class="line">feedbackManager.ShowFeedbackListView();</div><div class="line"></div><div class="line">// Send new feedback</div><div class="line">feedbackManager.ShowFeedbackComposeView();</div></div><!-- fragment --><h2>Add authentication</h2>
+<p>Instructions for iOS Authentication can be found <a href="https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/authenticating-users-on-ios">here</a></p>
+<h2>Control logging output</h2>
+<p>You can control the amount of log messages from HockeySDK. By default, we keep the noise as low as possible, only errors will show up. To enable additional logging, i.e. while debugging, add the following line of code:</p>
+<div class="fragment"><div class="line">var manager = BITHockeyManager.SharedHockeyManager;</div><div class="line">manager.Configure(&quot;Your_App_Id&quot;);</div><div class="line">manager.SetDebugLogEnabled = true;</div><div class="line">manager.StartManager();</div></div><!-- fragment --><h2>More Information</h2>
+<p>For more information, see the <a href="https://github.com/bitstadium/HockeySDK-Xamarin">HockeySDK for Xamarin Source Repository</a> </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

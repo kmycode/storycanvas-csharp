@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>StoryCanvas: StoryCanvas.Shared.View.Paint.CanvasBase クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Icon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">StoryCanvas
+   &#160;<span id="projectnumber">2.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_story_canvas.html">StoryCanvas</a></li><li class="navelem"><a class="el" href="namespace_story_canvas_1_1_shared.html">Shared</a></li><li class="navelem"><a class="el" href="namespace_story_canvas_1_1_shared_1_1_view.html">View</a></li><li class="navelem"><a class="el" href="namespace_story_canvas_1_1_shared_1_1_view_1_1_paint.html">Paint</a></li><li class="navelem"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html">CanvasBase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="#properties">プロパティ</a> &#124;
+<a href="#events">イベント</a> &#124;
+<a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StoryCanvas.Shared.View.Paint.CanvasBase クラス<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>画面に2D描画を行うベースクラス。このクラスはViewから直接呼び出すことを想定している  
+ <a href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#details">[詳解]</a></p>
+<div class="dynheader">
+StoryCanvas.Shared.View.Paint.CanvasBase の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.png" usemap="#StoryCanvas.Shared.View.Paint.CanvasBase_map" alt=""/>
+  <map id="StoryCanvas.Shared.View.Paint.CanvasBase_map" name="StoryCanvas.Shared.View.Paint.CanvasBase_map">
+<area href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html" title="エンティティエディタのキャンバスの基底クラス " alt="StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt;" shape="rect" coords="0,56,516,80"/>
+<area href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_with_single_entity_map_base.html" alt="StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasWithSingleEntityMapBase&lt; T &gt;" shape="rect" coords="0,112,516,136"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ad67b1050d67eb663d0423994be7a5053"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ad67b1050d67eb663d0423994be7a5053">Draw</a> (SKSurface surface, SKColorType colorType)</td></tr>
+<tr class="memdesc:ad67b1050d67eb663d0423994be7a5053"><td class="mdescLeft">&#160;</td><td class="mdescRight">画面への描画を行う  <a href="#ad67b1050d67eb663d0423994be7a5053">[詳解]</a><br /></td></tr>
+<tr class="separator:ad67b1050d67eb663d0423994be7a5053"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dfcf38a0516449f35cc6649e0013342"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a2dfcf38a0516449f35cc6649e0013342">InvalidateSurface</a> ()</td></tr>
+<tr class="memdesc:a2dfcf38a0516449f35cc6649e0013342"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画のキャッシュを無効にし、描画内容を更新する  <a href="#a2dfcf38a0516449f35cc6649e0013342">[詳解]</a><br /></td></tr>
+<tr class="separator:a2dfcf38a0516449f35cc6649e0013342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a80cb2905fe6865624b97139a9cfc1a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a8a80cb2905fe6865624b97139a9cfc1a">OnTapStart</a> (double x, double y)</td></tr>
+<tr class="memdesc:a8a80cb2905fe6865624b97139a9cfc1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">タップが開始された時に発生  <a href="#a8a80cb2905fe6865624b97139a9cfc1a">[詳解]</a><br /></td></tr>
+<tr class="separator:a8a80cb2905fe6865624b97139a9cfc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a56c9708776b016339fe39552f2dbdd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a2a56c9708776b016339fe39552f2dbdd">OnTapEnd</a> (double x, double y)</td></tr>
+<tr class="memdesc:a2a56c9708776b016339fe39552f2dbdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">タップが終了した時に発生  <a href="#a2a56c9708776b016339fe39552f2dbdd">[詳解]</a><br /></td></tr>
+<tr class="separator:a2a56c9708776b016339fe39552f2dbdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5141a95513a8488e2e10786fa46f3a1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ac5141a95513a8488e2e10786fa46f3a1">OnTapMove</a> (double x, double y)</td></tr>
+<tr class="memdesc:ac5141a95513a8488e2e10786fa46f3a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ドラッグ（押しながら移動）された時に発生  <a href="#ac5141a95513a8488e2e10786fa46f3a1">[詳解]</a><br /></td></tr>
+<tr class="separator:ac5141a95513a8488e2e10786fa46f3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6549325e9cd71ceb94537f7baa7220c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#af6549325e9cd71ceb94537f7baa7220c">RequestRedraw</a> (bool isInvalidated=false)</td></tr>
+<tr class="memdesc:af6549325e9cd71ceb94537f7baa7220c"><td class="mdescLeft">&#160;</td><td class="mdescRight">再描画を要求する  <a href="#af6549325e9cd71ceb94537f7baa7220c">[詳解]</a><br /></td></tr>
+<tr class="separator:af6549325e9cd71ceb94537f7baa7220c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a5c2c33fd323ecdad9e32f2c9767a65ad"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a5c2c33fd323ecdad9e32f2c9767a65ad">ResizeMap</a> ()</td></tr>
+<tr class="memdesc:a5c2c33fd323ecdad9e32f2c9767a65ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">マップのリサイズを行う  <a href="#a5c2c33fd323ecdad9e32f2c9767a65ad">[詳解]</a><br /></td></tr>
+<tr class="separator:a5c2c33fd323ecdad9e32f2c9767a65ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd7819eadd2dbe41da7a7e619ff5d88"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#afcd7819eadd2dbe41da7a7e619ff5d88">DrawUpdate</a> (SKCanvas canvas, SKPaint paint)</td></tr>
+<tr class="memdesc:afcd7819eadd2dbe41da7a7e619ff5d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画内容を更新する。X、Yなどで指定された部分ではなく、全範囲を描画する  <a href="#afcd7819eadd2dbe41da7a7e619ff5d88">[詳解]</a><br /></td></tr>
+<tr class="separator:afcd7819eadd2dbe41da7a7e619ff5d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8be53e7035553414bc1a6711e1c587f0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a8be53e7035553414bc1a6711e1c587f0">DrawFloatingElements</a> (SKCanvas canvas, SKPaint paint)</td></tr>
+<tr class="memdesc:a8be53e7035553414bc1a6711e1c587f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">フローティング中の要素を描画する  <a href="#a8be53e7035553414bc1a6711e1c587f0">[詳解]</a><br /></td></tr>
+<tr class="separator:a8be53e7035553414bc1a6711e1c587f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9946309205448b9d74a503b94a7ba4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7e9946309205448b9d74a503b94a7ba4">OnDragging</a> (double dx, double dy)</td></tr>
+<tr class="memdesc:a7e9946309205448b9d74a503b94a7ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">ドラッグ中である時に呼び出される  <a href="#a7e9946309205448b9d74a503b94a7ba4">[詳解]</a><br /></td></tr>
+<tr class="separator:a7e9946309205448b9d74a503b94a7ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+プロパティ</h2></td></tr>
+<tr class="memitem:ac78370e2163a5275af100e6dc83860a3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#ac78370e2163a5275af100e6dc83860a3">CanDrag</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac78370e2163a5275af100e6dc83860a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">ドラッグ可能であるか（ドラッグによって画面全体が動くかどうか。サブクラスのドラッグ処理は制御できない）  <a href="#ac78370e2163a5275af100e6dc83860a3">[詳解]</a><br /></td></tr>
+<tr class="separator:ac78370e2163a5275af100e6dc83860a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a834be214efe3085a0af3be0d9b7253a5"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a834be214efe3085a0af3be0d9b7253a5">Argument</a> = true<code> [get, set]</code></td></tr>
+<tr class="memdesc:a834be214efe3085a0af3be0d9b7253a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画の時に使われる引数  <a href="#a834be214efe3085a0af3be0d9b7253a5">[詳解]</a><br /></td></tr>
+<tr class="separator:a834be214efe3085a0af3be0d9b7253a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc5d46ca9ae8ec37b54c33ef987d52a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7cc5d46ca9ae8ec37b54c33ef987d52a">X</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a7cc5d46ca9ae8ec37b54c33ef987d52a"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画を開始するX座標。画面スクロールで変動  <a href="#a7cc5d46ca9ae8ec37b54c33ef987d52a">[詳解]</a><br /></td></tr>
+<tr class="separator:a7cc5d46ca9ae8ec37b54c33ef987d52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f388e2d9bfbaeaba96d9f7a9c864244"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a8f388e2d9bfbaeaba96d9f7a9c864244">Y</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a8f388e2d9bfbaeaba96d9f7a9c864244"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画を開始するY座標。画面スクロールで変動  <a href="#a8f388e2d9bfbaeaba96d9f7a9c864244">[詳解]</a><br /></td></tr>
+<tr class="separator:a8f388e2d9bfbaeaba96d9f7a9c864244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52598b60f34b4407cdb8f8e966cb87f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a52598b60f34b4407cdb8f8e966cb87f9">Width</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a52598b60f34b4407cdb8f8e966cb87f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャンバスの横幅  <a href="#a52598b60f34b4407cdb8f8e966cb87f9">[詳解]</a><br /></td></tr>
+<tr class="separator:a52598b60f34b4407cdb8f8e966cb87f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7405433481c1b99a631b7732e4f3231a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a7405433481c1b99a631b7732e4f3231a">Height</a> = 500<code> [get, set]</code></td></tr>
+<tr class="memdesc:a7405433481c1b99a631b7732e4f3231a"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャンバスの高さ  <a href="#a7405433481c1b99a631b7732e4f3231a">[詳解]</a><br /></td></tr>
+<tr class="separator:a7405433481c1b99a631b7732e4f3231a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
+イベント</h2></td></tr>
+<tr class="memitem:aa18721a5924aab2bf8596993ed63e9e0"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#aa18721a5924aab2bf8596993ed63e9e0">RedrawRequested</a></td></tr>
+<tr class="memdesc:aa18721a5924aab2bf8596993ed63e9e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">再描画が要求された時に発行  <a href="#aa18721a5924aab2bf8596993ed63e9e0">[詳解]</a><br /></td></tr>
+<tr class="separator:aa18721a5924aab2bf8596993ed63e9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37dd49c81f7476e6b2ded3fcbb7fce9f"><td class="memItemLeft" align="right" valign="top">EventHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_canvas_base.html#a37dd49c81f7476e6b2ded3fcbb7fce9f">DrawUpdating</a></td></tr>
+<tr class="memdesc:a37dd49c81f7476e6b2ded3fcbb7fce9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画を更新する前に発行  <a href="#a37dd49c81f7476e6b2ded3fcbb7fce9f">[詳解]</a><br /></td></tr>
+<tr class="separator:a37dd49c81f7476e6b2ded3fcbb7fce9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>画面に2D描画を行うベースクラス。このクラスはViewから直接呼び出すことを想定している </p>
+</div><h2 class="groupheader">メソッド詳解</h2>
+<a id="ad67b1050d67eb663d0423994be7a5053"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67b1050d67eb663d0423994be7a5053">&#9670;&nbsp;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StoryCanvas.Shared.View.Paint.CanvasBase.Draw </td>
+          <td>(</td>
+          <td class="paramtype">SKSurface&#160;</td>
+          <td class="paramname"><em>surface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SKColorType&#160;</td>
+          <td class="paramname"><em>colorType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>画面への描画を行う </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">canvas</td><td>キャンバス</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8be53e7035553414bc1a6711e1c587f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8be53e7035553414bc1a6711e1c587f0">&#9670;&nbsp;</a></span>DrawFloatingElements()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StoryCanvas.Shared.View.Paint.CanvasBase.DrawFloatingElements </td>
+          <td>(</td>
+          <td class="paramtype">SKCanvas&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SKPaint&#160;</td>
+          <td class="paramname"><em>paint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>フローティング中の要素を描画する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">canvas</td><td>キャンバス</td></tr>
+    <tr><td class="paramname">paint</td><td>ペイント</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a6773ee93be48d75555e0576f0171a654">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt;</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="afcd7819eadd2dbe41da7a7e619ff5d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd7819eadd2dbe41da7a7e619ff5d88">&#9670;&nbsp;</a></span>DrawUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract void StoryCanvas.Shared.View.Paint.CanvasBase.DrawUpdate </td>
+          <td>(</td>
+          <td class="paramtype">SKCanvas&#160;</td>
+          <td class="paramname"><em>canvas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SKPaint&#160;</td>
+          <td class="paramname"><em>paint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描画内容を更新する。X、Yなどで指定された部分ではなく、全範囲を描画する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">canvas</td><td>キャンバス</td></tr>
+    <tr><td class="paramname">paint</td><td>ペイント</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#aeecc69bd4b397b86edab0473aedeaaf3">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt;</a>で実装されています。</p>
+
+</div>
+</div>
+<a id="a2dfcf38a0516449f35cc6649e0013342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dfcf38a0516449f35cc6649e0013342">&#9670;&nbsp;</a></span>InvalidateSurface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StoryCanvas.Shared.View.Paint.CanvasBase.InvalidateSurface </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>描画のキャッシュを無効にし、描画内容を更新する </p>
+
+</div>
+</div>
+<a id="a7e9946309205448b9d74a503b94a7ba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e9946309205448b9d74a503b94a7ba4">&#9670;&nbsp;</a></span>OnDragging()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StoryCanvas.Shared.View.Paint.CanvasBase.OnDragging </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ドラッグ中である時に呼び出される </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td>差分X</td></tr>
+    <tr><td class="paramname">dy</td><td>差分Y</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#aff9a27b82f39ef46e0788f2762aacc07">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt;</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="a2a56c9708776b016339fe39552f2dbdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a56c9708776b016339fe39552f2dbdd">&#9670;&nbsp;</a></span>OnTapEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StoryCanvas.Shared.View.Paint.CanvasBase.OnTapEnd </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>タップが終了した時に発生 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>画面上のX</td></tr>
+    <tr><td class="paramname">y</td><td>画面上のY</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a30a315a263cac4be992ab07765400c0b">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt;</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="ac5141a95513a8488e2e10786fa46f3a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5141a95513a8488e2e10786fa46f3a1">&#9670;&nbsp;</a></span>OnTapMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StoryCanvas.Shared.View.Paint.CanvasBase.OnTapMove </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ドラッグ（押しながら移動）された時に発生 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>画面上のX</td></tr>
+    <tr><td class="paramname">y</td><td>画面上のY</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8a80cb2905fe6865624b97139a9cfc1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a80cb2905fe6865624b97139a9cfc1a">&#9670;&nbsp;</a></span>OnTapStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StoryCanvas.Shared.View.Paint.CanvasBase.OnTapStart </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>タップが開始された時に発生 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>画面上のX</td></tr>
+    <tr><td class="paramname">y</td><td>画面上のY</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#ab798b3490325e77e097294ae1ee688f7">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt;</a>で再実装されています。</p>
+
+</div>
+</div>
+<a id="af6549325e9cd71ceb94537f7baa7220c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6549325e9cd71ceb94537f7baa7220c">&#9670;&nbsp;</a></span>RequestRedraw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void StoryCanvas.Shared.View.Paint.CanvasBase.RequestRedraw </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isInvalidated</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>再描画を要求する </p>
+
+</div>
+</div>
+<a id="a5c2c33fd323ecdad9e32f2c9767a65ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c2c33fd323ecdad9e32f2c9767a65ad">&#9670;&nbsp;</a></span>ResizeMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StoryCanvas.Shared.View.Paint.CanvasBase.ResizeMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>マップのリサイズを行う </p>
+
+<p><a class="el" href="class_story_canvas_1_1_shared_1_1_view_1_1_paint_1_1_editor_1_1_entity_editor_canvas_base.html#a130708f04eec6e0da8609c98e05296d4">StoryCanvas.Shared.View.Paint.Editor.EntityEditorCanvasBase&lt; T &gt;</a>で再実装されています。</p>
+
+</div>
+</div>
+<h2 class="groupheader">プロパティ詳解</h2>
+<a id="a834be214efe3085a0af3be0d9b7253a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a834be214efe3085a0af3be0d9b7253a5">&#9670;&nbsp;</a></span>Argument</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">object StoryCanvas.Shared.View.Paint.CanvasBase.Argument = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描画の時に使われる引数 </p>
+
+</div>
+</div>
+<a id="ac78370e2163a5275af100e6dc83860a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78370e2163a5275af100e6dc83860a3">&#9670;&nbsp;</a></span>CanDrag</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool StoryCanvas.Shared.View.Paint.CanvasBase.CanDrag</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ドラッグ可能であるか（ドラッグによって画面全体が動くかどうか。サブクラスのドラッグ処理は制御できない） </p>
+
+</div>
+</div>
+<a id="a7405433481c1b99a631b7732e4f3231a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7405433481c1b99a631b7732e4f3231a">&#9670;&nbsp;</a></span>Height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StoryCanvas.Shared.View.Paint.CanvasBase.Height = 500</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>キャンバスの高さ </p>
+
+</div>
+</div>
+<a id="a52598b60f34b4407cdb8f8e966cb87f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52598b60f34b4407cdb8f8e966cb87f9">&#9670;&nbsp;</a></span>Width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int StoryCanvas.Shared.View.Paint.CanvasBase.Width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>キャンバスの横幅 </p>
+
+</div>
+</div>
+<a id="a7cc5d46ca9ae8ec37b54c33ef987d52a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc5d46ca9ae8ec37b54c33ef987d52a">&#9670;&nbsp;</a></span>X</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float StoryCanvas.Shared.View.Paint.CanvasBase.X</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描画を開始するX座標。画面スクロールで変動 </p>
+
+</div>
+</div>
+<a id="a8f388e2d9bfbaeaba96d9f7a9c864244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f388e2d9bfbaeaba96d9f7a9c864244">&#9670;&nbsp;</a></span>Y</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float StoryCanvas.Shared.View.Paint.CanvasBase.Y</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描画を開始するY座標。画面スクロールで変動 </p>
+
+</div>
+</div>
+<h2 class="groupheader">イベント詳解</h2>
+<a id="a37dd49c81f7476e6b2ded3fcbb7fce9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37dd49c81f7476e6b2ded3fcbb7fce9f">&#9670;&nbsp;</a></span>DrawUpdating</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventHandler StoryCanvas.Shared.View.Paint.CanvasBase.DrawUpdating</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>描画を更新する前に発行 </p>
+
+</div>
+</div>
+<a id="aa18721a5924aab2bf8596993ed63e9e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa18721a5924aab2bf8596993ed63e9e0">&#9670;&nbsp;</a></span>RedrawRequested</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventHandler StoryCanvas.Shared.View.Paint.CanvasBase.RedrawRequested</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>再描画が要求された時に発行 </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/KMY/Documents/Visual Studio 2017/Projects/StoryCanvas/StoryCanvas.Shared.View/Paint/<a class="el" href="_canvas_base_8cs.html">CanvasBase.cs</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

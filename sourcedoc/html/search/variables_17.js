@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['zoomin',['zoomin',['../class_story_canvas_1_1_droid_1_1_resource_1_1_drawable.html#ac31421339f241609666fe10f36eec836',1,'StoryCanvas::Droid::Resource::Drawable']]],
+  ['zoomout',['zoomout',['../class_story_canvas_1_1_droid_1_1_resource_1_1_drawable.html#a959e6f4257f828f21259ab67d7b5e4c2',1,'StoryCanvas::Droid::Resource::Drawable']]]
+];

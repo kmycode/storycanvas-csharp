@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['r',['R',['../classandroid_1_1support_1_1graphics_1_1drawable_1_1animated_1_1_r.html',1,'android.support.graphics.drawable.animated.R'],['../classandroid_1_1support_1_1design_1_1_r.html',1,'android.support.design.R'],['../classandroid_1_1support_1_1v4_1_1_r.html',1,'android.support.v4.R'],['../classnet_1_1hockeyapp_1_1android_1_1_r.html',1,'net.hockeyapp.android.R'],['../classandroid_1_1support_1_1v7_1_1appcompat_1_1_r.html',1,'android.support.v7.appcompat.R'],['../classandroid_1_1support_1_1v7_1_1cardview_1_1_r.html',1,'android.support.v7.cardview.R'],['../classnet_1_1kmycode_1_1storycanvas_1_1_r.html',1,'net.kmycode.storycanvas.R'],['../classandroid_1_1support_1_1v7_1_1recyclerview_1_1_r.html',1,'android.support.v7.recyclerview.R'],['../classandroid_1_1support_1_1graphics_1_1drawable_1_1_r.html',1,'android.support.graphics.drawable.R'],['../classandroid_1_1support_1_1v7_1_1mediarouter_1_1_r.html',1,'android.support.v7.mediarouter.R']]],
+  ['recyclerview_5fitemanimator_5fitemanimatorfinishedlistenerimplementor',['RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___item_animator___item_animator_finished_listener_implementor.html',1,'mono::android::support::v7::widget']]],
+  ['recyclerview_5fonchildattachstatechangelistenerimplementor',['RecyclerView_OnChildAttachStateChangeListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___on_child_attach_state_change_listener_implementor.html',1,'mono::android::support::v7::widget']]],
+  ['recyclerview_5fonitemtouchlistenerimplementor',['RecyclerView_OnItemTouchListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___on_item_touch_listener_implementor.html',1,'mono::android::support::v7::widget']]],
+  ['recyclerview_5frecyclerlistenerimplementor',['RecyclerView_RecyclerListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___recycler_listener_implementor.html',1,'mono::android::support::v7::widget']]],
+  ['relation1editor',['Relation1Editor',['../class_story_canvas_1_1_w_p_f_1_1_view_1_1_custom_controls_1_1_relation1_editor.html',1,'StoryCanvas::WPF::View::CustomControls']]],
+  ['relationaddedeventargs',['RelationAddedEventArgs',['../class_story_canvas_1_1_shared_1_1_models_1_1_entity_relate_1_1_relation_added_event_args.html',1,'StoryCanvas::Shared::Models::EntityRelate']]],
+  ['relaycommand',['RelayCommand',['../class_story_canvas_1_1_shared_1_1_view_tools_1_1_relay_command.html',1,'StoryCanvas::Shared::ViewTools']]],
+  ['relaycommand_3c_20islot_20_3e',['RelayCommand&lt; ISlot &gt;',['../class_story_canvas_1_1_shared_1_1_view_tools_1_1_relay_command.html',1,'StoryCanvas::Shared::ViewTools']]],
+  ['relaycommand_3c_20personpersonentityrelate_20_3e',['RelayCommand&lt; PersonPersonEntityRelate &gt;',['../class_story_canvas_1_1_shared_1_1_view_tools_1_1_relay_command.html',1,'StoryCanvas::Shared::ViewTools']]],
+  ['relaystream',['RelayStream',['../class_story_canvas_1_1_shared_1_1_models_1_1_i_o_1_1_relay_stream.html',1,'StoryCanvas::Shared::Models::IO']]],
+  ['request',['Request',['../class_one_drive_rest_a_p_i_1_1_util_1_1_request.html',1,'OneDriveRestAPI::Util']]],
+  ['requestgenerator',['RequestGenerator',['../class_one_drive_rest_a_p_i_1_1_request_generator.html',1,'OneDriveRestAPI']]],
+  ['resource',['Resource',['../class_hockey_app_sample_android_1_1_resource.html',1,'HockeyAppSampleAndroid.Resource'],['../class_story_canvas_1_1_droid_1_1_resource.html',1,'StoryCanvas.Droid.Resource']]],
+  ['resources',['Resources',['../class_story_canvas_1_1_w_p_f_1_1_properties_1_1_resources.html',1,'StoryCanvas::WPF::Properties']]],
+  ['retrylaterexception',['RetryLaterException',['../class_one_drive_rest_a_p_i_1_1_model_1_1_exceptions_1_1_retry_later_exception.html',1,'OneDriveRestAPI::Model::Exceptions']]]
+];
