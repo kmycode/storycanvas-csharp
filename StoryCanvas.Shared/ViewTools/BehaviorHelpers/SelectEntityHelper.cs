@@ -8,6 +8,12 @@ namespace StoryCanvas.Shared.ViewTools.BehaviorHelpers
     public interface IEntitySelectionOpener
     {
         /// <summary>
+        /// エンティティが選択されたことを通知する
+        /// </summary>
+        /// <param name="entity">選択されたエンティティ</param>
+        void NotifySelectedEntity(Entity entiy);
+
+        /// <summary>
         /// 選択の開始が要求された時に発行
         /// </summary>
         event EventHandler SelectionRequested;
@@ -24,6 +30,15 @@ namespace StoryCanvas.Shared.ViewTools.BehaviorHelpers
         public void OpenSelection()
         {
             this.SelectionRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// エンティティが選択されたことを通知する
+        /// </summary>
+        /// <param name="entity">選択されたエンティティ</param>
+        public void NotifySelectedEntity(Entity entity)
+        {
+            this.NotifySelected((E)entity);
         }
 
         /// <summary>

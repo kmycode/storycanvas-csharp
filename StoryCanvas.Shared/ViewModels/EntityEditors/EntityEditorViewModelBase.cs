@@ -10,10 +10,16 @@ using System.Text;
 
 namespace StoryCanvas.Shared.ViewModels.EntityEditors
 {
+    public interface IEntityPickerViewModel<out E>
+        where E : Entity
+    {
+        E SelectedEntity { get; }
+    }
+
     /// <summary>
     /// 要素のエディタのビューモデル基底クラス
     /// </summary>
-    public class EntityEditorViewModelBase<E> : ViewModelBase
+    public class EntityEditorViewModelBase<E> : ViewModelBase, IEntityPickerViewModel<E>
         where E : Entity, new()
     {
         public EntityEditorModelBase<E> Editor { get; }

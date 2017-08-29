@@ -47,12 +47,12 @@ namespace StoryCanvas.UWP.Behaviors
                     var oldHelper = (IEntitySelectionOpener)e.OldValue;
                     if (oldHelper != null)
                     {
-                        oldHelper.SelectionRequested -= view.NewHelper_SelectionRequested;
+                        oldHelper.SelectionRequested -= view.Helper_SelectionRequested;
                     }
                     var newHelper = (IEntitySelectionOpener)e.NewValue;
                     if (newHelper != null)
                     {
-                        newHelper.SelectionRequested += view.NewHelper_SelectionRequested;
+                        newHelper.SelectionRequested += view.Helper_SelectionRequested;
                     }
                 }));
         public IEntitySelectionOpener Helper
@@ -61,18 +61,19 @@ namespace StoryCanvas.UWP.Behaviors
             set => SetValue(HelperProperty, value);
         }
 
-        private void NewHelper_SelectionRequested(object sender, EventArgs e)
+        /// <summary>
+        /// 選択画面を表示することを要求された時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Helper_SelectionRequested(object sender, EventArgs e)
         {
             // フライアウトを設定
             var flyout = this.AssociatedObject.Flyout as Flyout;
             if (flyout == null)
             {
-                this.AssociatedObject.Flyout = new Flyout();
-                flyout = (Flyout)this.AssociatedObject.Flyout;
+                this.AssociatedObject.Flyout = flyout = new Flyout();
             }
-
-            flyout.Closed -= this.Flyout_Closed;
-            flyout.Closed += this.Flyout_Closed;
 
             // フライアウトのサイズを設定
             var style = new Style(typeof(FlyoutPresenter));
@@ -90,20 +91,43 @@ namespace StoryCanvas.UWP.Behaviors
             }
             content.Width = 600;
             content.Height = 480;
-            flyout.Content = content;
+            var okButton = new Button
+            {
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Margin = new Thickness(12, 4, 12, 4),
+                Content = "OK",
+            };
+            var grid = new Grid
+            {
+                RowDefinitions =
+                {
+                    new RowDefinition(),
+                    new RowDefinition
+                    {
+                        Height = new GridLength(1, GridUnitType.Auto),
+                    },
+                },
+                Children =
+                {
+                    content,
+                    okButton,
+                },
+            };
+            Grid.SetRow(okButton, 1);
+            flyout.Content = grid;
+
+            // OKボタンのイベントを設定
+            okButton.Click += this.Flyout_Closed;
         }
 
         private void Flyout_Closed(object sender, object e)
         {
             var flyout = this.AssociatedObject.Flyout as Flyout;
-            var content = flyout.Content as FrameworkElement;
+            var content = (flyout.Content as Grid).Children.First() as FrameworkElement;
 
-            switch (this.EntityType)
-            {
-                case EntityType.Person:
-                    ((SelectEntityHelper<PersonEntity>)this.Helper).NotifySelected(((PersonEditorViewModel)content.DataContext).SelectedEntity);
-                    break;
-            }
+            this.Helper.NotifySelectedEntity(((IEntityPickerViewModel<Entity>)content.DataContext).SelectedEntity);
+
+            flyout.Hide();
         }
     }
 }
