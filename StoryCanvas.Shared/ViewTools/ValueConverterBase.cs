@@ -93,6 +93,8 @@ namespace StoryCanvas.Shared.ViewTools
 	{
 		protected System.Globalization.CultureInfo culture;
 
+        protected bool IsCheckTargetType { get; set; } = true;
+
 		public abstract TO Convert(FROM value);
 
 #if WINDOWS_UWP
@@ -110,7 +112,7 @@ namespace StoryCanvas.Shared.ViewTools
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
 			this.culture = culture;
-			if (value is FROM && typeof(TO) == targetType)
+			if (value is FROM && (!this.IsCheckTargetType || typeof(TO) == targetType))
 			{
 				return this.Convert((FROM)value);
 			}
@@ -124,7 +126,7 @@ namespace StoryCanvas.Shared.ViewTools
 		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
 			this.culture = culture;
-			if (value is TO && typeof(FROM) == targetType)
+			if (value is TO && (!this.IsCheckTargetType || typeof(FROM) == targetType))
 			{
 				return this.ConvertBack((TO)value);
 			}

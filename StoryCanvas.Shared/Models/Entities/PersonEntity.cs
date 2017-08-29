@@ -52,9 +52,12 @@ namespace StoryCanvas.Shared.Models.Entities
 			}
 			set
 			{
-				this._lastName = value;
-				this.UpdateName();
-			}
+                if (this._lastName != value)
+                {
+                    this._lastName = value;
+                    this.UpdateName();
+                }
+            }
 		}
 
 		/// <summary>
@@ -70,9 +73,12 @@ namespace StoryCanvas.Shared.Models.Entities
 			}
 			set
 			{
-				this._firstName = value;
-				this.UpdateName();
-			}
+                if (this._firstName != value)
+                {
+                    this._firstName = value;
+                    this.UpdateName();
+                }
+            }
 		}
 
 		public new string Name
@@ -96,10 +102,13 @@ namespace StoryCanvas.Shared.Models.Entities
 			}
 			set
 			{
-				this._isWesternerName = value;
-				this.OnPropertyChanged();
-				this.UpdateName();
-			}
+                if (this._isWesternerName != value)
+                {
+                    this._isWesternerName = value;
+                    this.OnPropertyChanged();
+                    this.UpdateName();
+                }
+            }
 		}
 
 		/// <summary>
@@ -113,9 +122,12 @@ namespace StoryCanvas.Shared.Models.Entities
 			}
 			set
 			{
-				this.StoryModel?.SexPersonRelation.AddRelate(value, this);
-				this.OnPropertyChanged();
-			}
+                if (this.Sex != value)
+                {
+                    this.StoryModel?.SexPersonRelation.AddRelate(value, this);
+                    this.OnPropertyChanged();
+                }
+            }
 		}
 
 		/// <summary>
@@ -131,9 +143,12 @@ namespace StoryCanvas.Shared.Models.Entities
 			}
 			set
 			{
-				this._birthDay = value;
-				this.OnPropertyChanged();
-			}
+                if (this._birthDay != value)
+                {
+                    this._birthDay = value;
+                    this.OnPropertyChanged();
+                }
+            }
 		}
 
 		/// <summary>
@@ -149,9 +164,12 @@ namespace StoryCanvas.Shared.Models.Entities
 			}
 			set
 			{
-				this._deathDay = value;
-				this.OnPropertyChanged();
-			}
+                if (this._deathDay != value)
+                {
+                    this._deathDay = value;
+                    this.OnPropertyChanged();
+                }
+            }
 		}
 
 		/// <summary>

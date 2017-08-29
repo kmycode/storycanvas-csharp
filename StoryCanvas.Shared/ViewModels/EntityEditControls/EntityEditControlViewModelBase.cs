@@ -1,4 +1,5 @@
 ﻿using StoryCanvas.Shared.Models.Entities;
+using StoryCanvas.Shared.Models.Story;
 using StoryCanvas.Shared.ViewTools;
 using System;
 using System.Collections.Generic;
@@ -28,5 +29,10 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditControls
             }
         }
         private T _entity;
+
+        /// <summary>
+        /// ストーリーモデル
+        /// </summary>
+        protected StoryModel StoryModel => StoryModel.Current;
     }
 }

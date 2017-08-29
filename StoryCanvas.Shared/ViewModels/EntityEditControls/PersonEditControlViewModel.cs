@@ -15,6 +15,11 @@ namespace StoryCanvas.Shared.ViewModels.EntityEditControls
         /// </summary>
         public SelectEntityHelper<PersonEntity> PersonSelector { get; } = new SelectEntityHelper<PersonEntity>();
 
+        /// <summary>
+        /// 性別一覧
+        /// </summary>
+        public IEnumerable<SexEntity> Sexes => this.StoryModel.Sexes;
+
         public PersonEditControlViewModel()
         {
             // 関連人物選択時

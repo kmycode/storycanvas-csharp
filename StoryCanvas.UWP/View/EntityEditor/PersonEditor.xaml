@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cc="using:StoryCanvas.UWP.View.Control"
+    xmlns:cvc="using:StoryCanvas.Shared.Converters.Common"
     xmlns:cvu="using:StoryCanvas.UWP.Converters"
     xmlns:i="using:Microsoft.Xaml.Interactivity" 
     xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
@@ -21,6 +22,7 @@
         <cvu:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConv"/>
         <cvu:Boolean2NegativeVisibilityConverter x:Key="Boolean2NegativeVisibilityConv"/>
         <cvu:ColorResource2BrushConverter x:Key="ColorResource2BrushConv"/>
+        <cvc:StoryDateTimeConverter x:Key="StoryDateTimeConv"/>
     </UserControl.Resources>
 
     <StackPanel x:Name="MainPanel">
@@ -67,6 +69,47 @@
                     <cc:EditRow RowName="{CustomResource IsWesternerName}">
                         <cc:EditRow.EditColumn>
                             <ToggleSwitch IsOn="{Binding Entity.IsWesternerName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+
+                    <cc:EditRow RowName="{CustomResource Color}">
+                        <cc:EditRow.EditColumn>
+                            <TextBlock Text="Wait for Fall Update (1709)"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+
+                    <cc:EditRow RowName="{CustomResource Sex}">
+                        <cc:EditRow.EditColumn>
+                            <ComboBox ItemsSource="{Binding Sexes}" SelectedItem="{Binding Entity.Sex,Mode=TwoWay}"
+                                      HorizontalAlignment="Stretch">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CF;" Width="24"
+                                                      Foreground="{Binding Color,Converter={StaticResource ColorResource2BrushConv}}"/>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+
+                    <cc:EditRow RowName="{CustomResource BirthDay}">
+                        <cc:EditRow.EditColumn>
+                            <CalendarDatePicker Date="{Binding Entity.BirthDay,Mode=TwoWay,Converter={StaticResource StoryDateTimeConv}}"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+
+                    <cc:EditRow RowName="{CustomResource DeathDay}">
+                        <cc:EditRow.EditColumn>
+                            <CalendarDatePicker Date="{Binding Entity.DeathDay,Mode=TwoWay,Converter={StaticResource StoryDateTimeConv}}"/>
+                        </cc:EditRow.EditColumn>
+                    </cc:EditRow>
+
+                    <cc:EditRow RowName="{CustomResource Note}">
+                        <cc:EditRow.EditColumn>
+                            <TextBox AcceptsReturn="True" TextWrapping="Wrap" MinHeight="200"/>
                         </cc:EditRow.EditColumn>
                     </cc:EditRow>
                 </StackPanel>
