@@ -245,3 +245,5 @@ ModelManifest.xml
 .fake/
 Libraries/StoryCanvas.Native/Common/OneDriveStorageLicense.cs
 StoryCanvas.Shared/Common/DropboxLicense.cs
+*.dll
+*.bak
