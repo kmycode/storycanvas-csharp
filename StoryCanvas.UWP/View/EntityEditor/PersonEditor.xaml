@@ -22,6 +22,7 @@
         <cvu:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConv"/>
         <cvu:Boolean2NegativeVisibilityConverter x:Key="Boolean2NegativeVisibilityConv"/>
         <cvu:ColorResource2BrushConverter x:Key="ColorResource2BrushConv"/>
+        <cvu:ColorResource2ColorConverter x:Key="ColorResource2ColorConv"/>
         <cvc:StoryDateTimeConverter x:Key="StoryDateTimeConv"/>
     </UserControl.Resources>
 
@@ -74,7 +75,24 @@
 
                     <cc:EditRow RowName="{CustomResource Color}">
                         <cc:EditRow.EditColumn>
-                            <TextBlock Text="Wait for Fall Update (1709)"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Background="{Binding Entity.Color,Converter={StaticResource ColorResource2BrushConv}}"/>
+                                <Button Grid.Column="1" Content="変更">
+                                    <Button.Flyout>
+                                        <Flyout>
+                                            <ColorPicker>
+                                                <i:Interaction.Behaviors>
+                                                    <b:ColorPickerBindingBehavior Color="{Binding Entity.Color,Mode=TwoWay,Converter={StaticResource ColorResource2ColorConv}}"/>
+                                                </i:Interaction.Behaviors>
+                                            </ColorPicker>
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+                            </Grid>
                         </cc:EditRow.EditColumn>
                     </cc:EditRow>
 

@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\CanvasBehavior.cs" />
+    <Compile Include="Behaviors\ColorPickerBindingBehavior.cs" />
     <Compile Include="Behaviors\ContentDialogBehavior.cs" />
     <Compile Include="Behaviors\EntitySelectionBehavior.cs" />
     <Compile Include="Behaviors\ErrorMessageBehavior.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Behaviors\PromptBehavior.cs" />
     <Compile Include="Converters\Boolean2VisibilityConverter.cs" />
     <Compile Include="Converters\ColorResource2BrushConverter.cs" />
+    <Compile Include="Converters\ColorResource2ColorConverter.cs" />
     <Compile Include="Converters\EnumEquals2VisibilityConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
