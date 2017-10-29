@@ -189,7 +189,11 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             set => ((SingleEntityMapCanvasContainer<T>)this.Container).Map = value;
         }
 
-        public EntityEditorCanvasWithSingleEntityMapBase(IEntityEditorCanvasContainer<T> container) : base(container)
+        private EntityEditorCanvasWithSingleEntityMapBase(IEntityEditorCanvasContainer<T> container) : base(container)
+        {
+        }
+
+        public EntityEditorCanvasWithSingleEntityMapBase(SingleEntityMapCanvasContainer<T> container) : this((IEntityEditorCanvasContainer<T>)container)
         {
         }
 

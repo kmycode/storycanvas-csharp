@@ -13,7 +13,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
     /// <summary>
     /// １種類のエンティティをまとめたマップを描画するロジック
     /// </summary>
-    class SingleEntityMapCanvasContainer<E> : IEntityEditorCanvasContainer<E>, IEachEntityRelationEditorCanvasContainer<E>
+    public class SingleEntityMapCanvasContainer<E> : IEntityEditorCanvasContainer<E>, IEachEntityRelationEditorCanvasContainer<E>
         where E : Entity
     {
         public SingleEntityMap<E> Map { get; set; } = new SingleEntityMap<E>();
