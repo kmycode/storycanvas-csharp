@@ -155,12 +155,6 @@ namespace StoryCanvas.Shared.Models.Editor
             };
         }
 
-        protected EntityEditorWithSingleCanvasModelBase(EntityEditorWithSingleCanvasModelBase<T> other, EntityEditorCanvasWithSingleEntityMapBase<T> canvas) : this(other.Story, canvas, other.Entities)
-        {
-            this._mapGroup = other._mapGroup;
-            this.UpdateMapSelection();
-        }
-
         private void UpdateMapSelection()
         {
             this.Canvas.Map = this.MapGroup.SelectedMap;
@@ -218,11 +212,6 @@ namespace StoryCanvas.Shared.Models.Editor
         private EntityRelateBase<T, T> _selectedRelation;
 
         protected EntityEditorWithEachRelationModelBase(StoryModel story, EntityEditorCanvasWithSingleEntityMapBase<T> canvas, IEnumerable<T> entities) : base(story, canvas, entities)
-        {
-            this.Initialize();
-        }
-
-        protected EntityEditorWithEachRelationModelBase(EntityEditorWithEachRelationModelBase<T> other, EntityEditorCanvasWithSingleEntityMapBase<T> canvas) : base(other, canvas)
         {
             this.Initialize();
         }
