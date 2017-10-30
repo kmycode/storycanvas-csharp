@@ -1285,7 +1285,7 @@ namespace StoryCanvas.Shared.Models.Story
                 {
                     this._personEditorModel = new PersonEditorModel(this);
                 }
-                return new PersonEditorModel(this._personEditorModel);
+                return this._personEditorModel;
             }
         }
 
