@@ -1791,7 +1791,7 @@ namespace StoryCanvas.Shared.Models.Story
 			this.PersonParameterSelectCellCount = o.PersonParameterSelectCellCount;
 
             o._personEditorModel.CopyTo(this._personEditorModel);
-            this._personEditorModel.LoadEntities(this.People);
+            this._personEditorModel.Initialize(this.People);
 
 			this.StoryConfig = o.StoryConfig;
 		}

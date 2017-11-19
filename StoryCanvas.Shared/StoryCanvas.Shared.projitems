@@ -66,6 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryCalendar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryDate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Date\StoryTime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\Map.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\SingleEntityMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\EntityEditorModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Editor\Map\MapElement.cs" />

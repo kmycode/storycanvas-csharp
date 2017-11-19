@@ -20,14 +20,14 @@ namespace StoryCanvas.Shared.Models.Editor.Map
         /// マップ群
         /// </summary>
         [DataMember]
-        private ObservableCollection<SingleEntityMap<E>> _maps = new ObservableCollection<SingleEntityMap<E>>
+        private ObservableCollection<SingleEntityMap<E>> _maps;
+        public ObservableCollection<SingleEntityMap<E>> Maps => this._maps = this._maps ?? new ObservableCollection<SingleEntityMap<E>>
         {
             new SingleEntityMap<E>
             {
                 Name = AppResources.TitleEmpty,
             },
         };
-        public ObservableCollection<SingleEntityMap<E>> Maps => this._maps;
 
         /// <summary>
         /// 現在選択されているマップ

@@ -227,13 +227,15 @@ namespace StoryCanvas.Shared.View.Paint.Editor
             var maxY = this.Map.Elements.Max(e => e.Y + e.ViewHeight);
 
             // 要素を移動した結果、要素が今までの枠の外に出た時は、枠のサイズを変更する
+            float dx, dy;
+            dx = dy = 0;
             if (minX < 0)
             {
                 foreach (var element in this.Map.Elements)
                 {
                     element.X -= minX;
                 }
-                this.Canvas.X += minX;
+                dx = minX;
             }
             else if (minX > 10)
             {
@@ -241,7 +243,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
                 {
                     element.X -= minX;
                 }
-                this.Canvas.X += minX;
+                dx = minX;
             }
             if (minY < 0)
             {
@@ -249,7 +251,7 @@ namespace StoryCanvas.Shared.View.Paint.Editor
                 {
                     element.Y -= minY;
                 }
-                this.Canvas.Y += minY;
+                dy = minY;
             }
             else if (minY > 10)
             {
@@ -257,8 +259,9 @@ namespace StoryCanvas.Shared.View.Paint.Editor
                 {
                     element.Y -= minY;
                 }
-                this.Canvas.Y += minY;
+                dy = minY;
             }
+            this.Canvas.Scroll(dx, dy);
 
             // キャンバスの縦幅、横幅を設定する
             // 250: 要素の大きさは描画時に設定されるが、アプリ起動直後に描画する時は値が設定されていないのでとりあえずこれで

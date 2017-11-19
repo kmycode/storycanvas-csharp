@@ -38,12 +38,12 @@ namespace StoryCanvas.Shared.View.Paint
         /// <summary>
         /// 描画を開始するX座標。画面スクロールで変動
         /// </summary>
-        public float X { get; set; }
+        public float X { get; private set; }
 
         /// <summary>
         /// 描画を開始するY座標。画面スクロールで変動
         /// </summary>
-        public float Y { get; set; }
+        public float Y { get; private set; }
 
         /// <summary>
         /// キャンバスの横幅
@@ -178,11 +178,10 @@ namespace StoryCanvas.Shared.View.Paint
         /// <param name="dy">差分Y</param>
         protected virtual void OnDragging(double dx, double dy)
         {
-            this.X -= (float)dx;
-            this.Y -= (float)dy;
+            if (this.X - (float)dx < -this.Width) dx = this.X + this.Width;
+            if (this.Y - (float)dy < -this.Height) dy = this.Y + this.Height;
 
-            if (this.X < -this.Width) this.X = -this.Width;
-            if (this.Y < -this.Height) this.Y = -this.Height;
+            this.Scroll(-(float)dx, -(float)dy);
 
             this.RequestRedraw();
         }
@@ -200,6 +199,28 @@ namespace StoryCanvas.Shared.View.Paint
         }
 
         /// <summary>
+        /// マップの左上座標を移動し、スクロールする
+        /// </summary>
+        /// <param name="x">移動量</param>
+        /// <param name="y">移動量</param>
+        public void Scroll(float x, float y)
+        {
+            this.X += x;
+            this.Y += y;
+            this.Scrolled?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// マップの左上座標を、現在の値によらない絶対値で指定する
+        /// </summary>
+        /// <param name="x">移動量</param>
+        /// <param name="y">移動量</param>
+        protected void SetMapTranslation(float x, float y)
+        {
+            this.Scroll(x - this.X, y - this.Y);
+        }
+
+        /// <summary>
         /// 再描画が要求された時に発行
         /// </summary>
         public event EventHandler RedrawRequested;
@@ -208,5 +229,10 @@ namespace StoryCanvas.Shared.View.Paint
         /// 描画を更新する前に発行
         /// </summary>
         public event EventHandler DrawUpdating;
+
+        /// <summary>
+        /// マップがスクロール（X、Yプロパティが変更）されたときに発行
+        /// </summary>
+        protected event EventHandler Scrolled;
     }
 }

@@ -195,11 +195,31 @@ namespace StoryCanvas.Shared.View.Paint.Editor
 
         public EntityEditorCanvasWithSingleEntityMapBase(SingleEntityMapCanvasContainer<T> container) : this((IEntityEditorCanvasContainer<T>)container)
         {
+            this.ResetMapTranslation();
+
+            this.Scrolled += (sender, e) =>
+            {
+                container.Map.X = this.X;
+                container.Map.Y = this.Y;
+            };
         }
 
         protected EntityEditorCanvasWithSingleEntityMapBase(EntityEditorCanvasWithSingleEntityMapBase<T> other) : this(other.Container)
         {
             this.Map = other.Map;
+        }
+
+        /// <summary>
+        /// マップの移動量をリセットする。
+        /// 画面側の移動量を、データ側の移動量にあわせる
+        /// </summary>
+        public void ResetMapTranslation()
+        {
+            var container = (SingleEntityMapCanvasContainer<T>)this.Container;
+            if (container.Map != null)
+            {
+                this.SetMapTranslation(container.Map.X, container.Map.Y);
+            }
         }
 
         /// <summary>
@@ -218,6 +238,13 @@ namespace StoryCanvas.Shared.View.Paint.Editor
                 });
                 this.InvalidateSurface();
             }
+        }
+
+        protected override void OnDragging(double dx, double dy)
+        {
+            base.OnDragging(dx, dy);
+            this.Map.X = this.X;
+            this.Map.Y = this.Y;
         }
     }
 

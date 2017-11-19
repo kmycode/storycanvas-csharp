@@ -106,17 +106,7 @@ namespace StoryCanvas.Shared.Models.Editor
         /// </summary>
         [DataMember]
         private SingleEntityMapGroup<T> _mapGroup;
-        public SingleEntityMapGroup<T> MapGroup
-        {
-            get
-            {
-                if (this._mapGroup == null)
-                {
-                    this._mapGroup = new SingleEntityMapGroup<T>();
-                }
-                return this._mapGroup;
-            }
-        }
+        public SingleEntityMapGroup<T> MapGroup => this._mapGroup = this._mapGroup ?? new SingleEntityMapGroup<T>();
 
         /// <summary>
         /// キャンバス
@@ -159,6 +149,7 @@ namespace StoryCanvas.Shared.Models.Editor
         {
             this.Canvas.Map = this.MapGroup.SelectedMap;
             this.Canvas.RequestRedraw(true);
+            this.Canvas.ResetMapTranslation();
         }
 
         public override void CopyTo(EntityEditorModelBase<T> to)
@@ -172,9 +163,10 @@ namespace StoryCanvas.Shared.Models.Editor
             }
         }
 
-        public void LoadEntities(EntitySetModel<T> entities)
+        public void Initialize(EntitySetModel<T> entities)
         {
             this.MapGroup.LoadEntities(entities);
+            this.Canvas.ResetMapTranslation();
         }
     }
 

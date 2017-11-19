@@ -14,7 +14,7 @@ namespace StoryCanvas.Shared.Models.Editor.Map
     /// 編集画面のマップ１枚分。入れられる要素は１種類のみ
     /// </summary>
     [DataContract]
-    public class SingleEntityMap<E> : INotifyPropertyChanged where E : Entity
+    public class SingleEntityMap<E> : Map where E : Entity
     {
         /// <summary>
         /// マップの名前
@@ -48,15 +48,5 @@ namespace StoryCanvas.Shared.Models.Editor.Map
                 el._entity.FindEntity(entities);
             }
         }
-        
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
     }
 }
